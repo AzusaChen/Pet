@@ -1,0 +1,301 @@
+﻿@model IEnumerable<prjNewPet.Models.tOrder>
+
+@{
+    ViewBag.Title = "OrderList";
+    Layout = "~/Views/Shared/_Layout_Backmanagement.cshtml";
+
+
+}
+@section styles{
+    <link href="~/Content/DataTables/css/jquery.dataTables.css" rel="stylesheet" />
+
+    <link href="~/Content/tablecss.css" rel="stylesheet" />
+
+    <style>
+        hr.style-four {
+            height: 12px;
+            border: 0;
+            box-shadow: inset 0 12px 12px -12px rgba(0,0,0,0.5);
+        }
+
+        .ui-widget-header, .ui-state-default, ui-button {
+            background: #3C3C3C;
+            border: 3px solid #b9cd6d;
+            color: #FFFFFF;
+            font-weight: bold;
+            height: auto;
+        }
+
+        #detaildiv {
+            margin-top: 30px;
+        }
+    </style>
+
+    <!--引用css-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.10.3/sweetalert2.css" />
+
+    <link href="http://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel="stylesheet" />
+
+
+}
+
+
+
+<h2 style="font-family:微軟正黑體">訂單列表</h2>
+
+<hr class="style-four" />
+
+<form id="formOrderId" method="post" action="" enctype="multipart/form-data">
+
+    <select id="selectStatusId">
+        <option value="所有狀態">所有狀態</option>
+        <option value="已出貨">已出貨</option>
+        <option value="未出貨">未出貨</option>
+
+    </select>
+
+    <input type="submit" value="搜尋" onclick="statuschange()" />
+</form>
+
+@section statussearch{
+    <script type="text/javascript">
+            function statuschange() {
+
+                var ca = document.getElementById("selectStatusId");
+                var strUser = ca.options[ca.selectedIndex].value;
+
+
+
+                var stri = "?status=" + strUser
+                //alert(stri)
+                x = document.getElementById("formOrderId");
+                x.action = stri;
+
+            }
+
+    </script>
+}
+
+<table class="table display" id="myDataTalbe" style="font-family:微軟正黑體;font-weight:bold">
+    <thead>
+        <tr>
+            <th>
+                @Html.Label("訂單編號")
+            </th>
+            <th>
+                @Html.Label("產品明細")
+            </th>
+            <th>
+                @Html.Label("下單日期")
+            </th>
+            <th>
+                @Html.Label("出貨日期")
+            </th>
+            <th>
+                @Html.Label("收貨人姓名")
+            </th>
+            <th>
+                @Html.Label("收貨人電話")
+            </th>
+            <th>
+                @Html.Label("城市")
+            </th>
+            <th>
+                @Html.Label("地區")
+            </th>
+            <th>
+                @Html.Label("地址")
+            </th>
+            <th>
+                @Html.Label("付款方式")
+            </th>
+            <th>
+                @Html.Label("商品狀態")
+            </th>
+            <th>
+                @Html.Label("狀態修改")
+            </th>
+            <th>
+                @Html.Label("編輯")
+            </th>
+            <th>
+                @Html.Label("刪除")
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fOrderID)
+                </td>
+                <td>
+                    <input type="button" value="詳細資料" onclick="Details(@item.fOrderID)" />
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fOrderDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fShipOutDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fReceiverName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fReceiverPhone)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.tCity.fName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.tRegion.fName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fAddressDetail)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.tPayWay.fName)
+                </td>
+                <td style="text-align:center">
+                    @Html.DisplayFor(modelItem => item.fStatus)
+                </td>
+
+                <td style="text-align:center">
+                    <a onclick="changestatus(@item.fOrderID)"><img src="~/images/StatusIcon.png" width="40" /></a>
+
+                </td>
+                <td style="text-align:center">
+                    <a href="~/Order/Edit/?fOrderID=@item.fOrderID.ToString()" class="btn btn-info"><img src="~/images/EditIcon.png" width="40" /></a>
+                </td>
+                <td style="text-align:center">
+                    <a id="btn_delete" href="#" onclick="opened(@item.fOrderID)"><img src="~/images/DeleteIcon.jpg" width="40" /></a>
+                </td>
+
+            </tr>
+        }
+
+    </tbody>
+</table>
+<div id="detaildiv">
+
+</div>
+
+
+<div id="dialog-1" title="刪除" style="font-family:微軟正黑體;color:orangered;font-weight:600">確定要刪除嗎?</div>
+
+@section scripts{
+    <!--引用jQuery-->
+    @*<script src="~/Scripts/jquery-3.4.1.min.js"></script>*@
+    <script src="~/Scripts/jquery-1.12.4.min.js"></script>
+    <script src="~/Scripts/DataTables/jquery.dataTables.js"></script>
+    <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+
+    <!--引用SweetAlert2.js-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.0.0/sweetalert2.all.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $("#myDataTalbe").DataTable({
+                searching: true, //關閉filter功能
+                columnDefs: [{
+                    targets: [3],
+                    orderable: false,
+                }],
+                "language": {
+                        "url":"@Url.Content("~/i18n/zh-tw.json")"
+                    }
+            });
+        });
+
+
+        function changestatus(orderId) {
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("ChangeStatus", "Order")',
+                data: { OrderId: orderId },
+                success: function (data) {
+
+                  location.reload();
+
+                },
+                dataType: "JSON"
+            });
+
+        }
+
+        var qqq;
+
+        function opened(ordersID) {
+            qqq = ordersID;
+            $("#dialog-1").dialog("open");
+
+        };
+
+        $(function () {
+
+            $("#dialog-1").dialog({
+
+                autoOpen: false,
+
+                show: "scale",
+
+                hide: "scale",
+
+                buttons: {
+
+                    "確定": function () {
+                        $.ajax({
+                            type: "post",
+                            url: "/Order/Delete/?fOrderID=" + qqq,
+
+
+                        }).done(function (data) {
+                            if (data == "sucess") {
+                                swal("刪除", "資料已刪除!", "success").then(function skip(result) { location.reload(); });
+                            }
+                            else if (data == "已出貨") {
+                                swal("訊息", "商品已出貨，無法刪除!", "error").then(function skip(result) { location.reload(); });
+                            }
+
+
+                        }).fail(function (err) {
+                            alert("失敗")
+                        });
+
+
+                        $(this).dialog("close");
+
+                    },
+
+                    "取消": function () { $(this).dialog("close"); }
+                }
+            });
+        });
+
+        function Details(oId) {
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("BackDetails", "Order")',
+                data:
+                {
+                    id: oId
+                },
+                success: function (data) {
+                    if ($("#" + oId).length > 0) {
+
+                        $("#" + oId).closest("table").remove();
+                    }
+                    else {
+                        $('#detaildiv').html(data);
+                    }
+
+                },
+                dataType: "HTML"
+            });
+        }
+
+    </script>
+
+}

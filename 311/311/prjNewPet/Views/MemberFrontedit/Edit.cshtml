@@ -1,0 +1,320 @@
+﻿@model prjNewPet.Models.tMember
+@using prjNewPet.Models
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+        crossorigin="anonymous"></script>
+
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+
+
+@section style
+{
+    <link rel="stylesheet" href="~/AdBoard/css/lanrenzhijia.css" type="text/css" />
+    <style>
+        #h1page {
+            font-family: 微軟正黑體;
+            font-size: 30px;
+        }
+
+        #allrow {
+            width: 1490px;
+        }
+
+        .col-md-3 {
+            margin-left: 55px;
+        }
+
+        #main-content{
+            background-image:url(../../images/backimage3.jpg);
+        }
+
+    </style>
+
+
+}
+
+<!-- MAIN CONTENT -->
+<div id="main-content">
+    <div class="container-fluid">
+        <div class="section-heading">
+            <h1 class="page-title" id="h1page">會員中心</h1>
+        </div>
+        <div class="row" id="allrow">
+            <div class="col-md-6">
+                <div class="panel-content">
+                    <h2 class="heading"><i class="fa fa-pencil-square-o"></i>基本會員資料</h2>
+
+                    @using (Html.BeginForm("Edit", "MemberFrontedit", null, FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        @Html.HiddenFor(model => model.fMemberID)
+
+                        <div class="form-group">
+                            <label>會員名稱</label>
+                            @Html.EditorFor(model => model.fName, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.fName, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            <label>暱稱</label>
+                            @Html.EditorFor(model => model.fNickName, new { htmlAttributes = new { @class = "form-control", id = 4 } })
+                            @Html.ValidationMessageFor(model => model.fNickName, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            <label>密碼</label>
+                            @Html.EditorFor(model => model.fPassword, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.fPassword, "", new { @class = "text-danger" })
+                        </div>
+                        @*<div class="form-group">
+                            <label>確認密碼</label>
+                            <input type="email" class="form-control" required>
+                            </div>*@
+
+                        <h2 class="heading"><i class="fa fa-pencil-square"></i>其他會員資料</h2>
+
+                        <div class="form-group">
+                            <label for="text-input1">信箱</label>
+                            @Html.EditorFor(model => model.fEMail, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.fEMail, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            <label for="text-input2">城市</label>
+                            @Html.DropDownList("fCityID", (SelectList)ViewBag.SelectList, "請選擇城市", htmlAttributes: new { @class = "form-control", id = "Citys" })
+                            @Html.ValidationMessageFor(model => model.fCityID, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            <label for="text-input3">地區</label>
+                            <select id="Regions" name="fRegionID" class="form-control"><option>@Model.tRegion.fName</option></select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="text-input3">電話</label>
+                            @Html.EditorFor(model => model.fPhone, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.fPhone, "", new { @class = "text-danger" })
+                        </div>
+                        @*<div class="form-group">
+                            <label for="text-input4">經濟狀況</label>
+                             @Html.EditorFor(model => model.fAddressDetail, new { htmlAttributes = new { @class = "form-control" } })
+                             @Html.ValidationMessageFor(model => model.fAddressDetail, "", new { @class = "text-danger" })
+                             </div>*@
+
+                        <div class="form-group">
+                            <label for="text-input4">詳細地址</label>
+                            @Html.EditorFor(model => model.fAddressDetail, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.fAddressDetail, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="form-group">
+                            <label for="text-input4">頭像</label>
+                            @*@Html.EditorFor(model => model.fIcon, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.fIcon, "", new { @class = "text-danger" })*@
+                            <input type="file" name="photo" class="form-control" />
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">修改</button>
+                    }
+                </div>
+            </div>
+
+            @section featuredicon {
+
+                <img src="@Model.fIcon" class="img-responsive img-circle user-photo" alt="User Profile Picture">
+
+            }
+
+            @section featuredname{
+
+                @Model.fName
+            }
+
+            @section petcoin{
+
+                <img src="~/images/petcoin.gif" style="width:95px;" /><span style="font-size:20px;color:red">$ @Convert.ToInt32(Model.fPetCoin)</span>
+
+            }
+
+            <div class="col-md-6" id="abboard">
+
+                <div class="panel-content">
+
+                    <h2 class="section-title"><i class="fa fa-user-circle"></i> 個人資訊</h2>
+                    @{
+                        dbNewPetEntities db = new dbNewPetEntities();
+                        var likecout = db.tDiscussions.Where(m => m.fMemberID == Model.fMemberID).Sum(k => k.fLike);
+                        if(likecout==null)
+                        {
+                            likecout = 0;
+                        }
+
+                        int discount = db.tDiscussions.Where(m => m.fMemberID == Model.fMemberID).Count();
+
+                        var orderlistcount = db.tOrders.Where(m => m.fMemberID == Model.fMemberID && m.fStatus == "未出貨").Count();
+
+
+                        <div class="col-md-3 col-sm-6">
+                            <p style="background-color:burlywood" class="metric-inline"><i style="color:blue" class="fa fa-thumbs-o-up"></i>+@likecout <span>按讚數</span></p>
+                        </div>
+
+                        <div class="col-md-3 col-sm-6">
+                            <p style="background-color:burlywood" class="metric-inline"><i style="color:brown" class="fa fa-reply-all"></i> @discount <span>文章數量</span></p>
+                        </div>
+
+
+                       <div class="col-md-3 col-sm-6">
+                           <p style="background-color:burlywood" class="metric-inline"><i style="color:greenyellow" class="fa fa-envelope-o"></i> @orderlistcount <span>未出貨訂單</span></p>
+                       </div>
+
+                     }
+
+
+
+
+
+                    <div class="container">
+                        <div class="ad">
+                            <div id="ad_1" class="ad_1">
+                                <img class="slice_1" src="~/AdBoard/ads/ad1_slice01.jpg" />
+                                <img class="slice_2" src="~/AdBoard/ads/ad1_slice02.jpg" />
+                                <img class="slice_3" src="~/AdBoard/ads/ad1_slice03.jpg" />
+                                <img class="slice_4" src="~/AdBoard/ads/ad1_slice04.jpg" />
+                                <img class="slice_5" src="~/AdBoard/ads/ad1_slice05.jpg" />
+                                <img class="slice_6" src="~/AdBoard/ads/ad1_slice06.jpg" />
+                                <img class="slice_7" src="~/AdBoard/ads/ad1_slice07.jpg" />
+                                <img class="slice_8" src="~/AdBoard/ads/ad1_slice08.jpg" />
+                                <img class="slice_9" src="~/AdBoard/ads/ad1_slice09.jpg" />
+                                <img class="slice_10" src="~/AdBoard/ads/ad1_slice10.jpg" />
+                                <img class="slice_11" src="~/AdBoard/ads/ad1_slice11.jpg" />
+                                <img class="slice_12" src="~/AdBoard/ads/ad1_slice12.jpg" />
+                                <img class="slice_13" src="~/AdBoard/ads/ad1_slice13.jpg" />
+                                <img class="slice_14" src="~/AdBoard/ads/ad1_slice14.jpg" />
+                                <img class="slice_15" src="~/AdBoard/ads/ad1_slice15.jpg" />
+                                <img class="slice_16" src="~/AdBoard/ads/ad1_slice16.jpg" />
+                                <img class="slice_17" src="~/AdBoard/ads/ad1_slice17.jpg" />
+                                <img class="slice_18" src="~/AdBoard/ads/ad1_slice18.jpg" />
+                                <img class="slice_19" src="~/AdBoard/ads/ad1_slice19.jpg" />
+                                <img class="slice_20" src="~/AdBoard/ads/ad1_slice20.jpg" />
+                                <img class="slice_21" src="~/AdBoard/ads/ad1_slice21.jpg" />
+                                <img class="slice_22" src="~/AdBoard/ads/ad1_slice22.jpg" />
+                            </div>
+                            <div id="ad_2" class="ad_2">
+                                <img class="slice_1" src="~/AdBoard/ads/ad2_slice01.jpg" />
+                                <img class="slice_2" src="~/AdBoard/ads/ad2_slice02.jpg" />
+                                <img class="slice_3" src="~/AdBoard/ads/ad2_slice03.jpg" />
+                                <img class="slice_4" src="~/AdBoard/ads/ad2_slice04.jpg" />
+                                <img class="slice_5" src="~/AdBoard/ads/ad2_slice05.jpg" />
+                                <img class="slice_6" src="~/AdBoard/ads/ad2_slice06.jpg" />
+                                <img class="slice_7" src="~/AdBoard/ads/ad2_slice07.jpg" />
+                                <img class="slice_8" src="~/AdBoard/ads/ad2_slice08.jpg" />
+                                <img class="slice_9" src="~/AdBoard/ads/ad2_slice09.jpg" />
+                                <img class="slice_10" src="~/AdBoard/ads/ad2_slice10.jpg" />
+                                <img class="slice_11" src="~/AdBoard/ads/ad2_slice11.jpg" />
+                                <img class="slice_12" src="~/AdBoard/ads/ad2_slice12.jpg" />
+                                <img class="slice_13" src="~/AdBoard/ads/ad2_slice13.jpg" />
+                                <img class="slice_14" src="~/AdBoard/ads/ad2_slice14.jpg" />
+                                <img class="slice_15" src="~/AdBoard/ads/ad2_slice15.jpg" />
+                                <img class="slice_16" src="~/AdBoard/ads/ad2_slice16.jpg" />
+                                <img class="slice_17" src="~/AdBoard/ads/ad2_slice17.jpg" />
+                                <img class="slice_18" src="~/AdBoard/ads/ad2_slice18.jpg" />
+                                <img class="slice_19" src="~/AdBoard/ads/ad2_slice19.jpg" />
+                                <img class="slice_20" src="~/AdBoard/ads/ad2_slice20.jpg" />
+                                <img class="slice_21" src="~/AdBoard/ads/ad2_slice21.jpg" />
+                                <img class="slice_22" src="~/AdBoard/ads/ad2_slice22.jpg" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="billboard"></div>
+
+
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+
+
+
+    <script>
+
+    $(document).ready(function () {
+        $("#Citys").change(function () { ChangeCity(); });
+    });
+
+    function ChangeCity() {
+        var selectedValue = $("#Citys option:selected").val();//cityid
+        if ($.trim(selectedValue).length > 0) {
+            GetOrders(selectedValue);
+        }
+    }
+
+    //GetOrders() 這個 function 內就透過 jQuery.Ajax() 向後端取得 Orders 的 JSON 資料，最後再由這份 JSON 資料去增加下拉選單的 option 內容
+
+    function GetOrders(cityID) {
+        $.ajax({
+            url: '@Url.Action("Regions", "MemberFrontedit")',
+            data: { cityID: cityID },
+            type: 'post',
+            cache: false,
+            async: false,
+            dataType: 'json',
+            success: function (data) {
+                if (data.length > 0) {
+                    $('#Regions').empty();
+                    $('#Regions').append($('<option></option>').val('').text('請選擇區域'));
+                    $.each(data, function (i, item) {
+                        $('#Regions').append($('<option></option>').val(item.Key).text(item.Value));
+                    });
+                }
+            }
+        });
+    }
+
+
+
+
+    </script>
+
+
+
+    <script>
+        $(function () {
+            $('#ad_1 > img').each(function (i, e) {
+                rotate($(this), 500, 3000, i);
+            });
+            function rotate(elem1, speed, timeout, i) {
+                elem1.animate({ 'marginLeft': '18px', 'width': '0px' }, speed, function () {
+                    var other;
+                    if (elem1.parent().attr('id') == 'ad_1')
+                        other = $('#ad_2').children('img').eq(i);
+                    else
+                        other = $('#ad_1').children('img').eq(i);
+                    other.animate({ 'marginLeft': '0px', 'width': '35px' }, speed, function () {
+                        var f = function () { rotate(other, speed, timeout, i) };
+                        setTimeout(f, timeout);
+                    });
+                });
+            }
+        });
+    </script>
+
+
+
+
+
+
+}
+
+<!-- END MAIN CONTENT -->
+<div class="clearfix"></div>

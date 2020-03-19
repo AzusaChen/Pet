@@ -1,0 +1,204 @@
+ERROR 2020/03/04 12:04:20 Web                  Index                System.DivideByZeroException: 嘗試以零除。
+   於 prjNewPet.Controllers.HomeController.Index() 於 C:\Users\III\Desktop\0303\完整版(0302)\0302\prjNewPet\Controllers\HomeController.cs: 行 23
+
+ERROR 2020/03/04 12:18:34 Web                  Index                System.DivideByZeroException: 嘗試以零除。
+   於 prjNewPet.Controllers.HomeController.Index() 於 C:\Users\III\Desktop\0303\完整版(0302)\0302\prjNewPet\Controllers\HomeController.cs: 行 23
+
+ERROR 2020/03/04 12:24:10 Web                  Index                System.DivideByZeroException: 嘗試以零除。
+   於 prjNewPet.Controllers.HomeController.Index() 於 C:\Users\III\Desktop\0303\完整版(0302)\0302\prjNewPet\Controllers\HomeController.cs: 行 23
+
+ERROR 2020/03/04 12:41:36 Web                  Index                System.DivideByZeroException: 嘗試以零除。
+   於 prjNewPet.Controllers.HomeController.Index() 於 C:\Users\III\Desktop\0303\完整版(0302)\0302\prjNewPet\Controllers\HomeController.cs: 行 23
+
+ERROR 2020/03/04 13:37:08 Web                  Index                System.DivideByZeroException: 嘗試以零除。
+   於 prjNewPet.Controllers.HomeController.Index() 於 C:\Users\III\Desktop\0303\完整版(0302)\0302\prjNewPet\Controllers\HomeController.cs: 行 23
+
+ERROR 2020/03/04 13:39:08 Web                  Index                System.DivideByZeroException: 嘗試以零除。
+   於 prjNewPet.Controllers.HomeController.Index() 於 C:\Users\III\Desktop\0303\完整版(0302)\0302\prjNewPet\Controllers\HomeController.cs: 行 23
+
+ERROR 2020/03/04 13:39:10 Web                  Index                System.DivideByZeroException: 嘗試以零除。
+   於 prjNewPet.Controllers.HomeController.Index() 於 C:\Users\III\Desktop\0303\完整版(0302)\0302\prjNewPet\Controllers\HomeController.cs: 行 23
+
+ERROR 2020/03/04 14:00:57 Web                  Index                System.DivideByZeroException: 嘗試以零除。
+   於 prjNewPet.Controllers.HomeController.Index() 於 C:\Users\III\Desktop\0303\完整版(0302)\0302\prjNewPet\Controllers\HomeController.cs: 行 23
+
+ERROR 2020/03/04 14:04:12 Web                  Index                System.DivideByZeroException: 嘗試以零除。
+   於 prjNewPet.Controllers.HomeController.Index() 於 C:\Users\III\Desktop\0303\完整版(0302)\0302\prjNewPet\Controllers\HomeController.cs: 行 23
+
+ERROR 2020/03/04 14:04:17 Web                  Index                System.DivideByZeroException: 嘗試以零除。
+   於 prjNewPet.Controllers.HomeController.Index() 於 C:\Users\III\Desktop\0303\完整版(0302)\0302\prjNewPet\Controllers\HomeController.cs: 行 23
+
+ERROR 2020/03/04 14:09:58 Web                  Index                System.DivideByZeroException: 嘗試以零除。
+   於 prjNewPet.Controllers.HomeController.Index() 於 C:\Users\III\Desktop\0303\完整版(0302)\0302\prjNewPet\Controllers\HomeController.cs: 行 23
+
+ERROR 2020/03/04 14:12:19 Web                  Index                System.DivideByZeroException: 嘗試以零除。
+   於 prjNewPet.Controllers.HomeController.Index() 於 C:\Users\III\Desktop\0303\完整版(0302)\0302\prjNewPet\Controllers\HomeController.cs: 行 23
+
+ERROR 2020/03/04 14:15:05 Web                  Index                System.DivideByZeroException: 嘗試以零除。
+   於 prjNewPet.Controllers.HomeController.Index() 於 C:\Users\III\Desktop\0303\完整版(0302)\0302\prjNewPet\Controllers\HomeController.cs: 行 23
+
+ERROR 2020/03/04 14:16:54 Web                  Index                System.DivideByZeroException: 嘗試以零除。
+   於 prjNewPet.Controllers.HomeController.Index() 於 C:\Users\III\Desktop\0303\完整版(0302)\0302\prjNewPet\Controllers\HomeController.cs: 行 23
+
+ERROR 2020/03/04 14:16:56 Web                  Index                System.DivideByZeroException: 嘗試以零除。
+   於 prjNewPet.Controllers.HomeController.Index() 於 C:\Users\III\Desktop\0303\完整版(0302)\0302\prjNewPet\Controllers\HomeController.cs: 行 23
+
+ERROR 2020/03/04 14:19:04 Web                  Index                System.DivideByZeroException: 嘗試以零除。
+   於 prjNewPet.Controllers.HomeController.Index() 於 C:\Users\III\Desktop\0303\完整版(0302)\0302\prjNewPet\Controllers\HomeController.cs: 行 23
+
+ERROR 2020/03/04 14:21:12 Web                  Index                System.DivideByZeroException: 嘗試以零除。
+   於 prjNewPet.Controllers.HomeController.Index() 於 C:\Users\III\Desktop\0303\完整版(0302)\0302\prjNewPet\Controllers\HomeController.cs: 行 23
+
+ERROR 2020/03/04 14:21:15 Web                  Index                System.DivideByZeroException: 嘗試以零除。
+   於 prjNewPet.Controllers.HomeController.Index() 於 C:\Users\III\Desktop\0303\完整版(0302)\0302\prjNewPet\Controllers\HomeController.cs: 行 23
+
+ERROR 2020/03/04 14:22:13 Web                  Index                System.DivideByZeroException: 嘗試以零除。
+   於 prjNewPet.Controllers.HomeController.Index() 於 C:\Users\III\Desktop\0303\完整版(0302)\0302\prjNewPet\Controllers\HomeController.cs: 行 23
+
+ERROR 2020/03/04 14:25:21 Web                  Index                System.DivideByZeroException: 嘗試以零除。
+   於 prjNewPet.Controllers.HomeController.Index() 於 C:\Users\III\Desktop\0303\完整版(0302)\0302\prjNewPet\Controllers\HomeController.cs: 行 23
+
+ERROR 2020/03/04 14:25:39 Web                  Index                System.DivideByZeroException: 嘗試以零除。
+   於 prjNewPet.Controllers.HomeController.Index() 於 C:\Users\III\Desktop\0303\完整版(0302)\0302\prjNewPet\Controllers\HomeController.cs: 行 23
+
+ERROR 2020/03/04 14:41:09 Web                  Index                System.DivideByZeroException: 嘗試以零除。
+   於 prjNewPet.Controllers.HomeController.Index() 於 C:\Users\III\Desktop\0303\完整版(0302)\0302\prjNewPet\Controllers\HomeController.cs: 行 23
+
+ERROR 2020/03/04 14:41:20 Web                  Index                System.DivideByZeroException: 嘗試以零除。
+   於 prjNewPet.Controllers.HomeController.Index() 於 C:\Users\III\Desktop\0303\完整版(0302)\0302\prjNewPet\Controllers\HomeController.cs: 行 23
+
+ERROR 2020/03/04 14:41:28 Web                  Index                System.DivideByZeroException: 嘗試以零除。
+   於 prjNewPet.Controllers.HomeController.Index() 於 C:\Users\III\Desktop\0303\完整版(0302)\0302\prjNewPet\Controllers\HomeController.cs: 行 23
+
+ERROR 2020/03/04 14:48:51 Web                  Index                System.DivideByZeroException: 嘗試以零除。
+   於 prjNewPet.Controllers.HomeController.Index() 於 C:\Users\III\Desktop\0303\完整版(0302)\0302\prjNewPet\Controllers\HomeController.cs: 行 23
+
+ERROR 2020/03/04 14:49:10 Web                  Index                System.DivideByZeroException: 嘗試以零除。
+   於 prjNewPet.Controllers.HomeController.Index() 於 C:\Users\III\Desktop\0303\完整版(0302)\0302\prjNewPet\Controllers\HomeController.cs: 行 23
+
+ERROR 2020/03/04 14:49:24 Web                  Index                System.DivideByZeroException: 嘗試以零除。
+   於 prjNewPet.Controllers.HomeController.Index() 於 C:\Users\III\Desktop\0303\完整版(0302)\0302\prjNewPet\Controllers\HomeController.cs: 行 23
+
+ERROR 2020/03/04 14:49:28 Web                  Index                System.DivideByZeroException: 嘗試以零除。
+   於 prjNewPet.Controllers.HomeController.Index() 於 C:\Users\III\Desktop\0303\完整版(0302)\0302\prjNewPet\Controllers\HomeController.cs: 行 23
+
+ERROR 2020/03/04 14:49:49 Web                  Index                System.DivideByZeroException: 嘗試以零除。
+   於 prjNewPet.Controllers.HomeController.Index() 於 C:\Users\III\Desktop\0303\完整版(0302)\0302\prjNewPet\Controllers\HomeController.cs: 行 23
+
+ERROR 2020/03/04 14:49:51 Web                  Index                System.DivideByZeroException: 嘗試以零除。
+   於 prjNewPet.Controllers.HomeController.Index() 於 C:\Users\III\Desktop\0303\完整版(0302)\0302\prjNewPet\Controllers\HomeController.cs: 行 23
+
+ERROR 2020/03/04 14:52:06 Web                  Index                System.DivideByZeroException: 嘗試以零除。
+   於 prjNewPet.Controllers.HomeController.Index() 於 C:\Users\III\Desktop\0304 1445\0304\prjNewPet\Controllers\HomeController.cs: 行 23
+
+ERROR 2020/03/04 14:52:55 Web                  Index                System.DivideByZeroException: 嘗試以零除。
+   於 prjNewPet.Controllers.HomeController.Index() 於 C:\Users\III\Desktop\0304 1445\0304\prjNewPet\Controllers\HomeController.cs: 行 23
+
+ERROR 2020/03/04 14:53:17 Web                  Index                System.DivideByZeroException: 嘗試以零除。
+   於 prjNewPet.Controllers.HomeController.Index() 於 C:\Users\III\Desktop\0304 1445\0304\prjNewPet\Controllers\HomeController.cs: 行 23
+
+ERROR 2020/03/04 14:53:26 Web                  Index                System.DivideByZeroException: 嘗試以零除。
+   於 prjNewPet.Controllers.HomeController.Index() 於 C:\Users\III\Desktop\0304 1445\0304\prjNewPet\Controllers\HomeController.cs: 行 23
+
+ERROR 2020/03/04 14:55:34 Web                  Index                System.DivideByZeroException: 嘗試以零除。
+   於 prjNewPet.Controllers.HomeController.Index() 於 C:\Users\III\Desktop\0304 1445\0304\prjNewPet\Controllers\HomeController.cs: 行 23
+
+ERROR 2020/03/04 14:55:37 Web                  Index                System.DivideByZeroException: 嘗試以零除。
+   於 prjNewPet.Controllers.HomeController.Index() 於 C:\Users\III\Desktop\0304 1445\0304\prjNewPet\Controllers\HomeController.cs: 行 23
+
+ERROR 2020/03/04 14:58:27 Web                  Index                System.DivideByZeroException: 嘗試以零除。
+   於 prjNewPet.Controllers.HomeController.Index() 於 C:\Users\III\Desktop\0304 1445\0304\prjNewPet\Controllers\HomeController.cs: 行 23
+
+ERROR 2020/03/04 14:59:18 Web                  Index                System.DivideByZeroException: 嘗試以零除。
+   於 prjNewPet.Controllers.HomeController.Index() 於 C:\Users\III\Desktop\0304 1445\0304\prjNewPet\Controllers\HomeController.cs: 行 23
+
+ERROR 2020/03/04 14:59:21 Web                  Index                System.DivideByZeroException: 嘗試以零除。
+   於 prjNewPet.Controllers.HomeController.Index() 於 C:\Users\III\Desktop\0304 1445\0304\prjNewPet\Controllers\HomeController.cs: 行 23
+
+ERROR 2020/03/04 14:59:46 Web                  Index                System.DivideByZeroException: 嘗試以零除。
+   於 prjNewPet.Controllers.HomeController.Index() 於 C:\Users\III\Desktop\0304 1445\0304\prjNewPet\Controllers\HomeController.cs: 行 23
+
+ERROR 2020/03/04 15:00:03 Web                  Index                System.DivideByZeroException: 嘗試以零除。
+   於 prjNewPet.Controllers.HomeController.Index() 於 C:\Users\III\Desktop\0304 1445\0304\prjNewPet\Controllers\HomeController.cs: 行 23
+
+ERROR 2020/03/04 15:02:03 Web                  Index                System.DivideByZeroException: 嘗試以零除。
+   於 prjNewPet.Controllers.HomeController.Index() 於 C:\Users\III\Desktop\0304 1445\0304\prjNewPet\Controllers\HomeController.cs: 行 23
+
+ERROR 2020/03/04 15:05:54 Web                  Index                System.DivideByZeroException: 嘗試以零除。
+   於 prjNewPet.Controllers.HomeController.Index() 於 C:\Users\III\Desktop\0304 1445\0304\prjNewPet\Controllers\HomeController.cs: 行 23
+
+ERROR 2020/03/04 15:06:01 Web                  Index                System.DivideByZeroException: 嘗試以零除。
+   於 prjNewPet.Controllers.HomeController.Index() 於 C:\Users\III\Desktop\0304 1445\0304\prjNewPet\Controllers\HomeController.cs: 行 23
+
+ERROR 2020/03/04 15:08:52 Web                  Index                System.DivideByZeroException: 嘗試以零除。
+   於 prjNewPet.Controllers.HomeController.Index() 於 C:\Users\III\Desktop\0304 1445\0304\prjNewPet\Controllers\HomeController.cs: 行 23
+
+ERROR 2020/03/04 15:11:02 Web                  Index                System.DivideByZeroException: 嘗試以零除。
+   於 prjNewPet.Controllers.HomeController.Index() 於 C:\Users\III\Desktop\0304 1445\0304\prjNewPet\Controllers\HomeController.cs: 行 23
+
+ERROR 2020/03/04 15:11:58 Web                  Index                System.DivideByZeroException: 嘗試以零除。
+   於 prjNewPet.Controllers.HomeController.Index() 於 C:\Users\III\Desktop\0304 1445\0304\prjNewPet\Controllers\HomeController.cs: 行 23
+
+ERROR 2020/03/04 15:12:01 Web                  Index                System.DivideByZeroException: 嘗試以零除。
+   於 prjNewPet.Controllers.HomeController.Index() 於 C:\Users\III\Desktop\0304 1445\0304\prjNewPet\Controllers\HomeController.cs: 行 23
+
+ERROR 2020/03/04 15:33:29 Web                  Index                System.DivideByZeroException: 嘗試以零除。
+   於 prjNewPet.Controllers.HomeController.Index() 於 C:\Users\III\Desktop\0304 1445\0304\prjNewPet\Controllers\HomeController.cs: 行 23
+
+ERROR 2020/03/04 15:33:40 Web                  Index                System.DivideByZeroException: 嘗試以零除。
+   於 prjNewPet.Controllers.HomeController.Index() 於 C:\Users\III\Desktop\0304 1445\0304\prjNewPet\Controllers\HomeController.cs: 行 23
+
+ERROR 2020/03/04 15:34:21 Web                  Index                System.DivideByZeroException: 嘗試以零除。
+   於 prjNewPet.Controllers.HomeController.Index() 於 C:\Users\III\Desktop\0304 1445\0304\prjNewPet\Controllers\HomeController.cs: 行 23
+
+ERROR 2020/03/04 15:34:37 Web                  Index                System.DivideByZeroException: 嘗試以零除。
+   於 prjNewPet.Controllers.HomeController.Index() 於 C:\Users\III\Desktop\0304 1445\0304\prjNewPet\Controllers\HomeController.cs: 行 23
+
+ERROR 2020/03/04 15:34:51 Web                  Index                System.DivideByZeroException: 嘗試以零除。
+   於 prjNewPet.Controllers.HomeController.Index() 於 C:\Users\III\Desktop\0304 1445\0304\prjNewPet\Controllers\HomeController.cs: 行 23
+
+ERROR 2020/03/04 15:38:11 Web                  Index                System.DivideByZeroException: 嘗試以零除。
+   於 prjNewPet.Controllers.HomeController.Index() 於 C:\Users\III\Desktop\0304 1445\0304\prjNewPet\Controllers\HomeController.cs: 行 23
+
+ERROR 2020/03/04 15:38:25 Web                  Index                System.DivideByZeroException: 嘗試以零除。
+   於 prjNewPet.Controllers.HomeController.Index() 於 C:\Users\III\Desktop\0304 1445\0304\prjNewPet\Controllers\HomeController.cs: 行 23
+
+ERROR 2020/03/04 15:39:05 Web                  Index                System.DivideByZeroException: 嘗試以零除。
+   於 prjNewPet.Controllers.HomeController.Index() 於 C:\Users\III\Desktop\0304 1445\0304\prjNewPet\Controllers\HomeController.cs: 行 23
+
+ERROR 2020/03/04 16:04:52 Web                  Index                System.DivideByZeroException: 嘗試以零除。
+   於 prjNewPet.Controllers.HomeController.Index() 於 C:\Users\III\Desktop\0304 1445\0304\prjNewPet\Controllers\HomeController.cs: 行 23
+
+ERROR 2020/03/04 16:05:03 Web                  Index                System.DivideByZeroException: 嘗試以零除。
+   於 prjNewPet.Controllers.HomeController.Index() 於 C:\Users\III\Desktop\0304 1445\0304\prjNewPet\Controllers\HomeController.cs: 行 23
+
+ERROR 2020/03/04 16:05:24 Web                  Index                System.DivideByZeroException: 嘗試以零除。
+   於 prjNewPet.Controllers.HomeController.Index() 於 C:\Users\III\Desktop\0304 1445\0304\prjNewPet\Controllers\HomeController.cs: 行 23
+
+ERROR 2020/03/04 16:05:40 Web                  Index                System.DivideByZeroException: 嘗試以零除。
+   於 prjNewPet.Controllers.HomeController.Index() 於 C:\Users\III\Desktop\0304 1445\0304\prjNewPet\Controllers\HomeController.cs: 行 23
+
+ERROR 2020/03/04 16:11:51 Web                  Index                System.DivideByZeroException: 嘗試以零除。
+   於 prjNewPet.Controllers.HomeController.Index() 於 C:\Users\III\Desktop\0304 1445\0304\prjNewPet\Controllers\HomeController.cs: 行 23
+
+ERROR 2020/03/04 17:00:43 Web                  Index                System.DivideByZeroException: 嘗試以零除。
+   於 prjNewPet.Controllers.HomeController.Index() 於 C:\Users\III\Desktop\0304 1445\0304\prjNewPet\Controllers\HomeController.cs: 行 23
+
+ERROR 2020/03/04 17:00:53 Web                  Index                System.DivideByZeroException: 嘗試以零除。
+   於 prjNewPet.Controllers.HomeController.Index() 於 C:\Users\III\Desktop\0304 1445\0304\prjNewPet\Controllers\HomeController.cs: 行 23
+
+ERROR 2020/03/04 17:16:48 Web                  Index                System.DivideByZeroException: 嘗試以零除。
+   於 prjNewPet.Controllers.HomeController.Index() 於 C:\Users\III\Desktop\0304 1702\0304\prjNewPet\Controllers\HomeController.cs: 行 23
+
+ERROR 2020/03/04 17:18:43 Web                  Index                System.DivideByZeroException: 嘗試以零除。
+   於 prjNewPet.Controllers.HomeController.Index() 於 C:\Users\III\Desktop\0304 1702\0304\prjNewPet\Controllers\HomeController.cs: 行 23
+
+ERROR 2020/03/04 17:19:49 Web                  Index                System.DivideByZeroException: 嘗試以零除。
+   於 prjNewPet.Controllers.HomeController.Index() 於 C:\Users\III\Desktop\0304 1702\0304\prjNewPet\Controllers\HomeController.cs: 行 23
+
+ERROR 2020/03/04 17:19:51 Web                  Index                System.DivideByZeroException: 嘗試以零除。
+   於 prjNewPet.Controllers.HomeController.Index() 於 C:\Users\III\Desktop\0304 1702\0304\prjNewPet\Controllers\HomeController.cs: 行 23
+
+ERROR 2020/03/04 17:20:02 Web                  Index                System.DivideByZeroException: 嘗試以零除。
+   於 prjNewPet.Controllers.HomeController.Index() 於 C:\Users\III\Desktop\0304 1702\0304\prjNewPet\Controllers\HomeController.cs: 行 23
+

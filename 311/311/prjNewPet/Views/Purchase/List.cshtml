@@ -1,0 +1,316 @@
+﻿
+@{
+    ViewBag.Title = "List";
+}
+
+
+@section styles{
+
+    <link href="~/Content/DataTables/css/jquery.dataTables.css" rel="stylesheet" />
+    <link href="~/Content/tablecss.css" rel="stylesheet" />
+
+    <style>
+
+        table {
+            table-layout: fixed;
+        }
+
+        td {
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        button {
+            font-size: 18px;
+        }
+    </style>
+
+}
+
+<h3 class="mt-2">商品管理一覽表</h3><a class="anchor" name="tables"></a>
+<div class="row grid-responsive">
+    <div class="column ">
+        <div class="card">
+            <div class="card-title">
+                <h3>商品管理</h3>
+            </div>
+            <div class="card-block">
+
+                <table id="todotable" class="dataTables_wrapper table-striped display" style="font-family:微軟正黑體;font-weight:bold">
+                    <thead>
+                        <tr>
+                            <td>商品編號</td>
+                            <td>名稱</td>
+                            <td>種類</td>
+                            <td>供應商</td>
+                            <td>購買價錢</td>
+                            <td>目前庫存</td>
+                            <td>照片</td>
+                            <td>新增</td>
+                            <td>減少</td>
+                            <td>刪除</td>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section minicart{
+
+
+    @*//購物車下拉選單//*@
+    <li class="dropdown" id="dropdownmargin">
+
+        <i class="fa fa-cart-arrow-down fa-2x" id="icon" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
+
+        <ul class="dropdown-menu" style="width:425px ; border-radius:15px ; padding:15px ; background-color:beige ;box-shadow: 10px 10px 5px grey; margin-left:10px; overflow:scroll;height:380px" ; id="Productminicartitems"></ul>
+    </li>
+
+
+
+
+
+
+}
+
+
+
+@section scripts{
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+            integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+            crossorigin="anonymous"></script>
+
+    <script src="~/Scripts/DataTables/jquery.dataTables.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.0.0/sweetalert2.all.js"></script>
+
+    <script>
+
+        $(document).ready(function () {
+
+            $.ajax({
+                type: 'post',
+                //url: "/api/TodoItems",
+                url:'@Url.Action("GetProductlist", "Purchase")'
+
+            }).done(function (data) {
+                $("#todotable").dataTable({
+                    "language": {
+                        "url":"@Url.Content("~/i18n/zh-tw.json")"
+                    }
+                });
+                fillthedata(data);
+            }).fail(function (err) {
+
+                alert(err.statusText);
+            });
+
+        });
+
+        function fillthedata(data) {
+
+            for (var i = 0; i < data.length; i++) {
+
+                item = data[i];
+                //str = "";
+                //str1 = "";
+                $("#todotable").dataTable().fnAddData([
+                    item.fProductID,
+                    item.fName,
+                    item.fCategoryName,
+                    item.fSupplierName,
+                    //"<a  href='Transfertosingle/?articleid=" + item.fArticleID + "'" + " >" + item.fTitle + "</a>",
+                    "<p> NT."+item.fUnitPrice+"</p>",
+                    item.fUnitInStock,
+
+                    "<img  src='" + item.fPic+"'"+"/>",
+                    "<button id='puradd" + item.fProductID + "'" + ">+</button>",
+                    "<button id='purdel" + item.fProductID + "'" + ">-</button>",
+                    "<button id='puralldel" + item.fProductID + "'" + ">刪除</button>",
+
+
+
+                ]);
+
+                $("#todotable").on("click", "#puradd" + item.fProductID, function () {
+
+                    var id = $(this).attr("id");
+
+                    //$.ajax({
+
+                    //}).done(function (data) {
+
+                    //    }).fail(function (err) {
+
+                    //    });
+
+                    $.ajax({
+
+                         type: 'post',
+
+                            url: '@Url.Action("AddToCart", "Purchase")',
+
+                            data: {
+
+                                "fPId": id.substring(6)
+
+                            }
+
+                    }).done(function (data) {
+
+                         swal({
+                            text: '已新增至購物車',
+                            type: 'success',
+                            timer: 1000
+                        }).then(function () {
+                            $('#Productminicartitems').load('@Url.Action("_Purchasecart", "Purchase")');
+                        }
+                        )
+                    }).fail(function (err) {
+
+                    });
+
+
+
+
+                });
+
+                $("#todotable").on("click", "#purdel" + item.fProductID, function () {
+
+                    var iddel = $(this).attr("id");
+
+                    //$.ajax({
+
+                    //}).done(function (data) {
+
+                    //    }).fail(function (err) {
+
+                    //    });
+
+                    $.ajax({
+
+                         type: 'post',
+
+                            url: '@Url.Action("UpdateCart", "Purchase")',
+
+                            data: {
+
+                                "fPId": iddel.substring(6)
+
+                            }
+
+                    }).done(function (data) {
+
+                         swal({
+                            text: '已扣除至購物車',
+                            type: 'success',
+                            timer: 1000
+                        }).then(function () {
+                            $('#Productminicartitems').load('@Url.Action("_Purchasecart", "Purchase")');
+                        }
+                        )
+                    }).fail(function (err) {
+
+                    });
+
+
+
+
+                });
+
+
+                $("#todotable").on("click", "#puralldel" + item.fProductID, function () {
+
+                    var idalldel = $(this).attr("id");
+
+                    //$.ajax({
+
+                    //}).done(function (data) {
+
+                    //    }).fail(function (err) {
+
+                    //    });
+
+                    $.ajax({
+
+                         type: 'post',
+
+                            url: '@Url.Action("DeleteCart", "Purchase")',
+
+                            data: {
+
+                                "fPId": idalldel.substring(9)
+
+                            }
+
+                    }).done(function (data) {
+
+                         swal({
+                            text: '已刪除至購物車',
+                            type: 'success',
+                            timer: 1000
+                        }).then(function () {
+                            $('#Productminicartitems').load('@Url.Action("_Purchasecart", "Purchase")');
+                        }
+                        )
+                    }).fail(function (err) {
+
+                    });
+
+
+
+
+                });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            }
+        }
+
+
+    </script>
+
+
+
+    @*---------------------------------------------------------------------*@
+    <script>
+         //讀取迷你購物車畫面
+        $('#Productminicartitems').load('@Url.Action("_Purchasecart", "Purchase")');
+    </script>
+
+    <script>
+        $('ul.nav li.dropdown').hover(function () {
+            $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeIn(500);
+        }, function () {
+            $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeOut(500);
+        });
+    </script>
+
+    @*---------------------------------------------------------------------*@
+
+
+
+
+}

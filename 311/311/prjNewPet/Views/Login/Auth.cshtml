@@ -1,0 +1,224 @@
+﻿@using prjNewPet.Models
+@{
+    ViewBag.Title = "Auth";
+}
+
+<style>
+    .ui-widget-header, .ui-state-default, ui-button {
+        background: #3C3C3C;
+        border: 3px solid #b9cd6d;
+        color: #FFFFFF;
+        font-weight: bold;
+        height: auto;
+    }
+</style>
+
+<!--引用css-->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.10.3/sweetalert2.css" />
+
+<link href="http://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel="stylesheet" />
+
+<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+
+<script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+
+<!--引用jQuery-->
+@*<script src="https://code.jquery.com/jquery-3.2.1.min.js" type="text/javascript"></script>*@
+
+<!--引用SweetAlert2.js-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.0.0/sweetalert2.all.js"></script>
+
+<body>
+    <div class="main-w3ls">
+        <div class="left-content">
+            <div class="w3ls-content">
+                <!-- logo -->
+                <h1>
+                    <a href="index.html"><span class="fa fa-magic"></span></a>
+                </h1>
+                <!-- //logo -->
+                <h2>登入或註冊來使用本站功能</h2>
+                <a href="~/Home/Index" class="button-w3ls">
+                    <span class="fa fa-long-arrow-right"></span>
+                </a>
+            </div>
+        </div>
+        <div class="right-form-agile">
+            <!-- content -->
+            <div class="sub-main-w3">
+                <h3></h3>
+                <h3>登入網站</h3>
+                <p>或免費註冊新帳號</p>
+                <form action="#" method="post">
+                    <div class="form-style-agile">
+                        <label style="font-family:微軟正黑體">寵愛帳號</label>
+                        <div class="pom-agile">
+                            <span class="fa fa-id-badge"></span>
+                            <input placeholder="帳號" name="account" type="text" required="">
+                        </div>
+                    </div>
+                    <div class="form-style-agile">
+                        <label style="font-family:微軟正黑體">密碼</label>
+                        <div class="pom-agile">
+                            <span class="fa fa-key"></span>
+                            <input placeholder="密碼" name="password" type="password" id="password1" required="">
+                        </div>
+                    </div>
+                    
+
+                    <div class="form-style-agile">
+                        <label style="font-family:微軟正黑體">驗證碼</label>
+                        <div class="pom-agile">
+                            <span class="fa fa-at"></span>
+                            <input placeholder="驗證碼" type="text" name="code" id="code" required="" size="25">
+
+                            <img src="~/Content/@ViewBag.img1" width="60" height="60" />
+                            <img src="~/Content/@ViewBag.img2" width="60" height="60" />
+                            <img src="~/Content/@ViewBag.img3" width="60" height="60" />
+                            <img src="~/Content/@ViewBag.img4" width="60" height="60" />
+
+                        </div>
+
+                        
+                        <p>
+                            @{
+                                if (CDictionary.MGS_LOGINED_ERRORS_MESSAGE != null)
+                                {
+                                    <span style="color:red;font-family:微軟正黑體;font-size:15px">@ViewData[CDictionary.MGS_LOGINED_ERRORS_MESSAGE]</span>
+                                }
+
+                            }
+                        </p>
+                    </div>
+                   
+
+                    @*<div class="form-style-agile">
+            <label>確認密碼</label>
+            <div class="pom-agile">
+                <span class="fa fa-key"></span>
+                <input placeholder="再次輸入以確認密碼" name="Confirm Password" type="password" id="password2" required="">
+            </div>
+        </div>*@
+                    <div>
+                        <p style="font-family:微軟正黑體">
+                            @Html.CheckBox("isRememberMe")記住我的登錄
+
+                           
+                        </p>
+                        
+                    </div>
+
+                    <input type="submit" value="登入" style="font-family:微軟正黑體">
+                    @*<input type="submit" value="忘記密碼" style="font-family:微軟正黑體">*@
+
+                    <div style="float:left"><a onclick="opened()" href="#" style="font-family:微軟正黑體;color:white">忘記密碼</a></div>
+                    <div style="float:right"><a href="~/MemberFront/New" style="font-family:微軟正黑體;color:white">註冊新帳號</a></div>
+
+
+
+                </form>
+                
+               
+
+                <!-- social icons -->
+                @*<div class="w3ls-social">
+                    <h3>使用以下方式登入</h3>
+                    <ul class="social-nav model-3d-0 footer-social social two">
+                        <li>
+                            <a href="#" class="facebook">
+                                <span class="fa fa-facebook"></span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="twitter">
+                                <span class="fa fa-twitter"></span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="instagram">
+                                <span class="fa fa-instagram"></span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="pinterest">
+                                <span class="fa fa-linkedin"></span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>*@
+                <!-- //social icons -->
+            </div>
+        </div>
+    </div>
+    <!-- //content -->
+</body>
+
+
+
+
+<div id="dialog-1" title="找回密碼" style="font-family:微軟正黑體;color:orangered;font-weight:600">
+    <input type="text" id="Email" placeholder="請輸入EMail" />
+</div>
+
+
+
+<script>
+
+
+    function opened() {
+
+        $("#dialog-1").dialog("open");
+
+
+    };
+
+
+
+    $(function () {
+
+        $("#dialog-1").dialog({
+
+            autoOpen: false,
+
+            show: "scale",
+
+            hide: "scale",
+
+            buttons: {
+
+                "確定": function () {
+
+                    $.ajax({
+                        type: "post",
+                        url: "/Login/FindPassword/?email=" + $("#Email").val(),
+
+
+                    }).done(function (data) {
+                        if (data == "密碼已寄出!") {
+                            swal("已寄出新密碼", "請至您的信箱查收新的登入密碼", "success");
+                        }
+                        else {
+                            swal("無此信箱", "請確認您的信箱是否正確?", "error");
+                        }
+
+                    }).fail(function (err) {
+                        alert("錯誤!")
+                    });
+
+                    $(this).dialog("close");
+
+
+                    //$("#dialog-3").dialog("open");
+                },
+
+                "取消": function () { $(this).dialog("close"); }
+
+            }
+
+        });
+
+
+    });
+
+
+</script>

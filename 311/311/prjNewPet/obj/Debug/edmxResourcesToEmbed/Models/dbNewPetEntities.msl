@@ -1,0 +1,390 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="dbNewPetModelStoreContainer" CdmEntityContainer="dbNewPetEntities">
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="dbNewPetModel.sysdiagram">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="definition" ColumnName="definition" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tActivities">
+      <EntityTypeMapping TypeName="dbNewPetModel.tActivity">
+        <MappingFragment StoreEntitySet="tActivity">
+          <ScalarProperty Name="fClosedDate" ColumnName="fClosedDate" />
+          <ScalarProperty Name="fDMPic" ColumnName="fDMPic" />
+          <ScalarProperty Name="fContext" ColumnName="fContext" />
+          <ScalarProperty Name="fEffectiveDate" ColumnName="fEffectiveDate" />
+          <ScalarProperty Name="fName" ColumnName="fName" />
+          <ScalarProperty Name="fActivityID" ColumnName="fActivityID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tAdoptMessages">
+      <EntityTypeMapping TypeName="dbNewPetModel.tAdoptMessage">
+        <MappingFragment StoreEntitySet="tAdoptMessage">
+          <ScalarProperty Name="fContent" ColumnName="fContent" />
+          <ScalarProperty Name="fMemberID" ColumnName="fMemberID" />
+          <ScalarProperty Name="fPetID" ColumnName="fPetID" />
+          <ScalarProperty Name="fMessageID" ColumnName="fMessageID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tAuthorities">
+      <EntityTypeMapping TypeName="dbNewPetModel.tAuthority">
+        <MappingFragment StoreEntitySet="tAuthority">
+          <ScalarProperty Name="fName" ColumnName="fName" />
+          <ScalarProperty Name="fAuthorityID" ColumnName="fAuthorityID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tBreeds">
+      <EntityTypeMapping TypeName="dbNewPetModel.tBreed">
+        <MappingFragment StoreEntitySet="tBreed">
+          <ScalarProperty Name="fPic" ColumnName="fPic" />
+          <ScalarProperty Name="fPetClassID" ColumnName="fPetClassID" />
+          <ScalarProperty Name="fName" ColumnName="fName" />
+          <ScalarProperty Name="fBreedID" ColumnName="fBreedID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tCategories">
+      <EntityTypeMapping TypeName="dbNewPetModel.tCategory">
+        <MappingFragment StoreEntitySet="tCategory">
+          <ScalarProperty Name="fDescription" ColumnName="fDescription" />
+          <ScalarProperty Name="fName" ColumnName="fName" />
+          <ScalarProperty Name="fCategoryID" ColumnName="fCategoryID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tCities">
+      <EntityTypeMapping TypeName="dbNewPetModel.tCity">
+        <MappingFragment StoreEntitySet="tCity">
+          <ScalarProperty Name="fName" ColumnName="fName" />
+          <ScalarProperty Name="fCityID" ColumnName="fCityID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tComments">
+      <EntityTypeMapping TypeName="dbNewPetModel.tComment">
+        <MappingFragment StoreEntitySet="tComment">
+          <ScalarProperty Name="fArticleID" ColumnName="fArticleID" />
+          <ScalarProperty Name="fCreateDate" ColumnName="fCreateDate" />
+          <ScalarProperty Name="fContent" ColumnName="fContent" />
+          <ScalarProperty Name="fMemberID" ColumnName="fMemberID" />
+          <ScalarProperty Name="fId" ColumnName="fId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tCurses">
+      <EntityTypeMapping TypeName="dbNewPetModel.tCurse">
+        <MappingFragment StoreEntitySet="tCurse">
+          <ScalarProperty Name="fName" ColumnName="fName" />
+          <ScalarProperty Name="fCurseID" ColumnName="fCurseID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tDiscussions">
+      <EntityTypeMapping TypeName="dbNewPetModel.tDiscussion">
+        <MappingFragment StoreEntitySet="tDiscussion">
+          <ScalarProperty Name="fLock" ColumnName="fLock" />
+          <ScalarProperty Name="fLike" ColumnName="fLike" />
+          <ScalarProperty Name="fReportcheck" ColumnName="fReportcheck" />
+          <ScalarProperty Name="fCommenttime" ColumnName="fCommenttime" />
+          <ScalarProperty Name="fPicture" ColumnName="fPicture" />
+          <ScalarProperty Name="fCreateDate" ColumnName="fCreateDate" />
+          <ScalarProperty Name="fTitle" ColumnName="fTitle" />
+          <ScalarProperty Name="fDiscussionClassID" ColumnName="fDiscussionClassID" />
+          <ScalarProperty Name="fContent" ColumnName="fContent" />
+          <ScalarProperty Name="fMemberID" ColumnName="fMemberID" />
+          <ScalarProperty Name="fArticleID" ColumnName="fArticleID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tDiscussionClasses">
+      <EntityTypeMapping TypeName="dbNewPetModel.tDiscussionClass">
+        <MappingFragment StoreEntitySet="tDiscussionClass">
+          <ScalarProperty Name="fName" ColumnName="fName" />
+          <ScalarProperty Name="fDiscussionClassID" ColumnName="fDiscussionClassID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tEmployees">
+      <EntityTypeMapping TypeName="dbNewPetModel.tEmployee">
+        <MappingFragment StoreEntitySet="tEmployee">
+          <ScalarProperty Name="fPassword" ColumnName="fPassword" />
+          <ScalarProperty Name="fAccount" ColumnName="fAccount" />
+          <ScalarProperty Name="fEmployeeID" ColumnName="fEmployeeID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tFavorites">
+      <EntityTypeMapping TypeName="dbNewPetModel.tFavorite">
+        <MappingFragment StoreEntitySet="tFavorite">
+          <ScalarProperty Name="fArticleID" ColumnName="fArticleID" />
+          <ScalarProperty Name="fMemberID" ColumnName="fMemberID" />
+          <ScalarProperty Name="fFavoriteID" ColumnName="fFavoriteID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tFoundPets">
+      <EntityTypeMapping TypeName="dbNewPetModel.tFoundPet">
+        <MappingFragment StoreEntitySet="tFoundPet">
+          <ScalarProperty Name="fSignInDate" ColumnName="fSignInDate" />
+          <ScalarProperty Name="fRemark" ColumnName="fRemark" />
+          <ScalarProperty Name="fRegionID" ColumnName="fRegionID" />
+          <ScalarProperty Name="fCityID" ColumnName="fCityID" />
+          <ScalarProperty Name="fChipID" ColumnName="fChipID" />
+          <ScalarProperty Name="fCollar" ColumnName="fCollar" />
+          <ScalarProperty Name="fSkin" ColumnName="fSkin" />
+          <ScalarProperty Name="fPetPic" ColumnName="fPetPic" />
+          <ScalarProperty Name="fBreedID" ColumnName="fBreedID" />
+          <ScalarProperty Name="fPetClassID" ColumnName="fPetClassID" />
+          <ScalarProperty Name="fGender" ColumnName="fGender" />
+          <ScalarProperty Name="fFoundTime" ColumnName="fFoundTime" />
+          <ScalarProperty Name="fStatus" ColumnName="fStatus" />
+          <ScalarProperty Name="fMemberID" ColumnName="fMemberID" />
+          <ScalarProperty Name="fFoundPetID" ColumnName="fFoundPetID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tLikes">
+      <EntityTypeMapping TypeName="dbNewPetModel.tLike">
+        <MappingFragment StoreEntitySet="tLike">
+          <ScalarProperty Name="fMemberID" ColumnName="fMemberID" />
+          <ScalarProperty Name="fArticleID" ColumnName="fArticleID" />
+          <ScalarProperty Name="fLikeID" ColumnName="fLikeID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tLogInWays">
+      <EntityTypeMapping TypeName="dbNewPetModel.tLogInWay">
+        <MappingFragment StoreEntitySet="tLogInWay">
+          <ScalarProperty Name="fIcon" ColumnName="fIcon" />
+          <ScalarProperty Name="fName" ColumnName="fName" />
+          <ScalarProperty Name="fLogInWayID" ColumnName="fLogInWayID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tLostPets">
+      <EntityTypeMapping TypeName="dbNewPetModel.tLostPet">
+        <MappingFragment StoreEntitySet="tLostPet">
+          <ScalarProperty Name="fSignInDate" ColumnName="fSignInDate" />
+          <ScalarProperty Name="fCompareLevel" ColumnName="fCompareLevel" />
+          <ScalarProperty Name="fRemark" ColumnName="fRemark" />
+          <ScalarProperty Name="fReward" ColumnName="fReward" />
+          <ScalarProperty Name="fLostTime" ColumnName="fLostTime" />
+          <ScalarProperty Name="fLostPlace" ColumnName="fLostPlace" />
+          <ScalarProperty Name="fPetID" ColumnName="fPetID" />
+          <ScalarProperty Name="fLostID" ColumnName="fLostID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tMembers">
+      <EntityTypeMapping TypeName="dbNewPetModel.tMember">
+        <MappingFragment StoreEntitySet="tMember">
+          <ScalarProperty Name="fPetCoin" ColumnName="fPetCoin" />
+          <ScalarProperty Name="fAddressDetail" ColumnName="fAddressDetail" />
+          <ScalarProperty Name="fRegionID" ColumnName="fRegionID" />
+          <ScalarProperty Name="fCityID" ColumnName="fCityID" />
+          <ScalarProperty Name="fRecentLogInDate" ColumnName="fRecentLogInDate" />
+          <ScalarProperty Name="fIcon" ColumnName="fIcon" />
+          <ScalarProperty Name="fLogInWayID" ColumnName="fLogInWayID" />
+          <ScalarProperty Name="fRegisterDate" ColumnName="fRegisterDate" />
+          <ScalarProperty Name="fEMail" ColumnName="fEMail" />
+          <ScalarProperty Name="fPhone" ColumnName="fPhone" />
+          <ScalarProperty Name="fEnconomicStatus" ColumnName="fEnconomicStatus" />
+          <ScalarProperty Name="fBirthDate" ColumnName="fBirthDate" />
+          <ScalarProperty Name="fPassword" ColumnName="fPassword" />
+          <ScalarProperty Name="fAccount" ColumnName="fAccount" />
+          <ScalarProperty Name="fNickName" ColumnName="fNickName" />
+          <ScalarProperty Name="fIDCardNumber" ColumnName="fIDCardNumber" />
+          <ScalarProperty Name="fGender" ColumnName="fGender" />
+          <ScalarProperty Name="fName" ColumnName="fName" />
+          <ScalarProperty Name="fMemberID" ColumnName="fMemberID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tOrder_Detail">
+      <EntityTypeMapping TypeName="dbNewPetModel.tOrder_Detail">
+        <MappingFragment StoreEntitySet="tOrder_Detail">
+          <ScalarProperty Name="fPic" ColumnName="fPic" />
+          <ScalarProperty Name="fQuantity" ColumnName="fQuantity" />
+          <ScalarProperty Name="fUnitPrice" ColumnName="fUnitPrice" />
+          <ScalarProperty Name="fName" ColumnName="fName" />
+          <ScalarProperty Name="fProductID" ColumnName="fProductID" />
+          <ScalarProperty Name="fOrderID" ColumnName="fOrderID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tOrders">
+      <EntityTypeMapping TypeName="dbNewPetModel.tOrder">
+        <MappingFragment StoreEntitySet="tOrders">
+          <ScalarProperty Name="fStatus" ColumnName="fStatus" />
+          <ScalarProperty Name="fPayWayID" ColumnName="fPayWayID" />
+          <ScalarProperty Name="fReceiverMail" ColumnName="fReceiverMail" />
+          <ScalarProperty Name="fAddressDetail" ColumnName="fAddressDetail" />
+          <ScalarProperty Name="fRegionID" ColumnName="fRegionID" />
+          <ScalarProperty Name="fCityID" ColumnName="fCityID" />
+          <ScalarProperty Name="fReceiverPhone" ColumnName="fReceiverPhone" />
+          <ScalarProperty Name="fReceiverName" ColumnName="fReceiverName" />
+          <ScalarProperty Name="fShipOutDate" ColumnName="fShipOutDate" />
+          <ScalarProperty Name="fOrderDate" ColumnName="fOrderDate" />
+          <ScalarProperty Name="fMemberID" ColumnName="fMemberID" />
+          <ScalarProperty Name="fOrderID" ColumnName="fOrderID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tPayWays">
+      <EntityTypeMapping TypeName="dbNewPetModel.tPayWay">
+        <MappingFragment StoreEntitySet="tPayWay">
+          <ScalarProperty Name="fName" ColumnName="fName" />
+          <ScalarProperty Name="fPayWayID" ColumnName="fPayWayID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tPetClasses">
+      <EntityTypeMapping TypeName="dbNewPetModel.tPetClass">
+        <MappingFragment StoreEntitySet="tPetClass">
+          <ScalarProperty Name="fName" ColumnName="fName" />
+          <ScalarProperty Name="fPetClassID" ColumnName="fPetClassID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tPetMembers">
+      <EntityTypeMapping TypeName="dbNewPetModel.tPetMember">
+        <MappingFragment StoreEntitySet="tPetMember">
+          <ScalarProperty Name="fStatus" ColumnName="fStatus" />
+          <ScalarProperty Name="fSkin" ColumnName="fSkin" />
+          <ScalarProperty Name="fCollar" ColumnName="fCollar" />
+          <ScalarProperty Name="fChipID" ColumnName="fChipID" />
+          <ScalarProperty Name="fPetPic" ColumnName="fPetPic" />
+          <ScalarProperty Name="fRegionID" ColumnName="fRegionID" />
+          <ScalarProperty Name="fCityID" ColumnName="fCityID" />
+          <ScalarProperty Name="fBreedID" ColumnName="fBreedID" />
+          <ScalarProperty Name="fPetClassID" ColumnName="fPetClassID" />
+          <ScalarProperty Name="fGender" ColumnName="fGender" />
+          <ScalarProperty Name="fPetName" ColumnName="fPetName" />
+          <ScalarProperty Name="fMemberID" ColumnName="fMemberID" />
+          <ScalarProperty Name="fPetID" ColumnName="fPetID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tProducts">
+      <EntityTypeMapping TypeName="dbNewPetModel.tProduct">
+        <MappingFragment StoreEntitySet="tProduct">
+          <ScalarProperty Name="fDescription" ColumnName="fDescription" />
+          <ScalarProperty Name="fSafeStock" ColumnName="fSafeStock" />
+          <ScalarProperty Name="fSupplierID" ColumnName="fSupplierID" />
+          <ScalarProperty Name="fOnShelfDate" ColumnName="fOnShelfDate" />
+          <ScalarProperty Name="fUnitInStock" ColumnName="fUnitInStock" />
+          <ScalarProperty Name="fUnitOnOrder" ColumnName="fUnitOnOrder" />
+          <ScalarProperty Name="fUnitPrice" ColumnName="fUnitPrice" />
+          <ScalarProperty Name="fCategoryID" ColumnName="fCategoryID" />
+          <ScalarProperty Name="fPic" ColumnName="fPic" />
+          <ScalarProperty Name="fName" ColumnName="fName" />
+          <ScalarProperty Name="fProductID" ColumnName="fProductID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tPurchases">
+      <EntityTypeMapping TypeName="dbNewPetModel.tPurchase">
+        <MappingFragment StoreEntitySet="tPurchase">
+          <ScalarProperty Name="fPurchaseDate" ColumnName="fPurchaseDate" />
+          <ScalarProperty Name="fPurchaseID" ColumnName="fPurchaseID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tPurchase_Detials">
+      <EntityTypeMapping TypeName="dbNewPetModel.tPurchase_Detials">
+        <MappingFragment StoreEntitySet="tPurchase_Detials">
+          <ScalarProperty Name="fSupplierID" ColumnName="fSupplierID" />
+          <ScalarProperty Name="fPic" ColumnName="fPic" />
+          <ScalarProperty Name="fName" ColumnName="fName" />
+          <ScalarProperty Name="fQuantity" ColumnName="fQuantity" />
+          <ScalarProperty Name="fUnitPrice" ColumnName="fUnitPrice" />
+          <ScalarProperty Name="fProductID" ColumnName="fProductID" />
+          <ScalarProperty Name="fPurchaseID" ColumnName="fPurchaseID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tPurchaseShoppingCarts">
+      <EntityTypeMapping TypeName="dbNewPetModel.tPurchaseShoppingCart">
+        <MappingFragment StoreEntitySet="tPurchaseShoppingCart">
+          <ScalarProperty Name="fPic" ColumnName="fPic" />
+          <ScalarProperty Name="fQuantity" ColumnName="fQuantity" />
+          <ScalarProperty Name="fUnitPrice" ColumnName="fUnitPrice" />
+          <ScalarProperty Name="fSupplierID" ColumnName="fSupplierID" />
+          <ScalarProperty Name="fProductID" ColumnName="fProductID" />
+          <ScalarProperty Name="fCartID" ColumnName="fCartID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tRegions">
+      <EntityTypeMapping TypeName="dbNewPetModel.tRegion">
+        <MappingFragment StoreEntitySet="tRegion">
+          <ScalarProperty Name="fCityID" ColumnName="fCityID" />
+          <ScalarProperty Name="fName" ColumnName="fName" />
+          <ScalarProperty Name="fRegionID" ColumnName="fRegionID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tReplies">
+      <EntityTypeMapping TypeName="dbNewPetModel.tReply">
+        <MappingFragment StoreEntitySet="tReply">
+          <ScalarProperty Name="fContext" ColumnName="fContext" />
+          <ScalarProperty Name="fMemberID" ColumnName="fMemberID" />
+          <ScalarProperty Name="fArticleID" ColumnName="fArticleID" />
+          <ScalarProperty Name="fReplyID" ColumnName="fReplyID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tReports">
+      <EntityTypeMapping TypeName="dbNewPetModel.tReport">
+        <MappingFragment StoreEntitySet="tReport">
+          <ScalarProperty Name="fReportComment" ColumnName="fReportComment" />
+          <ScalarProperty Name="fMemberID" ColumnName="fMemberID" />
+          <ScalarProperty Name="fArticleID" ColumnName="fArticleID" />
+          <ScalarProperty Name="fReportID" ColumnName="fReportID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tShipVias">
+      <EntityTypeMapping TypeName="dbNewPetModel.tShipVia">
+        <MappingFragment StoreEntitySet="tShipVia">
+          <ScalarProperty Name="fName" ColumnName="fName" />
+          <ScalarProperty Name="fShipViaID" ColumnName="fShipViaID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tShoppingCarts">
+      <EntityTypeMapping TypeName="dbNewPetModel.tShoppingCart">
+        <MappingFragment StoreEntitySet="tShoppingCart">
+          <ScalarProperty Name="fPic" ColumnName="fPic" />
+          <ScalarProperty Name="fQuantity" ColumnName="fQuantity" />
+          <ScalarProperty Name="fUnitPrice" ColumnName="fUnitPrice" />
+          <ScalarProperty Name="fMemberID" ColumnName="fMemberID" />
+          <ScalarProperty Name="fProductID" ColumnName="fProductID" />
+          <ScalarProperty Name="fCartID" ColumnName="fCartID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tSuppliers">
+      <EntityTypeMapping TypeName="dbNewPetModel.tSupplier">
+        <MappingFragment StoreEntitySet="tSupplier">
+          <ScalarProperty Name="fPhone" ColumnName="fPhone" />
+          <ScalarProperty Name="fRegionID" ColumnName="fRegionID" />
+          <ScalarProperty Name="fCityID" ColumnName="fCityID" />
+          <ScalarProperty Name="fAddress" ColumnName="fAddress" />
+          <ScalarProperty Name="fContactName" ColumnName="fContactName" />
+          <ScalarProperty Name="fName" ColumnName="fName" />
+          <ScalarProperty Name="fSupplierID" ColumnName="fSupplierID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

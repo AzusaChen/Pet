@@ -1,0 +1,949 @@
+﻿@model IEnumerable<prjNewPet.Models.tFoundPet>
+@using prjNewPet.Models
+
+
+@{
+    ViewBag.Title = "ListFound";
+
+    tMember member = Session[CDictionary.SK_LOGINED_USER] as tMember;
+
+}
+
+@section style{
+    <link href="http://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel="stylesheet">
+    <link href="~/Content/DataTables/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <link href="~/Content/tablecss.css" rel="stylesheet" />
+    <style>
+        .ui-widget-header, .ui-state-default, ui-button {
+            background: purple;
+            border: 1px solid black;
+            color: #FFFFFF;
+            font-weight: bold;
+        }
+
+
+
+        .PetImg {
+            float: left;
+            margin: 5px;
+            border: 3px solid pink;
+            border-radius: 10px;
+            text-align: center;
+            background-color: white;
+        }
+
+            .PetImg img {
+                width: 150px;
+                height: 100px;
+            }
+
+        .formright {
+            margin-top: 20px;
+            width: 350px;
+            float: right;
+        }
+
+        .formleft {
+            margin-top: 20px;
+            width: 350px;
+            float: left;
+        }
+
+
+        .lostdetail {
+            background-color: aqua;
+            width: 400px;
+            border: 3px solid black;
+            margin: 300px auto;
+            text-align: center;
+        }
+
+            .lostdetail label {
+                margin: 10px;
+            }
+
+        * {
+            font-family: 微軟正黑體;
+        }
+
+        .Levelboard {
+            background: yellow;
+            display: flex;
+            margin: 100px 100px 25px 80px;
+            border: solid 3px black;
+            border-bottom-right-radius: 25px;
+            border-top-right-radius: 25px;
+        }
+
+
+
+        .pointrule {
+            margin: 20px 20px 0 20px;
+        }
+    </style>
+}
+
+
+
+
+@section scripts{
+    <script src="~/Scripts/DataTables/jquery.dataTables.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+
+
+
+    <script>
+
+        var foundPetShowId;
+        var callStatus = false;
+
+
+        $(document).ready(function () {
+
+            $('#foundPet').DataTable({
+                    "language": {
+                        "url":"@Url.Content("~/i18n/zh-tw.json")"
+                    },
+                searching: true,
+                columnDefs: [{
+                    targets: [3],
+                    orderable: false,
+
+                }],
+            });
+
+
+
+            $("#dialog-2").dialog({
+
+                autoOpen: false,
+                draggable: true,
+                width: 800,
+                show: "fade",
+                modal: true,
+
+                buttons: {
+                    demo: function(){
+                        demodata();
+                },
+
+                    新增: function () {
+                        NewFound();
+                        $(this).dialog("close");
+                        emptyFound();
+                    },
+
+                    修改: function () {
+
+                        EditFound();
+                        $(this).dialog("close");
+                        emptyFound();
+                    },
+                    刪除: function () {
+                        DeteleFound();
+                        $(this).dialog("close");
+                        emptyFound();
+                    },
+                    取消: function () {
+
+                        $(this).dialog("close");
+                        emptyFound();
+
+                    }
+                },
+
+            });
+
+
+
+        });
+
+
+
+        //====================================資料增刪修================================================
+
+        function emptyFound() {
+
+            $("#Status").val(0);
+            $("#Remark").val("");
+            $("#FoundDate").val("");
+            $("#Gender").val(0);
+            $('#petclassesID').val(0);
+            $('#breedsID').val(0);
+            $('#CityID').val(0)
+            $('#RegionsID').val(0);
+            $("#ChipID").val("");
+            $("#Collar").val("");
+            $("#Skin").val(0);
+            $('#PicPreview').attr('src', "");
+            $('#skinColor').attr('src', "");
+        }
+
+
+
+        //新增尋獲資料
+
+        $("#NewFound").click(function () {
+            NewOrEditPet();
+        });
+
+
+        function NewFound() {
+
+            pictureUpload();
+
+            var file = $("#petPictureUpload").val();
+            var fileName = getFileName(file);
+
+            function getFileName(o) {
+                var pos = o.lastIndexOf("\\");
+                return o.substring(pos + 1);
+            }
+
+            var foundpet = {
+
+                "fFoundPetID": "",
+                "fMemberID": "",
+                "fFoundTime": "" + $("#FoundDate").val(),
+                "fRemark": "" + $("#Remark").val(),
+                "fStatus": "" + $("#Status").val(),
+                "fGender": "" + $("#Gender :selected").text(),
+                "fPetClassID": "" + $('#petclassesID :selected').val(),
+                "fBreedID": "" + $('#breedsID :selected').val(),
+                "fCityID": "" + $('#CityID :selected').val(),
+                "fRegionID": "" + $('#RegionsID :selected').val(),
+                "fPetPic": "" + fileName,
+                "fChipID": "" + $("#ChipID").val(),
+                "fCollar": "" + $("#Collar").val(),
+                "fSkin": "" + $("#Skin :selected").text(),
+
+            };
+
+            console.log(foundpet);
+
+            $.ajax({
+                type: "post",
+                url: "/FoundPet/NewFound",
+                data: foundpet,
+
+            }).done(function (data) {
+                alert("新增寵物成功")
+
+                location.reload();
+
+            }).fail(function (err) {
+                alert("失敗")
+            })
+
+        }
+
+        //顯示寵物詳細資料
+        function showAndEorD(event) {
+
+            foundPetShowId = event.currentTarget.id.substr(6,6);
+
+
+            $.ajax({
+                type: "post",
+                url: "/FoundPet/foundDetial?foundpetID=" + foundPetShowId,
+                dataType: "json"
+
+            }).done(function (data) {
+
+                console.log(data);
+
+                GetRegions(data["fCityID"]);
+                GetBreeds(data["fPetClassID"]);
+                showSkinPicture(data["fSkin"]);
+                skinAlter(data["fPetClassID"]);
+
+
+
+                $("#Status").val(data["fStatus"]);
+                $("#Remark").val(data["fRemark"]);
+                $("#FoundDate").val(data["fFoundTime"]);
+                $("#Gender").val(data["fGender"]);
+                $('#petclassesID').val(data["fPetClassID"]);
+                $('#breedsID').val(data["fBreedID"]);
+                $('#CityID').val(data["fCityID"])
+                $('#RegionsID').val(data["fRegionID"]);
+                $("#ChipID").val(data["fChipID"]);
+                $("#Collar").val(data["fCollar"]);
+                $("#Skin :selected").text(data["fSkin"]);
+                $('#PicPreview').attr('src', "/Images/" + data["fPetPic"]);
+
+
+
+                callStatus = true;
+
+                NewOrEditPet();
+
+            }).fail(function (err) {
+                alert("失敗")
+            })
+
+
+        }
+
+
+        //修改寵物資料
+        function EditFound() {
+
+
+            pictureUpload();
+
+            var file = $("#petPictureUpload").val();
+            var fileName = getFileName(file);
+
+            function getFileName(o) {
+                var pos = o.lastIndexOf("\\");
+                return o.substring(pos + 1);
+            }
+
+            var foundpet = {
+
+                "fFoundPetID": "" + foundPetShowId,
+                "fMemberID": "",
+                "fFoundTime": "" + $("#FoundDate").val(),
+                "fRemark": "" + $("#Remark").val(),
+                "fStatus": "" + $("#Status").val(),
+                "fGender": "" + $("#Gender :selected").text(),
+                "fPetClassID": "" + $('#petclassesID :selected').val(),
+                "fBreedID": "" + $('#breedsID :selected').val(),
+                "fCityID": "" + $('#CityID :selected').val(),
+                "fRegionID": "" + $('#RegionsID :selected').val(),
+                "fPetPic": "" + fileName,
+                "fChipID": "" + $("#ChipID").val(),
+                "fCollar": "" + $("#Collar").val(),
+                "fSkin": "" + $("#Skin :selected").text(),
+            }
+
+            console.log(foundpet);
+
+            $.ajax({
+                type: "post",
+                url: "/FoundPet/editFound",
+                data: foundpet,
+
+            }).done(function (data) {
+                alert("修改寵物成功")
+
+                location.reload();
+
+            }).fail(function (err) {
+                alert("失敗")
+            })
+
+        }
+
+
+
+        //刪除寵物資料
+        function DeteleFound() {
+
+
+            $.ajax({
+                type: "post",
+                url: "/FoundPet/deleteFound?foundID=" + foundPetShowId,
+
+
+            }).done(function (data) {
+                alert("刪除寵物成功")
+
+                location.reload();
+
+            }).fail(function (err) {
+                alert("失敗")
+            })
+
+        }
+
+        //=====================================================================================
+
+        function NewOrEditPet() {
+
+
+            if (callStatus == false) {
+
+                $('.ui-dialog-buttonpane').find('button:contains("修改")').attr("style", "display:none");
+                $('.ui-dialog-buttonpane').find('button:contains("新增")').attr("style", "display:inline-block");
+                $('.ui-dialog-buttonpane').find('button:contains("刪除")').attr("style", "display:none");
+
+            }
+            else {
+                $('.ui-dialog-buttonpane').find('button:contains("新增")').attr("style", "display:none");
+                $('.ui-dialog-buttonpane').find('button:contains("修改")').attr("style", "display:inline-block");
+                $('.ui-dialog-buttonpane').find('button:contains("刪除")').attr("style", "display:inline-block");
+                callStatus = false;
+            }
+
+
+
+            $("#dialog-2").dialog("open");
+
+        }
+
+
+
+//==========================================地區品種==============================================================================
+
+     //選breeds
+     $(document).ready(function () {
+         $("#petclassesID").change(function () { ChangePetclass(); });
+    });
+
+    function ChangePetclass() {
+        var selectedValue = $("#petclassesID option:selected").val();//petclassid
+        if ($.trim(selectedValue).length > 0) {
+            GetBreeds(selectedValue);
+        }
+    }
+
+
+    function GetBreeds(petclassID) {
+        $.ajax({
+            url: '@Url.Action("Breeds", "FoundPet")',
+            data: { petclassID: petclassID },
+            type: 'post',
+            cache: false,
+            async: false,
+            dataType: 'json',
+            success: function (data) {
+                if (data.length > 0) {
+                    $('#breedsID').empty();
+                    $('#breedsID').append($('<option></option>').val('').text('請選擇品種'));
+                    $.each(data, function (i, item) {
+                        $('#breedsID').append($('<option></option>').val(item.Key).text(item.Value));
+                    });
+                }
+            }
+        });
+        }
+
+
+    //..選breeds
+
+    //選地區
+      $(document).ready(function () {
+          $("#CityID").change(function () { ChangeCity(); });
+    });
+
+    function ChangeCity() {
+        var selectedValue = $("#CityID option:selected").val();//cityid
+        if ($.trim(selectedValue).length > 0) {
+            GetRegions(selectedValue);
+        }
+    }
+
+
+    function GetRegions(cityID) {
+        $.ajax({
+            url: '@Url.Action("Regions", "FoundPet")',
+            data: { cityID: cityID },
+            type: 'post',
+            cache: false,
+            async: false,
+            dataType: 'json',
+            success: function (data) {
+                if (data.length > 0) {
+                    $('#RegionsID').empty();
+                    $('#RegionsID').append($('<option></option>').val('').text('請選擇地區'));
+                    $.each(data, function (i, item) {
+                        $('#RegionsID').append($('<option></option>').val(item.Key).text(item.Value));
+                    });
+                }
+            }
+        });
+    }
+
+
+
+//=========================上傳圖片========================================================================
+
+
+
+        function pictureUpload() {
+
+            //圖片可以使用 FormData 直接傳送
+            var formData = new FormData();
+
+            var totalFiles = document.getElementById("petPictureUpload").files.length;
+
+            if (totalFiles > 0) {
+                for (var i = 0; i < totalFiles; i++) {
+                    var file = document.getElementById("petPictureUpload").files[i];
+                    formData.append("petPictureUpload", file);
+                }
+
+                $.ajax({
+                    type: "POST",
+                    url: '/FoundPet/Upload',
+                    data: formData,
+                    dataType: 'json',
+                    contentType: false,
+                    processData: false
+
+                }).done(function () {
+                    alert('圖片上傳成功');
+
+                }).fail(function (err) {
+                    alert(err.statusText);
+
+                });
+
+            }
+
+
+        }
+
+
+
+        //預覽上傳圖片
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#PicPreview').attr('src', e.target.result);
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        $("#petPictureUpload").change(function () {
+            readURL(this);
+        });
+
+
+        //選擇類別更換毛色
+        $(document).ready(function () {
+
+
+            $("#petclassesID").change(function () {
+
+                var selectClass = $('#petclassesID :selected').val();
+
+                skinAlter(selectClass);
+
+            });
+        });
+
+
+        function skinAlter(selectClass)
+        {
+            if (selectClass == 1) {
+
+                $('#Skin').empty();
+
+                $('#Skin').append(`<option>請選擇毛色</option>
+                                        <option>斑點與染色狗狗</option>
+                                        <option>純色狗狗</option>
+                                        <option>虎斑狗狗</option>
+                                        <option>貂色狗狗</option>
+                                        <option>狼灰狗狗</option>
+                                        <option>鐵包金狗狗</option>
+                                        <option>黑臉狗狗</option>
+                                        <option>三色狗狗</option>
+                                        <option>隕石花狗狗</option>
+                                        <option>狐背狗狗</option>`);
+
+
+            }
+            else if (selectClass == 2) {
+                $('#Skin').empty();
+                $('#Skin').append(`<option>請選擇毛色</option>
+                                        <option>三色貓貓</option>
+                                        <option>黑白貓貓</option>
+                                        <option>玳瑁貓貓</option>
+                                        <option>白貓貓</option>
+                                        <option>藍貓貓</option>
+                                        <option>白底橘虎斑貓貓</option>
+                                        <option>虎斑貓貓</option>
+                                        <option>橘虎斑貓貓</option>
+                                        <option>白底虎斑貓貓</option>
+                                        <option>灰白貓貓</option>
+                                        <option>黑貓貓</option>
+                                        <option>灰貓貓</option>`);
+
+            }
+        }
+
+
+
+
+        //顯示毛色圖片
+        $(document).ready(function () {
+
+
+
+            $("#Skin").change(function () {
+
+                var skin = $("#Skin :selected").text();
+
+                showSkinPicture(skin);
+
+            });
+
+        });
+
+
+
+        function showSkinPicture(skinType)
+        {
+            $('#skinColor').attr('src', "/Images/skin/" + skinType + ".jpg");
+        }
+
+
+
+
+
+        $(function () {
+
+            $.ajax({
+                type: "post",
+                url: "/FoundPet/MemberLevel",
+
+
+            }).done(function (data) {
+
+
+                if (data < 100) {
+                   
+                    $('#memLevelPic').attr('src', "/Images/MemberLevel/徽章1.jpg");
+                    $('#memLevel').html("階級:初心者寵愛會員");
+                    $('#mempoint').html(`目前積分:${data}`);
+                }
+                else if (data < 200) {
+                    $('#memLevelPic').attr('src', "/Images/MemberLevel/徽章2.jpg");
+                    $('#memLevel').html("階級:高級寵愛會員");
+                    $('#mempoint').html(`目前積分:${data}`);
+                }
+                else if (data < 300) {
+                    $('#memLevelPic').attr('src', "/Images/MemberLevel/徽章3.jpg");
+                    $('#memLevel').html("階級:進階寵愛會員");
+                    $('#mempoint').html(`目前積分:${data}`);
+                }
+                else if (data < 400) {
+                    $('#memLevelPic').attr('src', "/Images/MemberLevel/徽章4.jpg");
+                    $('#memLevel').html("階級:大師級寵愛會員");
+                    $('#mempoint').html(`目前積分:${data}`);
+                }
+                else if (data < 500) {
+                    $('#memLevelPic').attr('src', "/Images/MemberLevel/徽章5.jpg");
+                    $('#memLevel').html("階級:神人級寵愛會員");
+                    $('#mempoint').html(`目前積分:${data}`);
+                }
+                else {
+                    $('#memLevelPic').attr('src', "/Images/MemberLevel/徽章5.jpg");
+                    $('#memLevel').html("階級:神人級寵愛會員");
+                    $('#mempoint').html(`目前積分:${data}`);
+                }
+
+
+
+            }).fail(function (err) {
+                alert("失敗")
+            })
+
+        });
+
+
+
+        function demodata(){
+
+            $("#Status").val("發現");
+            
+            $("#FoundDate").val("2020/02/02");
+            $("#Gender").val("母");
+            $('#petclassesID').val(2);
+            $('#breedsID').val(2);
+            $('#CityID').val(15)
+            $('#RegionsID').val(205);
+            $("#Collar").val(2);
+
+        }
+
+
+
+
+
+    </script>
+
+
+
+}
+
+<div class="container">
+
+    <div class="form-group Levelboard">
+        <div>
+            <img id="memLevelPic" style="width:400px; height:400px;" src="" />
+        </div>
+
+        <div class="pointrule">
+            <div style="font-size:16px;color:red;">
+
+                <label>累積積分</label>
+                <ul>
+                    <li>
+                        每筆新增尋獲資料可獲得100積分
+                    </li>
+                    <li>
+                        每次發佈文章可獲得3分
+                    </li>
+                </ul>
+
+            </div>
+
+            <div>
+                <label style="font-size:30px;" id="memLevel"></label>
+            </div>
+            <div>
+                <label style="font-size:30px;" id="mempoint"></label>
+            </div>
+        </div>
+        <div class="pointrule">
+            <div>
+                <label>
+                    <img style="width:70px;height:70px" src="~/images/MemberLevel/徽章1.jpg" />積分100以下
+                </label>
+            </div>
+            <div>
+                <label>
+                    <img style="width:70px;height:70px" src="~/images/MemberLevel/徽章2.jpg" />積分200以下
+                </label>
+            </div>
+            <div>
+                <label>
+                    <img style="width:70px;height:70px" src="~/images/MemberLevel/徽章3.jpg" />積分300以下
+                </label>
+            </div>
+            <div>
+                <label>
+                    <img style="width:70px;height:70px" src="~/images/MemberLevel/徽章4.jpg" />積分400以下
+                </label>
+            </div>
+            <div>
+                <label>
+                    <img style="width:70px;height:70px" src="~/images/MemberLevel/徽章5.jpg" />積分超過400
+                </label>
+            </div>
+        </div>
+
+
+    </div>
+
+
+    <h2 style="font-family:微軟正黑體; margin-top:30px">尋獲列表</h2>
+
+    <hr class="style-four" />
+
+    <table id="foundPet" class="table display">
+        <thead>
+            <tr>
+                <th>
+                    狀態
+                </th>
+                <th>
+                    照片
+                </th>
+                <th>
+                    品種
+                </th>
+                <th>
+                    毛色
+                </th>
+                <th>
+                    城市
+                </th>
+                <th>
+                    地區
+                </th>
+                <th>
+                    <button class="btn btn-primary" id="NewFound">新增尋獲資料</button>
+                    @*<button class="btn btn-warning" id="score" onclick="point()">分數</button>*@
+                </th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.fStatus)
+                    </td>
+                    <td>
+                        <img style="width:80px;height:60px;" src="~/images/@item.fPetPic" />
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.tBreed.fName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.fSkin)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.tCity.fName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.tRegion.fName)
+                    </td>
+                    <td>
+                        <button class="btn btn-warning" id="found+@item.fFoundPetID" onclick="showAndEorD(event)">詳細資料</button>
+
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</div>
+
+
+
+
+
+<div id="dialog-2" title="寵物資料">
+
+
+    <div class="formleft">
+
+
+        <div style="width:300px; height:300px; border:solid 2px gray; margin-left:25px;">
+            <img id="PicPreview" src="" style="width:300px; height:300px;" />
+        </div>
+
+        <div class="form-group">
+            <span style="color:red;">*</span><label for="">上傳照片</label>
+            <input type="file" class="form-control" name="" id="petPictureUpload" aria-describedby="helpId">
+
+        </div>
+
+
+        <div class="form-group">
+            <span style="color:red;">*</span><label for="">寵物狀態:</label>
+            <select class="form-control" name="" id="Status">
+                <option value="0">請選擇</option>
+                <option>拾獲</option>
+                <option>發現</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <span style="color:red;">*</span><label for="">日期:</label>
+            <input type="text" class="form-control" name="" id="FoundDate" aria-describedby="helpId" placeholder="ex:2020/01/01">
+
+        </div>
+
+
+
+        <div class="form-group">
+            <span style="color:red;">*</span><label for="">城市</label>
+            <select class="form-control" name="" id="CityID">
+                <option value="0">請選擇</option>
+                @{
+                    foreach (var city in (SelectList)ViewBag.CITLIST)
+                    {
+                        <option value="@city.Value">@city.Text</option>
+                    }
+                }
+
+
+            </select>
+        </div>
+
+
+        <div class="form-group">
+            <span style="color:red;">*</span><label for="">地區</label>
+            <select id="RegionsID" name="fRegionID" class="form-control">
+                <option value="0">------</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="">是否佩戴項圈?</label>
+            <select class="form-control" name="" id="Collar">
+                <option>請選擇</option>
+                <option value="1">是</option>
+                <option value="0">否</option>
+            </select>
+        </div>
+
+
+    </div>
+
+    <div class="formright">
+        <div class="form-group">
+            <span style="color:red;">*</span><label for="">性別</label>
+            <select class="form-control" name="" id="Gender">
+                <option value="0">請選擇</option>
+                <option>公</option>
+                <option>母</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <span style="color:red;">*</span><label for="">類別</label>
+            <select class="form-control" name="" id="petclassesID">
+                <option value="0">請選擇</option>
+                <option value="1">狗</option>
+                <option value="2">貓</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <span style="color:red;">*</span><label for="">品種</label>
+
+            <select id="breedsID" name="fBreedID" class="form-control">
+                <option value="0">------</option>
+            </select>
+
+        </div>
+
+        <div class="form-group">
+            <span style="color:red;">*</span><label for="">寵物晶片號碼:</label>
+            <input type="text" class="form-control" name="" id="ChipID" aria-describedby="helpId">
+
+        </div>
+        <div class="form-group">
+            <span style="color:red;">*</span><label for="">備註:</label>
+            <input type="text" class="form-control" name="" id="Remark" aria-describedby="helpId" placeholder="">
+
+        </div>
+
+        <div class="form-group">
+
+            <div>
+                <span style="color:red;">*</span><label for="">毛色分類(依圖片選擇相似的毛色)</label>
+                <select class="form-control" name="" id="Skin">
+                    <option value="0">請先選擇類別</option>
+                </select>
+            </div>
+
+        </div>
+
+        <div style="width:300px; height:300px; border:solid 2px gray; margin-left:25px;">
+            <img id="skinColor" style="width:300px; height:300px;" src="" />
+        </div>
+
+    </div>
+
+
+</div>
+@section featuredicon {
+
+    <img src="@member.fIcon" class="img-responsive img-circle user-photo" alt="User Profile Picture">
+
+}
+@section featuredname{
+
+    @member.fName
+}
+
+@section petcoin{
+
+    <img src="~/images/petcoin.gif" style="width:95px;" /><span style="font-size:20px;color:red">$ @Convert.ToInt32(member.fPetCoin)</span>
+
+}

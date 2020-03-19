@@ -1,0 +1,12 @@
+﻿@model IEnumerable<prjNewPet.Models.tPetMember>
+
+@foreach (var item in Model)
+{
+<div  class="PetImg" id="@item.fPetID" draggable="true" ondragstart="Drag(event)" onclick="showPetData(event)">
+    <img src="~/Images/@item.fPetPic" >
+    <h5>@item.fPetName</h5>
+    @*@Html.ActionLink("取消走失", "ToHave", new { HID = item.fPetID })*@
+</div>
+
+}
+   

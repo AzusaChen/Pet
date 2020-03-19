@@ -1,0 +1,97 @@
+﻿@model prjNewPet.Models.tFoundPet
+@{
+    ViewBag.Title = "FoundDetail";
+}
+
+
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <style>
+        body {
+            background: url(../images/可憐巴哥.jpg)no-repeat 0px 0px;
+            background-size: cover;
+            background-position: 50% 50%;
+        }
+
+        h1 {
+            text-align: center;
+            font-family: 標楷體;
+            color: red;
+        }
+
+        fieldset {
+            background: #FFFCEC;
+            width: 40%;
+            border-bottom-right-radius: 15px;
+            border-top-right-radius: 15px;
+        }
+
+        .image {
+            margin: 0,auto;
+        }
+
+        fieldset img {
+            height: 550px;
+            width: 100%;
+        }
+
+        fieldset li {
+            font-family: 標楷體;
+            font-size: 22px;
+            margin-top: 7px;
+            list-style: none;
+        }
+
+        .backtolist {
+            text-align: right;
+            margin-right: 10px;
+        }
+
+        li p {
+            width: 60%;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div>
+        <fieldset>
+            <h1>請幫牠找到回家的路</h1>
+            <div class="image">
+                <img src="~/images/@Model.fPetPic" />
+            </div>
+            <div>
+                <ul>
+                    <li>
+                        狀態:@Model.fStatus
+                    </li>
+                    <li>
+                        性別:@Model.fGender
+                    </li>
+                    <li>
+                        毛色:@Model.fSkin
+                    </li>
+                    <li>
+                        日期:@Model.fFoundTime.ToShortDateString()
+                    </li>
+                    <li>
+                        尋獲地點:@Model.tCity.fName,@Model.tRegion.fName
+                    </li>
+                    <li>
+                        連絡電話:@Model.tMember.fPhone
+                    </li>
+                    <li>
+                        備註:<p>@Model.fRemark</p>
+                    </li>
+
+                </ul>
+
+            </div>
+            <div class="backtolist">
+                <a href="~/Bulletin/BulletinForFoundPet" class="btn btn-danger">返回公告欄</a>
+            </div>
+        </fieldset>
+    </div>
+</body>

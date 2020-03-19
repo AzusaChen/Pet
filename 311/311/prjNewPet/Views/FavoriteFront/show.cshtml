@@ -1,0 +1,139 @@
+﻿@model IEnumerable<prjNewPet.Models.tFavorite>
+@using prjNewPet.Models
+@{
+    ViewBag.Title = "Index";
+
+    tMember member = Session[CDictionary.SK_LOGINED_USER] as tMember;
+
+}
+
+@section style{
+
+    <link href="~/Content/DataTables/css/jquery.dataTables.css" rel="stylesheet" />
+    <link href="~/Content/tablecss.css" rel="stylesheet" />
+}
+
+<style>
+</style>
+
+<div id="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="panel-content">
+                    <h3 class="heading"><i class="fa fa-newspaper-o"></i> 我的收藏</h3>
+
+                    @*<form method="post" id="dateform" action=""> 發文日期從: <input id="date1" type="date" name="datefirst">  到 <input id="date2" type="date" name="datelast">  <input type="submit" value="查詢" onclick="timechoose()" class="btn btn-outline-info" /> &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;  @Html.ActionLink("發布文章", "CreateAr", "ContentFront", null, new { @class = "btn btn-success fa fa-edit" }) </form>
+                        <br />
+                        <br />
+                        搜尋: <input type="search" />*@
+
+                    @*<div class="table-responsive">
+                            <table class="table table-striped no-margin table-hover ">
+                                <thead>
+                                    <tr>
+                                        <th>主題</th>
+                                        <th>作者</th>
+                                        <th>看板分類</th>
+                                    </tr>
+                                </thead>
+
+                                @foreach (var item in Model)
+                                {
+
+                                    <tbody>
+                                        <tr>
+                                            <td> <a href="~/Blog/Single/?articleid=@item.fArticleID">@Html.DisplayFor(modelItem => item.tDiscussion.fTitle)</a></td>
+                                            <td>@Html.DisplayFor(modelItem => item.tDiscussion.tMember.fName)</td>
+                                            <td>@Html.DisplayFor(modelItem => item.tDiscussion.tDiscussionClass.fName)</td>
+
+                                            <td><a href="~/FavoriteFront/FavoriteDelete/?articleid=@item.fArticleID" class="btn btn-danger fa fa-remove">刪除</a></td>
+                                        </tr>
+                                    </tbody>
+                                }
+                            </table>
+                        </div>*@
+
+                    <table id="todotable" class="dataTables_wrapper table table-striped display">
+                        <thead>
+                            <tr>
+                                <td>編號</td>
+                                <td>作者</td>
+                                <td>標題</td>
+                                <td>看板分類</td>
+                                <td>刪除</td>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+
+    <script src="~/Scripts/DataTables/jquery.dataTables.js"></script>
+
+    <script>
+
+        $(document).ready(function () {
+
+            $.ajax({
+                type: 'post',
+                //url: "/api/TodoItems",
+                url:'@Url.Action("Regions", "FavoriteFront")'
+
+            }).done(function (data) {
+                $("#todotable").dataTable({
+                    "language": {
+                        "url":"@Url.Content("~/i18n/zh-tw.json")"
+                    }
+                });
+                fillthedata(data);
+            }).fail(function (err) {
+
+                alert(err.statusText);
+            });
+
+        });
+
+        function fillthedata(data) {
+
+            for (var i = 0; i < data.length; i++) {
+
+                item = data[i];
+                //str = "";
+                //str1 = "";
+                $("#todotable").dataTable().fnAddData([
+                    item.fFavoriteID,
+                    item.fMemberID,
+                    "<a  href='Transfertosingle/?articleid=" + item.fArticleID + "'" + " >" + item.fArticleTitle + "</a>",
+                    //item.fArticleTitle,
+                    item.discussionchange,
+                    //"<p>55</p>",
+                   "<a  href='FavoriteDelete/?articleid=" + item.fArticleID + "'" + " class='btn btn-danger fa fa-remove' >刪除</a>",
+                ]);
+
+            }
+
+        }
+    </script>
+
+}
+
+@section featuredicon {
+
+    <img src="@member.fIcon" class="img-responsive img-circle user-photo" alt="User Profile Picture">
+
+}
+
+@section featuredname{
+
+    @member.fName
+}
+@section petcoin{
+
+    <img src="~/images/petcoin.gif" style="width:95px;" /><span style="font-size:20px;color:red">$ @Convert.ToInt32(member.fPetCoin)</span>
+
+}

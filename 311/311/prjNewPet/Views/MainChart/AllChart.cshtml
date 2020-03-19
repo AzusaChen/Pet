@@ -1,0 +1,398 @@
+﻿
+@{
+    ViewBag.Title = "AllChart";
+}
+
+@section styles{
+
+    <style>
+        #chartContainer, #chartContainerProductprice, #chartDogBreed, #chartPetcoin {
+            float: right;
+        }
+
+        #chartContainer, #chartContainermemberregister, #chartContainerProductprice, #chartPetClass, #chartDogBreed, #chartCatBreed {
+            width: 45%;
+            height: 300px;
+        }
+
+        #chartPetcoin, #chartProducts {
+            width: 45%;
+            height: 400px;
+        }
+
+
+        .fa-file-pdf-o {
+            font-size: 30px;
+        }
+
+        p {
+            margin-top: 50px;
+        }
+    </style>
+
+
+}
+
+
+<h3 class="mt-2">統計圖一覽表</h3><a class="anchor" name="tables"></a>
+<a id="titleMember" href="@Url.Action("ExportExcel","Excel")"><input type="button" value="點此匯出Excel資料" /></a>
+<a id="titleMember" href="@Url.Action("ExportChart","Excel")"><input type="button" value="點此匯出圖表" /></a>
+<div class="row grid-responsive">
+    <div class="column ">
+        <div class="card">
+            <div class="card-title">
+                <h1 class="fa fa-file-pdf-o">圖表查看</h1>
+            </div>
+            <div class="card-block">
+
+
+
+
+                <div id="chartContainer"></div>
+
+
+
+
+                <div id="chartContainermemberregister"></div>
+
+                <p>------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------</p>
+
+
+                <div id="chartContainerProductprice"></div>
+
+
+                <div id="chartPetClass"></div>
+
+                <p>------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------</p>
+
+                <div id="chartDogBreed"></div>
+
+
+                <div id="chartCatBreed"></div>
+
+                <p>------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------</p>
+                <div id="chartPetcoin"></div>
+                <div id="chartProducts"></div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+@section scripts
+{
+
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script src="~/Scripts/canvasjs/canvasjs.min.js"></script>
+
+    <script type="text/javascript">
+
+    $(function () {
+        var chart = new CanvasJS.Chart("chartContainer", {
+            theme: "light2",
+            zoomEnabled: true,
+            animationEnabled: true,
+            title: {
+                text: "產品種類平均銷售價格"
+            },
+            subtitles: [
+                {
+                    text: "產品趨勢圖"
+                }
+            ],
+            data: [
+            {
+                type: "line",
+
+
+
+                //You can add dynamic data from the controller as shown below. Check the controller and uncomment the line which generates dataPoints.
+                dataPoints: @Html.Raw(ViewBag.DataPoints),
+            }
+            ]
+        });
+        chart.render();
+    });
+    </script>
+
+
+    <script type="text/javascript">
+
+    $(function () {
+        var chart = new CanvasJS.Chart("chartContainermemberregister", {
+            theme: "light2",
+            animationEnabled: true,
+            title: {
+                text: "會員註冊日期統計"
+            },
+            data: [
+            {
+                type: "column",
+
+
+                //You can add dynamic data from the controller as shown below. Check the controller and uncomment the line which generates dataPoints.
+                dataPoints: @Html.Raw(ViewBag.DataPointsMemberre),
+            }
+            ]
+        });
+        chart.render();
+    });
+    </script>
+
+
+    <script type="text/javascript">
+
+    $(function () {
+        var chart = new CanvasJS.Chart("chartContainerProductprice", {
+            zoomEnabled: true,
+            zoomType: "xy",
+            title: {
+                text: "產品價錢分布表",
+            },
+            subtitles: [
+                {
+                    text: "各項產品分析"
+                }
+            ],
+            animationEnabled: true,
+            axisX: {
+                title: "產品名稱",
+            },
+            axisY: {
+                title: "價錢台幣$NT",
+                valueFormatString: "$#,##0k",
+                lineThickness: 8,
+                includeZero: false,
+                minimum: 100,
+                maximum: 5000
+            },
+            data: [
+			{
+			    type: "scatter",
+			    toolTipContent: "<span style='\"'color: {color};'\"'><strong>Area: </strong></span>{x} sq.ft<br/><span style='\"'color: {color};'\"'><strong>Price: </strong></span>{y} $ ",
+
+			    //dataPoints: [
+				   // { x: 800, y: 350 },
+				   // { x: 900, y: 450 },
+				   // { x: 850, y: 450 },
+				   // { x: 1250, y: 700 },
+				   // { x: 1100, y: 650 },
+				   // { x: 1350, y: 850 },
+				   // { x: 1200, y: 900 },
+				   // { x: 1410, y: 1250 },
+				   // { x: 1250, y: 1100 },
+				   // { x: 1400, y: 1150 },
+				   // { x: 1500, y: 1050 },
+				   // { x: 1330, y: 1120 },
+				   // { x: 1580, y: 1220 },
+				   // { x: 1620, y: 1400 },
+				   // { x: 1250, y: 1450 },
+				   // { x: 1350, y: 1600 },
+				   // { x: 1650, y: 1300 },
+				   // { x: 1700, y: 1620 },
+				   // { x: 1750, y: 1700 },
+				   // { x: 1830, y: 1800 },
+				   // { x: 1900, y: 2000 },
+				   // { x: 2050, y: 2200 },
+				   // { x: 2150, y: 1960 },
+				   // { x: 2250, y: 1990 }
+			    //],
+
+			    //You can add dynamic data from the controller as shown below. Check the controller and uncomment the line which generates dataPoints.
+			    dataPoints: @Html.Raw(ViewBag.DataPointsProductprice),
+			}]
+        });
+
+        chart.render();
+    });
+    </script>
+
+
+    @*PETCLASS*@
+    <script type="text/javascript">
+        $(function () {
+            var chart = new CanvasJS.Chart("chartPetClass",
+                {
+                    theme: "light2",
+                    title: {
+                        text: "會員寵物類別比例圖"
+                    },
+                    animationEnabled: true,
+                    legend: {
+                        fontSize: 16,
+                        fontFamily: "Helvetica"
+                    },
+                    data: [
+                        {
+                            type: "doughnut",
+                            showInLegend: true,
+                            toolTipContent: "{y}個 - #percent %",
+                            //yValueFormatString: "",
+                            legendText: "{Label}",
+
+
+                            indexLabelFontFamily: "Garamond",
+                            indexLabelFontSize: 16,
+
+                            startAngle: -20,
+
+
+                            legendText: "{label}",
+
+                            dataPoints:
+                                @Html.Raw(ViewBag.PETCLASS)
+
+                        }
+                    ]
+                });
+            chart.render();
+        });
+    </script>
+    @*DogBreed*@
+    <script type="text/javascript">
+        $(function () {
+            var chart = new CanvasJS.Chart("chartDogBreed",
+                {
+                    theme: "light2",
+                    title: {
+                        text: "會員養狗品種比例圖"
+                    },
+                    animationEnabled: true,
+                    legend: {
+                        verticalAlign: "center",
+                        horizontalAlign: "left",
+                        fontSize: 16,
+                        fontFamily: "Helvetica"
+                    },
+                    data: [
+                        {
+                            type: "pie",
+                            showInLegend: true,
+                            toolTipContent: "{y}個 - #percent %",
+                            //yValueFormatString: "",
+                            legendText: "{Label}",
+
+
+                            indexLabelFontFamily: "Garamond",
+                            indexLabelFontSize: 16,
+
+                            startAngle: -20,
+
+
+                            legendText: "{label}",
+
+                            dataPoints:
+                                @Html.Raw(ViewBag.DOGBREED)
+
+                        }
+                    ]
+                });
+            chart.render();
+        });
+    </script>
+    @*CatBreed*@
+    <script type="text/javascript">
+        $(function () {
+            var chart = new CanvasJS.Chart("chartCatBreed",
+                {
+                    theme: "light1",
+                    title: {
+                        text: "會員養貓品種比例圖"
+                    },
+                    animationEnabled: true,
+                    legend: {
+                        verticalAlign: "center",
+                        horizontalAlign: "left",
+                        fontSize: 16,
+                        fontFamily: "Helvetica"
+                    },
+                    data: [
+                        {
+                            type: "pie",
+                            showInLegend: true,
+                            toolTipContent: "{y}個 - #percent %",
+                            //yValueFormatString: "",
+                            legendText: "{Label}",
+
+
+                            indexLabelFontFamily: "Garamond",
+                            indexLabelFontSize: 16,
+
+                            startAngle: -20,
+
+
+                            legendText: "{label}",
+
+                            dataPoints:
+                                @Html.Raw(ViewBag.CATBREED)
+
+                        }
+                    ]
+                });
+            chart.render();
+        });
+    </script>
+    @*MemGrowth有問題*@
+
+    @*PETCOIN*@
+    <script type="text/javascript">
+    $(function () {
+
+        var chart = new CanvasJS.Chart("chartPetcoin", {
+            theme: "light2",
+            title: {
+                text: "PETCOIN前五大會員"
+            },
+            data: [{
+                type: "funnel",
+                indexLabel: "{label} [{y}枚]",
+                //neckHeight: 0,
+                //toolTipContent: "{label} - {y}%",
+                dataPoints:@Html.Raw(ViewBag.TOP5PTCOIN),
+            }]
+        });
+        chart.render();
+
+    });
+    </script>
+
+
+    @*TOP5products*@
+    <script type="text/javascript">
+        window.onload = function () {
+
+            var chart = new CanvasJS.Chart("chartProducts",
+                {
+                    title: {
+                        text: "商品銷售排行榜"
+                    },
+                    data: [
+                        {
+                            type: "pyramid",
+                            valueRepresents: "area",
+
+                            dataPoints: @Html.Raw(ViewBag.TOP5PRODUCTS),
+                        }
+                    ]
+                });
+            chart.render();
+
+        }
+    </script>
+
+
+
+
+
+
+}

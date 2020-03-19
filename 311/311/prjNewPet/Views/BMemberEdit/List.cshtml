@@ -1,0 +1,99 @@
+﻿@using PagedList
+@using PagedList.Mvc
+@using prjNewPet.Models
+
+@model  IPagedList<prjNewPet.Models.tMember>
+
+
+@{
+    ViewBag.Title = "List";
+}
+
+@section styles{
+    <link href="~/Content/PagedList.css" rel="stylesheet" />
+    <link href="~/Content/tablecss.css" rel="stylesheet" />
+
+    <style>
+
+        table {
+            table-layout: fixed;
+        }
+
+        td {
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+    </style>
+}
+
+
+<h5 class="mt-2">會員資料一覽表</h5>
+<a class="anchor" name="tables"></a>
+
+<div>
+    <h3>會員資料管理</h3>
+   
+</div>
+<div>
+    <table class="table table-striped display" style="font-family:微軟正黑體;font-weight:bold">
+        <thead>
+            <tr>
+                <th>姓名</th>
+                <th>性別</th>
+                <th>身分證字號</th>
+                <th>帳號</th>
+                <th>密碼</th>
+                <th>經濟狀況</th>
+                <th>電話</th>
+                <th>信箱</th>
+                <th>註冊日期</th>
+                <th>城市</th>
+                <th>地區</th>
+                <th>頭像</th>
+                <th>修改</th>
+                <th>刪除</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+
+                <tr>
+                    <td>@item.fName</td>
+                    <td>@item.fGender</td>
+                    <td>@item.fIDCardNumber</td>
+                    @*<td>@item.fNickName</td>*@
+                    <td>@item.fAccount</td>
+                    <td>@item.fPassword</td>
+                    @*<td>@item.fBirthDate</td>*@
+                    <td>@item.fEnconomicStatus</td>
+                    <td>@item.fPhone</td>
+                    <td>@item.fEMail</td>
+                    <td>@item.fRegisterDate</td>
+                    @*<td>@item.fRecentLogInDate</td>*@
+                    <td>@item.tCity.fName</td>
+                    <td>@item.tRegion.fName</td>
+                    @*<td>@item.fAddressDetail</td>*@
+                    <td>
+                        <img src="@item.fIcon" />
+                    </td>
+
+                    @*<td><a href="~/Edit/BMemberEdit/?fid=@item.fMemberID">im</a></td>*@
+                    <td>
+                        <a href="~/BMemberEdit/Edit/?fid=@item.fMemberID"><img src="~/images/edit_fn01.png" /></a>
+                    </td>
+                    <td>
+                        <a href="~/BMemberEdit/Delete/?fid=@item.fMemberID"><img src="~/images/delete icon.png" /></a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+        </table>
+</div>
+<nav>
+    <ul class="pagination">
+
+        <li>@Html.PagedListPager(Model, page => Url.Action("List", new { page })) </li>
+    </ul>
+</nav>
+

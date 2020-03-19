@@ -1,0 +1,113 @@
+﻿@model prjNewPet.Models.tDiscussion
+@using prjNewPet.Models
+@{
+    ViewBag.Title = "CreateAr";
+
+    tMember member = Session[CDictionary.SK_LOGINED_USER] as tMember;
+}
+
+<h2>CreateAr</h2>
+
+<style>
+
+    #right1 {
+        margin-left: 1040px;
+    }
+
+    #spanforerror1, #spanforerror2, #spanforerror3 {
+        color: red;
+    }
+
+    #bigger1 {
+        font-size: 20px;
+    }
+</style>
+
+<div id="main-content">
+    <div class="container-fluid">
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                <h4 class="fa fa-pencil-square " id="bigger1">新增文章</h4>
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                <div class="form-group">
+                    <label>&emsp;標題</label><span id="spanforerror1">@ViewBag.errormessgetitle</span>
+                    <br />
+
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.fTitle, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.fTitle, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>&emsp;分類看板</label><span id="spanforerror2">@ViewBag.errormessgedisclass</span>
+                    <br />
+                    <div class="col-md-10">
+                        @Html.DropDownList("fDiscussionClassID", (SelectList)ViewBag.SelectList, "請選擇看板", htmlAttributes: new { @class = "form-control", id = "Citys" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>&emsp;文章內容</label><span id="spanforerror3">@ViewBag.errormessgeContent</span>
+                    <br />
+                    <div class="col-md-10">
+                        <textarea name="fContent" id="fContent" cols="100" rows="100"></textarea>
+                    </div>
+                </div>
+
+                @*<div class="form-group">
+                        @Html.LabelFor(model => model.fContent, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.fContent, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.fContent, "", new { @class = "text-danger" })
+                        </div>
+                    </div>*@
+
+                <div class="form-group">
+                    <label>&emsp;發布時間:@ViewBag.time</label>
+                </div>
+
+                <div class="form-group" id="right1">
+
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="發布文章" class="btn btn-success" />
+                        <a href="~/ContentFront/Index" class="btn btn-primary">取消</a>
+                    </div>
+                </div>
+            </div>
+        }
+
+        <script src="~/ckeditor/ckeditor.js"></script>
+
+        <script>
+
+            CKEDITOR.replace('fContent', {
+                //extraPlugins: 'easyimage',
+                //removePlugins: 'image',
+                cloudServices_tokenUrl: 'https://64760.cke-cs.com/token/dev/cjOJmtIRsVkYRtPah4iFHPNGSoJEom9y8ek49gQ2Gm39cb3yqxMSIOlixiUJ',
+                cloudServices_uploadUrl: 'https://64760.cke-cs.com/easyimage/upload/'
+            });
+        </script>
+
+        @*<div>
+                @Html.ActionLink("Back to List", "Index")
+            </div>*@
+    </div>
+</div>
+
+@section featuredicon {
+
+    <img src="@member.fIcon" class="img-responsive img-circle user-photo" alt="User Profile Picture">
+
+}
+
+@section featuredname{
+
+    @member.fName
+}

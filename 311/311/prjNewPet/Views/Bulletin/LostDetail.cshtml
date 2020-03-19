@@ -1,0 +1,46 @@
+﻿@model prjNewPet.Models.tLostPet
+
+@{
+    ViewBag.Title = "LostDetail";
+}
+
+<body>
+    
+    <div>
+        <fieldset>
+            <h1>請幫牠找到回家的路</h1>
+            <div class="image">
+                <img src="~/images/@Model.tPetMember.fPetPic" />
+            </div>
+            <div>
+                <ul>
+                    <li>
+                        寵物品種:@Model.tPetMember.tBreed.fName
+                    </li>
+                    <li>
+                        性別:@Model.tPetMember.fGender
+                    </li>
+                    <li>
+                        毛色:@Model.tPetMember.fSkin
+                    </li>
+                    <li>
+                        走失日期:@Model.fLostTime.ToShortDateString()
+                    </li>
+                    <li>
+                        走失地點:@Model.fLostPlace
+                    </li>
+                    <li>
+                        懸賞金:@Convert.ToInt32(Model.fReward)
+                    </li>
+                    <li>
+                        備註:<p>@Model.fRemark</p>
+                    </li>
+                </ul>
+
+            </div>
+            <div class="backtolist">
+                <a  href="~/Bulletin/BulletinForLostPet" class="btn btn-danger" >返回公告欄</a>
+            </div>
+        </fieldset>
+    </div>
+</body>

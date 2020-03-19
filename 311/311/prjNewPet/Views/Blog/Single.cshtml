@@ -1,0 +1,592 @@
+﻿@model prjNewPet.Models.tDiscussion
+@using prjNewPet.Models
+
+@{
+    ViewBag.Title = "Single";
+
+}
+
+@section styles
+{
+
+    <style>
+
+        #titlebanner {
+            padding-top: 60px;
+        }
+
+        #borderforsingle {
+            border: 5px dashed #FF4B1B;
+            border-radius: 12px;
+            padding: 15px;
+            padding-top: 0px;
+            width: 1000px;
+        }
+
+        #borderforsingle p{
+            color:black;
+        }
+
+
+        #borderforimg, img {
+            border-radius: 20px;
+            padding: 5px;
+            width: 400px;
+        }
+
+        #borderforimg {
+            margin-top: 0px;
+           
+        }
+
+        #fatcat {
+            border-radius: 20px;
+            padding: 5px;
+            width: 200px;
+        }
+        #bordercomment {
+            border: 1px solid black
+        }
+
+        .commentforc {
+            color: black !important;
+        }
+
+        #myBtn, #like {
+            float: right;
+            margin-right: 5px;
+            height: 35px;
+        }
+
+        #getcomm:hover {
+            color: black;
+            background-color: wheat;
+            border: 1px solid #EEFFBB;
+        }
+
+        /* The Modal (background) */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Sit on top */
+            padding-top: 100px; /* Location of the box */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgb(0,0,0); /* Fallback color */
+            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+        }
+
+        /* Modal Content */
+        .modal-content {
+            background-color: #FFBB66;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 600px;
+            height: 70px;
+        }
+
+        .modal-body {
+            background-color: white;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 600px;
+            height: 350px;
+        }
+
+        #modalh4 {
+            color: #000000;
+            font-size: larger;
+        }
+
+        #reportbutton {
+            float: right;
+        }
+
+        /* The Close Button */
+        .close {
+            color: #000000;
+            float: right;
+            font-size: 35px;
+            font-weight: bold;
+        }
+
+            .close:hover,
+            .close:focus {
+                color: red;
+                text-decoration: none;
+                cursor: pointer;
+            }
+
+        /* Modal Content */
+    </style>
+
+}
+
+<div class="banner2">
+    <div class="about-heading">
+        <div class="container" id="titlebanner">
+            <h2>寵物Blog</h2>
+        </div>
+    </div>
+</div>
+
+<div class="banner">
+    <!-- blog -->
+
+    <div class="blog">
+        <!-- container -->
+        <div class="container">
+            <div class="col-md-8 blog-top-left-grid">
+                <div class="left-blog left-single">
+
+                    <div class="blog-left">
+                        <div class="single-left-left">
+                            <p>
+                                作者: <a href="#">@Model.tMember.fName</a> &nbsp;&nbsp;@Model.tDiscussionClass.fName &nbsp;&nbsp; @Model.fCreateDate &nbsp;&nbsp;
+
+                                <button id="like" class='btn btn-primary fa fa-thumbs-o-up' addval=""> 按讚</button>
+
+                                <button id="myBtn" class="btn btn-success fa fa-exclamation-circle">
+                                    檢舉文章
+                                </button>
+                            </p>
+
+                            @***************************************************************************@
+
+                            <!-- The Modal -->
+                            <div id="myModal" class="modal">
+
+                                <!-- Modal content -->
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                            &times;
+                                        </button>
+                                        <h4 id="modalh4" class="modal-title fa fa-exclamation-circle">
+                                            文章檢舉原因
+                                        </h4>
+                                    </div>
+                                </div>
+
+                                <div class="modal-body">
+                                    @using (Html.BeginForm("Report", "Blog", new { articleids = Model.fArticleID }, FormMethod.Post, null))
+                                    {
+
+                                        <textarea name="fReportComment" id="fReportComment" cols="68" rows="10"></textarea>
+
+                                        <!-- <button>登入</button>  -->
+                                        <hr>
+
+                                        <input id="reportbutton" type="submit" class="btn btn-primary" value="提交檢舉">
+                                    }
+                                </div>
+                            </div>
+
+                            @***************************************************************************@
+
+                            <h1>主題:@Model.fTitle</h1>
+                        </div>
+                        <div class="blog-left-bottom" id="borderforsingle">
+                            <p id="borderforimg">
+                                @Html.Raw(Model.fContent)
+                            </p>
+                        </div>
+                    </div>
+
+                    @*以下為留言板*@
+
+                    <div class="response" id="replytotal">
+                        <h3>留言區</h3>
+
+                        @*<div class="media response-info">
+                                <div class="media-left response-text-left">
+
+                                    <a href="#">
+
+                                        <img class="media-object" id="bordercomment" src="" alt="">
+                                    </a>
+                                    <h5><a id="bordercomment2" href="#"></a></h5>
+                                </div>
+
+                                <div class="media-body response-text-right">
+                                    <p id="bordercomment3" class="commentforc">
+                                    </p>
+                                    <ul>
+                                        <li id="bordercomment4" class="commentforc"></li>
+                                    </ul>
+                                </div>
+
+                                <div class="clearfix"> </div>
+                            </div>*@
+                    </div>
+
+                    @*以下評論*@
+                    <div class="opinion">
+                        <h3>請在此留言</h3>
+                        <label>發文者:@ViewBag.usercomment</label>
+                        <br />
+                        <textarea id="fContent" name="fContent" rows="10" cols="80" placeholder="Message" ></textarea>
+                        <br />
+                        <input id="getcomm" type="button" class="btn btn-danger" value="發送留言">
+                    </div>
+                </div>
+            </div>
+            @*以下為左側區*@
+            <div class="col-md-4 blog-top-right-grid">
+                <div class="Categories">
+                    <h3>歡迎來到寵愛有家</h3>
+                    <img id="fatcat" src="~/images/ico-4.gif" />
+                </div>
+                <div class="Categories">
+                    <h3>熱門文章</h3>
+                    @{
+                        dbNewPetEntities dbcontext = new dbNewPetEntities();
+
+                        var hotcomment = dbcontext.tDiscussions.OrderByDescending(m => m.fLike).Take(5);
+
+                        foreach (var item in hotcomment)
+                        {
+
+                            <ul class="marked-list offs1">
+                                <li><a href="~/Blog/Single/?articleid=@item.fArticleID">@item.fTitle (@item.fLike)</a></li>
+                            </ul>
+                        }
+                    }
+                </div>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+        <!-- //container -->
+    </div>
+    <!-- //blog -->
+</div>
+
+@section scripts{
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+            integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+            crossorigin="anonymous"></script>
+
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    <script>
+
+        // Get the modal
+        var modal = document.getElementById('myModal');
+
+        // Get the button that opens the modal
+        var btn = document.getElementById("myBtn");
+
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close")[0];
+
+        // When the user clicks the button, open the modal
+        btn.onclick = function () {
+            modal.style.display = "block";
+        }
+
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function () {
+            modal.style.display = "none";
+        }
+
+        $("#reportbutton").click(function () {
+
+            swal({
+                title: "已提交檢舉!",
+                text: "感謝你的建議,已提交給管理員進行審核!",
+                icon: "info",
+
+            });
+        });
+
+        //==========================================================
+
+        $("#getcomm").click(function () {
+
+            //$.ajax({
+            //}).done(function () { }).fail(function () { });
+
+            $.ajax({
+
+                type: 'post',
+
+                url: '@Url.Action("savecomment", "Blog")',
+
+                data: {
+
+                    "articleids": @this.Model.fArticleID,
+                    "commentss": $("#fContent").val()
+
+                }
+
+            }).done(function (data) {
+
+                $.ajax({
+
+                    type: 'post',
+
+                    url: '@Url.Action("getcomment", "Blog")',
+
+                    data: {
+
+                        "rearticleid": @this.Model.fArticleID,
+
+                            }
+
+                }).done(function (data) {
+                    for (var i = 0; i < data.length; i++) {
+                        let item = data[i];
+                        str = "";
+                        str += "<div class='media response - info'>";
+                        str += " <div class='media-left response-text-left'>";
+                        str += "<img style='border-radius:20px; width:80px;height:85px;padding:5px;margin-top:0px;border: solid 2px orange;' src='" + item.fIcon + "' alt=''>";
+                        str += "<h5 id='bordercomment2'>" + item.fMemberNickname + "</h5>";
+                        str += "</div >";
+                        str += "<div class='media-body response-text-right'>";
+                        str += " <p id='bordercomment3' class='commentforc'>" + item.fContent + "</p>";
+                        str += " <ul> <li id='bordercomment4' class='commentforc'>" + item.fCreateDate + "</li> </ul>";
+                        str += "</div>"
+                        str += "<div class='clearfix'> </div>"
+                        str += "<hr />"
+                        str += "</div >"
+
+                        $("#replytotal").append(str);
+
+                    }
+
+                }).fail(function (err) {
+                    alert(err.statusText);
+                });
+
+            }).fail(function () {
+
+                alert(err.statusText);
+            });
+
+        });
+
+        $(document).ready(function () {
+
+            var likecount = 0;
+
+            $.ajax({
+
+                    type: 'post',
+
+                    url: '@Url.Action("showlike", "Blog")',
+
+                    data: {
+
+                        "articleid":@Model.fArticleID,
+
+                 }
+
+            }).done(function (data) {
+
+                 likecount = data[0].fLike;
+
+                //$("#like").text("按讚" + data[0].fLike);
+                //$("#like").attr("addval", likecount);
+
+            }).fail(function () {
+                alert(err.statusText);
+            });
+
+             $.ajax({
+
+                    type: 'post',
+
+                    url: '@Url.Action("checklike", "Blog")',
+
+                    data: {
+
+                        "articleid":@Model.fArticleID,
+
+                 }
+
+            }).done(function (data) {
+
+                check = data;
+                flag = false;
+
+                if (check == 0 || null) {
+                    $("#like").text("按讚" + likecount);
+
+                }
+                else {
+                    $("#like").text("收回讚" + likecount);
+                }
+
+                $("#like").click(function () {
+
+                    if (check == 0) {
+
+                        if (flag == false) {
+
+                            likecount += 1;
+                            //$(this).attr("addval", likecount);
+                            $(this).text("收回讚" + likecount);
+
+                            $.ajax({
+
+                                type: 'post',
+
+                                url: '@Url.Action("savelike", "Blog")',
+
+                                data: {
+
+                                    "articleid":@Model.fArticleID,
+                                    "likec": likecount
+
+                                }
+
+                            }).done(function (data) {
+
+                            }).fail(function (err) { alert(err.statusText); });
+
+                            flag = true;
+
+                        }
+                        else {
+
+                            likecount -= 1;
+                            //$(this).attr("addval", likecount);
+                            $(this).text("按讚" + likecount);
+
+                            $.ajax({
+
+                                type: 'post',
+
+                                url: '@Url.Action("minuslike", "Blog")',
+
+                                data: {
+
+                                    "articleid":@Model.fArticleID,
+                                    "likec": likecount
+
+                                }
+
+                            }).done(function (data) {
+
+                            }).fail(function (err) { alert(err.statusText); });
+
+                            flag = false;
+
+                        }
+
+                    }
+                    else {
+
+                        if (flag == false) {
+
+                            likecount -= 1;
+
+                            $(this).text("按讚" + likecount);
+
+                            $.ajax({
+
+                                type: 'post',
+
+                                url: '@Url.Action("minuslike", "Blog")',
+
+                                data: {
+
+                                    "articleid":@Model.fArticleID,
+                                    "likec": likecount
+
+                                }
+
+                            }).done(function (data) {
+
+                            }).fail(function (err) { alert(err.statusText); });
+
+                            flag = true;
+
+                        }
+                        else {
+
+                            likecount += 1;
+
+                            $(this).text("收回讚" + likecount);
+
+                            $.ajax({
+
+                                type: 'post',
+
+                                url: '@Url.Action("savelike", "Blog")',
+
+                                data: {
+
+                                    "articleid":@Model.fArticleID,
+                                    "likec": likecount
+
+                                }
+
+                            }).done(function (data) {
+
+                            }).fail(function (err) { alert(err.statusText); });
+
+                            flag = false;
+
+                        }
+
+                    }
+
+                });
+
+                 }).fail(function () {
+
+                     alert(err.statusText);
+            });
+
+        });
+
+        $.ajax({
+
+             type: 'post',
+
+            url: '@Url.Action("getallcomment", "Blog")',
+
+            data:
+            {
+
+             "rearticleid": @this.Model.fArticleID,
+
+            }
+
+        }).done(function (data) {
+
+            for (var i = 0; i < data.length; i++) {
+                let item = data[i];
+                str = "";
+                str += "<div class='media response - info'>";
+                str += " <div class='media-left response-text-left'>";
+                str += "<img style='border-radius:20px; width:80px;height:85px;padding:5px;margin-top:0px;border: solid 2px orange;' src='" + item.fIcon + "' alt=''>";
+                str += "<h5 id='bordercomment2'>" + item.fMemberNickname + "</h5>";
+                str += "</div >";
+                str += "<div class='media-body response-text-right'>";
+                str += " <p id='bordercomment3' class='commentforc'>" + item.fContent + "</p>";
+                str += " <ul> <li id='bordercomment4' class='commentforc'>" + item.fCreateDate + "</li> </ul>";
+                str += "</div>"
+                str += "<div class='clearfix'> </div>"
+                str += "<hr />"
+                str += "</div >"
+
+                $("#replytotal").append(str);
+
+            }
+
+        }).fail(function (err) {
+
+            alert(err.statusText);
+
+        });
+    </script>
+
+}

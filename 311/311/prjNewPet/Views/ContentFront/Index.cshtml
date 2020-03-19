@@ -1,0 +1,335 @@
+﻿
+@using prjNewPet.Models
+@{
+    ViewBag.Title = "Index";
+
+    tMember member = Session[CDictionary.SK_LOGINED_USER] as tMember;
+
+}
+
+@section style{
+
+    <link href="~/Content/DataTables/css/jquery.dataTables.css" rel="stylesheet" />
+    <link href="~/Content/tablecss.css" rel="stylesheet" />
+    <style>
+
+        table {
+            table-layout: fixed;
+        }
+
+        td {
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        /*#main-content {
+            background-image: url(../../images/backimage3.jpg);
+        }*/
+    </style>
+
+}
+
+
+<div id="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="panel-content">
+                    <h3 class="heading"><i class="fa fa-newspaper-o"></i> 個人文章管理</h3>
+
+                    發文日期從: <input id="date1" type="date" name="datefirst">  到 <input id="date2" type="date" name="datelast">  <input type="button" id="timechoose" value="查詢" class="btn btn-outline-info" /> &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;  @Html.ActionLink("發布文章", "CreateAr", "ContentFront", null, new { @class = "btn btn-success fa fa-edit" })
+                    <br />
+                    <br />
+                    @*搜尋: <input type="search" />*@
+
+                    <div class="card-block">
+
+                        <table class="table table-striped display" id="todotable" class="dataTables_wrapper">
+                            <thead>
+                                <tr>
+                                    <td>文章編號</td>
+                                    <td>看板分類</td>
+                                    <td>標題</td>
+                                    <td>發文時間</td>
+                                    <td>編輯</td>
+                                    <td>刪除</td>
+
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+@section scripts{
+
+
+
+    <script src="~/Scripts/DataTables/jquery.dataTables.js"></script>
+
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+
+
+    <script>
+
+
+
+         $(document).ready(function () {
+
+            $.ajax({
+                type: 'post',
+                //url: "/api/TodoItems",
+                url:'@Url.Action("getalldis", "ContentFront")'
+
+            }).done(function (data) {
+                $("#todotable").dataTable({
+
+
+                    "language": {
+                        "url":"@Url.Content("~/i18n/zh-tw.json")"
+                    }
+                });
+                fillthedata(data);
+            }).fail(function (err) {
+
+                alert(err.statusText);
+            });
+
+
+
+             $("#timechoose").click(function () {
+
+                 $("#todotable").dataTable().fnClearTable();
+                 //先清空
+
+                       var x = $("#date1").val();
+                       var y = $("#date2").val();
+
+
+                    $.ajax({
+                        type: 'post',
+
+                         url: '@Url.Action("gettime", "ContentFront")',
+
+                          data: {
+
+                             "date1": x,
+                             "date2": y,
+
+                        }
+
+
+
+                 }).done(function (data) {
+                     //var table = $("#todotable").DataTable();
+                     //table.destroy();
+                     $("#todotable").dataTable({
+
+
+                         retrieve: true,
+                         //重新加載
+
+
+                            "language": {
+                               "url":"@Url.Content("~/i18n/zh-tw.json")"
+                           }
+
+
+                     });
+
+
+                     fillthedata(data);
+            }).fail(function (err) {
+
+                    alert(err.statusText);
+
+            });
+
+             });
+
+
+
+
+
+
+
+
+        });
+
+        function fillthedata(data) {
+
+            for (var i = 0; i < data.length; i++) {
+
+                item = data[i];
+
+                $("#todotable").dataTable().fnAddData([
+                    item.fArticleID,
+                    item.fDiscussionClassID,
+                    "<button style='color:indianred;border-radius:15px;width:120px;text-overflow: ellipsis;overflow:hidden;white-space: nowrap;'  id='changetosingle" + item.fArticleID + "'" + ">" + item.fTitle +"</button>",
+                    item.fCreateDate,
+                    "<button class='btn btn-primary fa fa-pencil'  id='ccr" + item.fArticleID + "'" + ">編輯</button>",
+                    "<button class='btn btn-danger fa fa-remove' id='author" + item.fArticleID + "'" + ">刪除</button>"
+
+                ]);
+
+
+                //$("#ccr"+item.fArticleID).addClass("btn btn-primary fa fa-pencil");
+                //$("#author" + item.fArticleID).addClass("btn btn-danger fa fa-remove");
+                //$("#changetosingle" + item.fArticleID).css("color", "green");
+
+                $("#todotable").on("click", "#ccr" + item.fArticleID, function () {
+
+                    //$.ajax({}).done(function (data) { }).fail(function (err) { });
+                    var id = $(this).attr("id").substring(3);
+
+                    window.location.href = "../ContentFront/ContentEdit/?articleid=" + id;
+
+
+
+                });
+
+
+
+                $("#todotable").on("click", "#author" + item.fArticleID, function () {
+
+
+
+                    swal({
+                        title: "確定刪除?",
+                        text: "刪除後無法復原!",
+                        icon: "warning",
+                        buttons: true,
+                        dangerMode: true,
+                    })
+                        .then((willDelete) => {
+                            if (willDelete) {
+
+                                swal("該文章成功刪除!", {
+
+                                    icon: "success",
+
+
+                                });
+
+                               @{
+                                   System.Threading.Thread.Sleep(2000);
+                               }
+
+                                var iddel = $(this).attr("id");
+
+
+                                $.ajax({
+
+                                      type: 'post',
+
+                                       url: '@Url.Action("ContentDelete", "ContentFront")',
+
+
+                                        data: {
+
+                                         "articleid": iddel.substring(6)
+
+                                        }
+
+                                }).done(function (data) {
+
+                                    window.location.reload();
+
+                                }).fail(function (err) {
+
+
+                                });
+
+
+
+
+
+
+
+                            }
+                            else {
+                                swal("取消!");
+                            }
+                        });
+
+
+
+
+
+
+
+                });
+
+
+
+                $("#todotable").on("click", "#changetosingle" + item.fArticleID, function () {
+
+
+                    //$.ajax({}).done(function (data) { }).fail(function (err) { });
+                    var id = $(this).attr("id").substring(14);
+
+                    window.location.href = "../Blog/Single/?articleid=" + id;
+
+
+
+                });
+
+
+
+
+
+
+
+
+
+
+
+
+            }
+        }
+
+
+
+
+    </script>
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+@section featuredicon {
+
+    <img src="@member.fIcon" class="img-responsive img-circle user-photo" alt="User Profile Picture">
+
+}
+
+@section featuredname{
+
+    @member.fName
+}
+
+@section petcoin{
+
+    <img src="~/images/petcoin.gif" style="width:95px;" /><span style="font-size:20px;color:red">$ @Convert.ToInt32(member.fPetCoin)</span>
+
+}

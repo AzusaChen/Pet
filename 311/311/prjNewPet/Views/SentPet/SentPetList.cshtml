@@ -1,0 +1,72 @@
+﻿@model IEnumerable<prjNewPet.Models.tSentPet>
+
+@{
+    ViewBag.Title = "SentPetList";
+}
+
+
+<div class="container">
+
+    <p>
+        @Html.ActionLink("Create New", "SentPetCreate")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                照片
+            </th>
+            <th>
+                種類
+            </th>
+            <th>
+                品種
+            </th>
+            <th>
+                登記日期
+            </th>
+            <th>
+                飼主
+            </th>
+            <th>
+                緣由
+            </th>
+            <th></th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <img src="@item.fPicture" />
+                    <img src="~/images/SentPet/美國短毛貓.jpg" />
+                    
+                    
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.tPetClass.fName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.tBreed.fName)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.fSignInDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.tMember.fName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fContext)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "SentPetEdit", new { SentID = item.fSentPetID })
+                </td>
+                <td>
+                    @Html.ActionLink("Delete", "SentPetDelete", new { SentID = item.fSentPetID }, new { onclick = "return confirm('確定刪除?')" })
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>

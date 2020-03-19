@@ -1,0 +1,98 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>寵愛有家後台</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700" rel="stylesheet">
+
+    <!-- Template Styles -->
+    <link rel="stylesheet" href="~/Content/Backmanagement/font-awesome.min.css">
+
+    <!-- CSS Reset -->
+    <link rel="stylesheet" href="~/Content/Backmanagement/normalize.css">
+
+    <!-- Milligram CSS minified -->
+    <link rel="stylesheet" href="~/Content/Backmanagement/milligram.min.css">
+
+    <!-- Main Styles -->
+    <link rel="stylesheet" href="~/Content/Backmanagement/styles.css">
+
+    <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    @RenderSection("styles", false)
+    @RenderSection("statussearch", false)
+    @RenderSection("productsearch", false)
+    @RenderSection("suppliersearch", false)
+    @RenderSection("ordersearch", false)
+
+
+
+</head>
+<body>
+
+    <div class="navbar">
+        <div class="row">
+            <div class="column column-30 col-site-title"><a href="#" class="site-title float-left">寵愛有家</a></div>
+            <div class="column column-40 col-search">
+                <a href="#" class="search-btn fa fa-search"></a>
+                <input type="text" name="" value="" placeholder="搜尋..." />
+
+
+                
+              
+
+            </div>
+            <div class="column column-30">
+                <div class="user-section">
+                    <a href="#">
+                        <img src="~/images/58e8d81738987.png" alt="profile photo" class="circle float-left profile-photo  " width="50" height="auto">
+                        <div class="username">
+                            <h4>管理員</h4>
+                            <p>Administrator</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row" >
+        <div id="sidebar" class="column">
+            <h5>Navigation</h5>
+
+            <ul>
+
+                <li>@Html.ActionLink("會員管理", "List", "BMemberEdit", null, new { @class = "fa fa-home" })</li>
+                @*<li><a href="#charts"><em class="fa fa-bar-chart"></em> Charts</a></li>*@
+
+                @*<li><a href="#widgets"><em class="fa fa fa-address-book"></em> Widgets</a></li>
+        <li><a href="#forms"><em class="fa fa-pencil-square-o"></em> Forms</a></li>
+        <li><a href="#alerts"><em class="fa fa-warning"></em> Alerts</a></li>*@
+                <li>@Html.ActionLink("商品管理", "ProductList", "Product", null, new { @class = "fa fa-pencil-square-o" })</li>
+                <li>@Html.ActionLink("訂單管理", "OrderList", "Order", null, new { @class = "fa fa fa-address-book" })</li>
+                <li>@Html.ActionLink("供應商管理", "SupplierList", "Supplier", null, new { @class = "fa fa fa-address-book" })</li>
+                <li>@Html.ActionLink("商品類別管理", "CategoryList", "Category", null, new { @class = "fa fa fa-address-book" })</li>            
+                <li>@Html.ActionLink("品種管理", "BreedList", "PetBreed", null, new { @class = "fa fa fa-clone" })</li>
+                <li>@Html.ActionLink("活動管理", "ActivityList", "Activity", null, new { @class = "fa fa-edge" })</li>
+                <li>@Html.ActionLink("討論區管理", "BlogList", "BackCenterBlog", null, new { @class = "fa fa-pencil-square-o" })</li>
+                <li>@Html.ActionLink("庫存管理", "List", "Purchase", null, new { @class = "fa fa-briefcase" })</li>
+                <li>@Html.ActionLink("統計圖表", "AllChart", "MainChart", null, new { @class = "fa fa-signal" })</li>
+                <li>@Html.ActionLink("登出系統", "Auth", "Login", null, new { @class = "fa fa-upload" })</li>
+                <li>-------------------------------------------------------------------</li>
+                <li>購物車清單</li>
+                @RenderSection("minicart", false)
+            </ul>
+        </div>
+        <section id="main-content" class="column column-offset-20">
+            @RenderBody()
+        </section>
+    </div>
+
+   
+
+
+    @RenderSection("scripts", false)
+</body>
+</html>

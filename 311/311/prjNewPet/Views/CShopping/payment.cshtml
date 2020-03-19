@@ -1,0 +1,69 @@
+﻿
+
+<div class="checkout-left-basket" style="margin-left:100px">
+    <h4>付款方式</h4>
+    <div class="form-group">
+        <div class="custom-control custom-radio custom-control-inline" style="margin-bottom:20px">
+            <input type="radio" id="1" name="payway" class="custom-control-input">
+            <label class="custom-control-label" for="customRadioInline1">信用卡付款</label>
+        </div>
+        <div class="custom-control custom-radio custom-control-inline" style="margin-bottom:20px">
+            <input type="radio" id="2" name="payway" class="custom-control-input">
+            <label class="custom-control-label" for="customRadioInline2">ATM轉帳</label>
+        </div>
+        <div class="custom-control custom-radio custom-control-inline" style="margin-bottom:20px">
+            <input type="radio" id="3" name="payway" class="custom-control-input">
+            <label class="custom-control-label" for="customRadioInline3">超商取付</label>
+        </div>
+        <div id="card" class="hidden">
+            <form action="#" method="post" class="creditly-card-form agileinfo_form">
+                <div class="creditly-wrapper wthree, w3_agileits_wrapper">
+                    <div class="credit-card-wrapper">
+                        <div class="first-row form-group">
+                            <div class="w3_agileits_card_number_grids">
+                                <div class="w3_agileits_card_number_grid_left">
+                                    <div class="controls" style="margin-bottom:20px">
+                                        <label class="control-label">卡片號碼</label>
+                                        <input class="number credit-card-number form-control" type="text" name="number" inputmode="numeric" autocomplete="cc-number"
+                                               autocompletetype="cc-number" x-autocompletetype="cc-number" placeholder="&#149;&#149;&#149;&#149; &#149;&#149;&#149;&#149; &#149;&#149;&#149;&#149; &#149;&#149;&#149;&#149;">
+                                    </div>
+                                </div>
+                                <div class="w3_agileits_card_number_grid_right" style="margin-bottom:20px">
+                                    <div class="controls">
+                                        <label class="control-label">CVV</label>
+                                        <input class="security-code form-control" Â· inputmode="numeric" type="text" name="security-code" placeholder="&#149;&#149;&#149;">
+                                    </div>
+                                </div>
+                                <div class="clear"> </div>
+                            </div>
+                            <div class="controls" style="margin-bottom:20px">
+                                <label class="control-label">卡片到期日</label>
+                                <input class="expiration-month-and-year form-control" type="text" name="expiration-month-and-year" placeholder="MM / YY">
+                            </div>
+                            <div>
+                                
+                                <input type="button" value="Demo" onclick="demoCard()"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+
+<script>
+    $('#1').click(function () {
+            $('#card').removeClass();
+    })
+
+    function demoCard() {
+        $("input[name='number']").val('4311952222222222');
+        $("input[name='security-code']").val('222');
+        $("input[name='expiration-month-and-year']").val('03/21');
+
+    };
+</script>
+
+   

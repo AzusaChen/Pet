@@ -1,0 +1,5 @@
+ERROR 2020/03/05 12:19:16 Web                  Index                System.InvalidOperationException: 可為 Null 的物件必須具有值。
+   於 System.ThrowHelper.ThrowInvalidOperationException(ExceptionResource resource)
+   於 System.Nullable`1.get_Value()
+   於 prjNewPet.Controllers.HomeController.Index() 於 C:\Users\III\Desktop\Demo\0305\0304\prjNewPet\Controllers\HomeController.cs: 行 29
+

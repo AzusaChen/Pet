@@ -1,0 +1,30 @@
+﻿@model IEnumerable<prjNewPet.Models.tFoundPet>
+
+
+<table class="table">
+    @*<tr>
+        <th>
+            @Html.DisplayNameFor(model => model.fStatus)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.fPetPic)
+        </th>
+        <th></th>
+    </tr>*@
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+           寵物狀態:@Html.DisplayFor(modelItem => item.fStatus)
+        </td>
+        <td>
+            <img style="width:60px" src="~/images/@item.fPetPic" />
+        </td>
+        <td>
+            @Html.ActionLink("詳細資料", "FoundDetailForMem", "Bulletin", new { foundID = item.fFoundPetID }, new { @class = "btn btn-danger" })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,109 @@
+﻿@model prjNewPet.Models.tSentPet
+
+@{
+    ViewBag.Title = "SentPetEdit";
+}
+
+<h2>SentPetEdit</h2>
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+
+<form method="post" action="~/SentPet/SentPetEdit" enctype="multipart/form-data">
+@Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.fSentPetID)
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.fContext, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextAreaFor(model => model.fContext, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.fContext, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.fSignInDate, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.fSignInDate, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.fSignInDate, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.Label("寵物圖片", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+
+            <input type="file" name="photo" />
+            @Html.ValidationMessageFor(model => model.fPicture, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.fPetClassID, "fPetClassID", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("fPetClassID", (SelectList)ViewBag.SelectList, "請選擇類別", htmlAttributes: new { @class = "form-control", id = "PetClass" })
+                @Html.ValidationMessageFor(model => model.fPetClassID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.fBreedID, "fBreedID", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div class="col-md-10">
+                    <select id="breedID" name="fBreedID" class="form-control"><option>@Model.tBreed.fName</option></select>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+    </div>
+    </form>
+
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+
+    <script>
+
+    $(document).ready(function () {
+        $("#PetClass").change(function () { ChangeCity(); });
+    });
+
+    function ChangeCity() {
+        var selectedValue = $("#PetClass option:selected").val();//類別ID
+
+        if ($.trim(selectedValue).length > 0) {
+            GetOrders(selectedValue);
+        }
+    }
+
+    //GetOrders() 這個 function 內就透過 jQuery.Ajax() 向後端取得 Orders 的 JSON 資料，最後再由這份 JSON 資料去增加下拉選單的 option 內容
+
+    function GetOrders(PetClassID) {
+        $.ajax({
+            url: '@Url.Action("PetBreeds", "SentPet")',
+            data: { PetClassID: PetClassID },
+
+            type: 'post',
+            cache: false,
+            async: false,
+            dataType: 'json',
+            success: function (data) {
+
+                if (data.length > 0) {
+                    $('#breedID').empty();
+                    $('#breedID').append($('<option></option>').val('').text('請選擇品種'));
+                    $.each(data, function (i, item) {
+                        $('#breedID').append($('<option></option>').val(item.Key).text(item.Value));
+                    });
+                }
+            }
+        });
+    }
+    </script>

@@ -1,0 +1,60 @@
+﻿
+@{
+    ViewBag.Title = "Lockpage";
+}
+
+@section styles{
+
+    <style>
+
+        #countsize {
+            
+            font-size: 50px;
+          margin-left:850px;
+        }
+        #countsize1 {
+            font-size: 50px;
+            margin-left: 450px;
+        }
+        #countdown {
+            font-size: 40px;
+            margin-left: 950px;
+        }
+        img {
+            margin-left: 550px;
+            width: 800px;
+            height: 500px;
+        }
+    </style>
+}
+
+
+
+<p id="countsize">系統通知</p>
+<p id="countsize1">此文章已被管理員封鎖,即將跳轉回討論區</p>
+<div id="countdown"> </div>
+<img  src="@Url.Content("~/images/changelock.jpg")" />
+
+
+
+@section scripts{
+
+    <script type="text/javascript">
+        var countdownnumber = 5;
+        var countdownid, x;
+        function initial() {
+            x = document.getElementById("countdown");
+            x.innerHTML = countdownnumber;
+            countdownnumber--;
+            countdownid = window.setInterval(countdownfunc, 1000);
+        }
+        function countdownfunc() {
+            x.innerHTML = countdownnumber;
+            if (countdownnumber == 0) {
+                location.href = "Total";
+                clearInterval(countdownid);
+            }
+            countdownnumber--;
+        }
+    </script>
+}

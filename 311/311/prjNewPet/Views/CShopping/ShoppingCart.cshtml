@@ -1,0 +1,311 @@
+﻿@model IEnumerable<prjNewPet.Models.tShoppingCart>
+@using prjNewPet.Models
+
+@{
+    ViewBag.Title = "ShoppingCart";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<head>
+    <title>Super Market an Ecommerce Online Shopping Category Flat Bootstrap Responsive Website Template | Products :: w3layouts</title>
+    <!-- for-mobile-apps -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="Super Market Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+    <script type="application/x-javascript">
+        addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
+               function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <!-- //for-mobile-apps -->
+    <link href="~/Content/ShoppingCSS/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="~/Content/ShoppingCSS/Shoppingstyle.css" rel="stylesheet" type="text/css" media="all" />
+    <link rel="stylesheet" type="text/css" href="~/Scripts/jquery-ui.js">
+
+    <!-- font-awesome icons -->
+    <link href="~/Content/ShoppingCSS/font-awesome.css" rel="stylesheet">
+    <!-- //font-awesome icons -->
+    <!-- js -->
+    <script src="~/Scripts/Shopping/jquery-1.11.1.min.js"></script>
+    <!-- //js -->
+    <link href='//fonts.googleapis.com/css?family=Raleway:400,100,100italic,200,200italic,300,400italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
+    <!-- start-smoth-scrolling -->
+    <script type="text/javascript" src="~/Scripts/Shopping/move-top.js"></script>
+    <script type="text/javascript" src="~/Scripts/Shopping/easing.js"></script>
+    <script type="text/javascript">
+        jQuery(document).ready(function ($) {
+            $(".scroll").click(function (event) {
+                event.preventDefault();
+                $('html,body').animate({ scrollTop: $(this.hash).offset().top }, 1000);
+            });
+        });
+    </script>
+    <!-- start-smoth-scrolling -->
+
+</head>
+<!-- header -->
+<!-- breadcrumbs -->
+<div class="breadcrumbs">
+    <div class="container">
+        <ol class="breadcrumb breadcrumb1">
+            <li>
+                <a href="/CShopping/ShoppingIndex"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a>
+            </li>
+            <li class="active">Checkout Page</li>
+        </ol>
+    </div>
+</div>
+<!-- //breadcrumbs -->
+<!-- checkout -->
+<div class="checkout">
+    <div class="container">
+        <h2 style="font-family:微軟正黑體">
+            您的購物車包含:
+        </h2>
+        <div class="checkout-right">
+            <table class="timetable_sub">
+                <thead>
+                    <tr style="font-family:微軟正黑體">
+                        <th>產品照片</th>
+                        <th>產品名稱</th>
+                        <th>數量</th>
+                        <th>價錢</th>
+                        <th>移除</th>
+                    </tr>
+                </thead>
+
+                @foreach (var item in Model)
+                {
+                    <tr class="@item.fCartID">
+                        <td class="invert-image">
+                            <a href="single.html"><img src="@item.fPic" alt=" " class="img-responsive" /></a>
+                        </td>
+                        <td class="invert">@item.tProduct.fName</td>
+                        <td class="invert">
+                            <div class="quantity">
+                                <div class="quantity-select">
+                                    <a href="javascript:void(0)" onclick="UpdateCart('@item.fProductID','@(item.fQuantity)', -1)">
+                                        <div class="entry value-minus" id="minus_@item.fProductID">&nbsp;</div>
+                                    </a>
+                                    <div class="entry value" id="total_qty_@item.fProductID">
+                                        <span>@item.fQuantity</span>
+                                    </div>
+                                    <a href="javascript:void(0)" onclick="UpdateCart('@item.fProductID','@(item.fQuantity)', +1)">
+                                        <div class="entry value-plus active" id="plus_@item.fProductID">&nbsp;</div>
+                                    </a>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="invert total" id="total_@item.fProductID">NT.@((item.fUnitPrice * @item.fQuantity).ToString("F0"))</td>
+
+                        <td class="invert">
+                            <div class="rem">
+                                <div>
+                                    <a href="javascript:void(0)" onclick="dialog('@item.fProductID','@item.fCartID')" class="close1" id="@item.fCartID"></a>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+
+                }
+                <tfoot>
+                    <tr>
+                        <td colspan="3">
+                            <span class="invert">
+
+                            </span>
+                        </td>
+
+                        <td colspan="2" style="text-align:center">
+                            <span class="invert" id="totalPrice"></span>
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+
+        <div class="checkout-right-basket">
+            <a href="/CShopping/ShoppingIndex"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>返回繼續購物</a>
+            <a href="/CShopping/OrderInfo"><span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>前往結帳</a>
+
+        </div>
+        <div class="clearfix"> </div>
+
+    </div>
+</div>
+<!-- //checkout -->
+<!-- Bootstrap Core JavaScript -->
+<script src="~/Scripts/bootstrap.min.js"></script>
+<!-- top-header and slider -->
+<!-- here stars scrolling icon -->
+<script type="text/javascript">
+    $(document).ready(function () {
+        /*
+            var defaults = {
+            containerID: 'toTop', // fading element id
+            containerHoverID: 'toTopHover', // fading element hover id
+            scrollSpeed: 1200,
+            easingType: 'linear'
+            };
+        */
+
+        $().UItoTop({ easingType: 'easeOutQuart' });
+
+    });
+</script>
+<!-- //here ends scrolling icon -->
+<script src="~/Scripts/minicart.min.js"></script>
+<script>
+    // Mini Cart
+    paypal.minicart.render({
+        action: '#'
+    });
+
+    if (~window.location.search.indexOf('reset=true')) {
+        paypal.minicart.reset();
+    }
+</script>
+<!-- main slider-banner -->
+<script src="~/Scripts/skdslider.min.js"></script>
+<link href="~/Content/ShoppingCSS/skdslider.css" rel="stylesheet">
+
+<script type="text/javascript">
+    jQuery(document).ready(function () {
+        jQuery('#demo1').skdslider({ 'delay': 5000, 'animationSpeed': 2000, 'showNextPrev': true, 'showPlayButton': true, 'autoSlide': true, 'animationType': 'fading' });
+
+        jQuery('#responsive').change(function () {
+            $('#responsive_wrapper').width(jQuery(this).val());
+        });
+
+        priceSum();
+    });
+</script>
+
+<script>
+
+    function priceSum() {
+        var sum = 0;
+        var discount = parseInt(($('#coin').text()) / 100, 10)
+        $(".total").each(function () {
+
+            sum += parseInt($(this).text().substring(3));
+        });
+       
+        $('#totalPrice').text("總價：NT." + sum);
+    
+    };
+
+</script>
+
+<script>
+     function DelCart(id,cartid) {
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("DeleteCart", "CShopping")',
+                data: { fPId: id },
+                success: function (data) {
+                    if (data) {
+
+                        $('#' + cartid).closest('tr').fadeOut('slow', function () {
+                            $('#' + cartid).closest('tr').remove();
+
+                        });
+
+                        let s = 0;
+                        $('#total_' + id).text("NT." + s);
+                        priceSum();
+
+                        $('#minicartitems').load('@Url.Action("Minicart", "CShopping")');
+                    }
+                },
+                dataType: "JSON"
+            });
+     };
+
+        function UpdateCart(id,qty,amount) {
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("UpdateCart", "CShopping")',
+                data: {
+                    fPId: id,
+                    fQty: parseInt($('#total_qty_' + id).text()),
+                    fAmount: amount
+                },
+                success: function (data) {
+                    if (data) {
+                        //商品加加
+                        if (amount == +1) {
+                            var divUpd = $('#plus_' + id).parent().parent().find('.value'); //取現在的數量
+                            var newVal = parseInt(divUpd.text(), 10) + 1; //新數量
+                            var unitPrice = parseInt($('#total_' + id).text().substring(3)) / parseInt(divUpd.text()); //取出商品單價
+
+                            divUpd.text(newVal); //回傳新數量
+
+                            var total = "NT." + Math.round(newVal * unitPrice); //計算總價
+                            $('#total_' + id).text(total);
+
+                            priceSum();
+
+                            $('#minicartitems').load('@Url.Action("Minicart", "CShopping")');
+                        }
+
+                        //商品減減
+                        else {
+                            var divUpd = $('#minus_' + id).parent().parent().find('.value');
+                            var newVal = parseInt(divUpd.text(), 10) - 1;
+                            var unitPrice = parseInt($('#total_' + id).text().substring(3)) / parseInt(divUpd.text());
+                            if (newVal >= 1) {
+                                divUpd.text(newVal);
+                                var total = "NT." + Math.round(newVal * unitPrice);
+                                $('#total_' + id).text(total);
+
+                                priceSum();
+
+                                $('#minicartitems').load('@Url.Action("Minicart", "CShopping")');
+                            }
+                        }
+                    }
+                },
+                dataType: "JSON"
+            });
+        };
+
+</script>
+<!-- //main slider-banner -->
+<!--引用SweetAlert2.js-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.0.0/sweetalert2.all.js"></script>
+<script type="text/javascript">
+    //自訂預設值
+    swal.setDefaults({
+        confirmButtonText: "確定",
+        cancelButtonText: "取消"
+    });
+    //swal.resetDefaults();//清空自訂預設值
+
+
+    function dialog(id, cartid) {
+
+        //confirm dialog範例
+        swal({
+            title: "確定刪除？",
+            html: "按下確定後商品將會從購物車移除",
+            type: "question",
+            showCancelButton: true//顯示取消按鈕
+        }).then(
+            function (result) {
+                if (result.value) {
+                    //使用者按下「確定」要做的事
+
+
+                    DelCart(id, cartid);
+
+                    swal("完成!", "資料已經刪除", "success");
+                } else if (result.dismiss === "cancel") {
+                    //使用者按下「取消」要做的事
+
+                }//end else
+            });//end then
+    };
+
+
+</script>

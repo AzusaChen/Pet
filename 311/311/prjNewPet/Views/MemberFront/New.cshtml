@@ -1,0 +1,315 @@
+﻿@model prjNewPet.Models.tMember
+
+@{
+    ViewBag.Title = "New";
+}
+
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+        crossorigin="anonymous"></script>
+
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+<style>
+
+    #birth1, #register1, #recent1 {
+        background: rgba(255,255,255,0);
+        padding: 10px,0px;
+        border: none;
+        margin: 10px;
+        color: #FFFFFF;
+        font-size: 16px;
+    }
+
+    #Citys, #Regions {
+        color: #FFFFFF;
+    }
+
+    span{
+        color:red;
+        font-size:20px;
+
+    }
+</style>
+
+<div class="w3l-head">
+    <h1>寵愛有家 註冊會員</h1>
+</div>
+<div class="w3ls-form">
+   
+    @using (Html.BeginForm("New", "MemberFront", null, FormMethod.Post, new { enctype = "multipart/form-data", id = "formnew" }))
+    {
+        @Html.AntiForgeryToken()
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="w3l-last-grid1">
+            <div class="w3l-grid1">
+                <label class="text">會員姓名</label>
+                <div class="w3l-div">
+                    <i class="fa fa-user" aria-hidden="true"></i>
+                    @Html.EditorFor(model => model.fName, new { htmlAttributes = new { @class = "form-control", id = "member1", @required = "required" } })
+                    @Html.ValidationMessageFor(model => model.fName, "", new { @class = "text-danger"  })
+                </div>
+            </div>
+            <div class="w3l-grid2">
+                <label class="text">會員暱稱</label>
+                <div class="w3l-div">
+                    <i class="fa fa-user" aria-hidden="true"></i>
+                    @Html.EditorFor(model => model.fNickName, new { htmlAttributes = new { @class = "form-control", id = "nickname1", @required = "required" } })
+                    @Html.ValidationMessageFor(model => model.fNickName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="w3l-last-grid1">
+            <div class="w3l-grid1">
+                <label class="text">帳號</label>
+                <div class="w3l-div">
+                    <i class="fa fa-users" aria-hidden="true"></i>
+                    @Html.EditorFor(model => model.fAccount, new { htmlAttributes = new { @class = "form-control", id = "account1", @required = "required" } })
+                    @Html.ValidationMessageFor(model => model.fAccount, "", new { @class = "text-danger"})
+                </div>
+            </div>
+            <div class="w3l-grid2">
+                <label class="text">城市</label>
+                <div class="w3l-div">
+                    <i class="fa fa-calendar" aria-hidden="true"></i>
+                    @Html.DropDownList("fCityID", (SelectList)ViewBag.SelectList, "請選擇城市", htmlAttributes: new { @class = "form-control", id = "Citys" , @required = "required" })
+                    @*@Html.ValidationMessageFor(model => model.fCityID, "", new { @class = "text-danger" })*@
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="w3l-last-grid1">
+            <div class="w3l-grid1">
+                <label class="text">密碼</label>
+                <div class="w3l-div">
+                    <i class="fa fa-envelope-o" aria-hidden="true"></i>
+                    @Html.EditorFor(model => model.fPassword, new { htmlAttributes = new { @class = "form-control", id = "password1", @required = "required" } })
+                    @Html.ValidationMessageFor(model => model.fPassword, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="w3l-grid2">
+                <label class="text">地區</label>
+                <div class="w3l-div">
+                    <i class="fa fa-phone" aria-hidden="true"></i>
+                    <select id="Regions" name="fRegionID" class="form-control"><option>------</option></select>
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="w3l-last-grid1">
+            <div class="w3l-grid1">
+                <label class="text">地址</label>
+                <div class="w3l-div">
+                    <i class="fa fa-location-arrow" aria-hidden="true"></i>
+                    @Html.EditorFor(model => model.fAddressDetail, new { htmlAttributes = new { @class = "form-control", id = "address1" } })
+                    @Html.ValidationMessageFor(model => model.fAddressDetail, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="w3l-grid2">
+                <label class="text">生日</label>
+                <div class="w3l-div">
+                    <i class="fa fa-map-marker" aria-hidden="true"></i>
+                    @Html.EditorFor(model => model.fBirthDate, new { htmlAttributes = new { @class = "form-control", id = "birth1" , @required = "required", placeholder = "1995-06-04" } })
+                    @*@Html.ValidationMessageFor(model => model.fBirthDate, "", new { @class = "text-danger" })*@
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+
+        <div class="w3l-right-grid1">
+            <div class="w3l-grid1">
+                <label class="text">性別</label>
+                <div class="w3l-div">
+                    <i class="fa fa-map-marker" aria-hidden="true"></i>
+                    @Html.EditorFor(model => model.fGender, new { htmlAttributes = new { @class = "form-control", id = "gender1", @required = "required" } })
+                    @Html.ValidationMessageFor(model => model.fGender, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="w3l-grid2">
+                <label class="text">身分證字號</label>
+                <div class="w3l-div">
+                    <i class="fa fa-address-card-o" aria-hidden="true"></i>
+                    @Html.EditorFor(model => model.fIDCardNumber, new { htmlAttributes = new { @class = "form-control", id = "idcard1", @required = "required" } })
+                    @Html.ValidationMessageFor(model => model.fIDCardNumber, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+
+        <div class="w3l-right-grid1">
+            <div class="w3l-grid1">
+                <label class="text">年收入</label>
+                <div class="w3l-div">
+                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                    @Html.EditorFor(model => model.fEnconomicStatus, new { htmlAttributes = new { @class = "form-control", id = "enco1" } })
+                    @Html.ValidationMessageFor(model => model.fEnconomicStatus, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <label class="text">電話</label>
+            <div class="w3l-grid2">
+                <div class="w3l-div">
+                    <i class="fa fa-book" aria-hidden="true"></i>
+                    @Html.EditorFor(model => model.fPhone, new { htmlAttributes = new { @class = "form-control", id = "phone1", @required = "required" } })
+                    @Html.ValidationMessageFor(model => model.fPhone, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+
+        <div class="w3l-right-grid1">
+            <div class="w3l-grid1">
+                <label class="text">郵箱</label>
+                <div class="w3l-div">
+                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                    @Html.EditorFor(model => model.fEMail, new { htmlAttributes = new { @class = "form-control", id = "email1", @required = "required" } })
+                    @Html.ValidationMessageFor(model => model.fEMail, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            @*<label class="text">註冊日期</label>
+            <div class="w3l-grid2">
+                <div class="w3l-div">
+                    <i class="fa fa-book" aria-hidden="true"></i>
+                    @Html.EditorFor(model => model.fRegisterDate, new { htmlAttributes = new { @class = "form-control", id = "register1", placeholder = "1995-06-04" } })
+                    @Html.ValidationMessageFor(model => model.fRegisterDate, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+
+        <div class="w3l-right-grid1">
+            <div class="w3l-grid1">
+                <label class="text">最近登入日期</label>
+                <div class="w3l-div">
+                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                    @Html.EditorFor(model => model.fRecentLogInDate, new { htmlAttributes = new { @class = "form-control", id = "recent1", placeholder = "1995-06-04" } })
+                    @Html.ValidationMessageFor(model => model.fRecentLogInDate, "", new { @class = "text-danger" })
+                </div>
+            </div>*@
+            <label class="text">頭像</label>
+            <div class="w3l-grid2">
+                <div class="w3l-div">
+                    <i class="fa fa-book" aria-hidden="true"></i>
+                    @*@Html.EditorFor(model => model.fIcon, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.fIcon, "", new { @class = "text-danger" })*@
+                    <input type="file" name="photo" required="required" class="form-control" />
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+
+        <div class="w3ls-submit">
+            <input type="submit" value="成為我們的會員" id="sub">
+
+            <input type="button" value="Demo" id="Demo">
+        </div>
+       
+    }
+</div>
+
+<script>
+
+    $("#Demo").click(function () {
+
+        $("#member1").attr("value", "陳十忠")
+        $("#nickname1").attr("value", "順時忠")
+        $("#account1").attr("value", "clockxxx")
+        $("#password1").attr("value", "clockxxx")
+        $("#address1").attr("value", "復興南路一段390號")
+        $("#birth1").attr("value", "2002-03-18")
+        $("#gender1").attr("value", "男")
+        $("#enco1").attr("value", "130萬")
+        $("#phone1").attr("value", "0977688588")
+        $("#email1").attr("value", "leoncheng19@gmail.com")/*大哥的信箱*/
+        //$("#register1").attr("value", "2019-12-25")/*要拿掉*/
+        //$("#recent1").attr("value", "2019-12-25")/*要拿掉*/
+        $("#idcard1").attr("value", "C125874965")
+
+    });
+</script>
+
+<script>
+    @*swal.setDefaults({
+        confirmButtonText: "確定"
+
+    });
+    $("#sub").click(function () {
+
+        swal({
+            title: "Good job!恭喜獲得 $ PetCoin 200 點",
+            text: "你已成為我們的會員,即將跳轉至官網!",
+            icon: "success"
+        }).then(
+            function (result) {
+                if (result.value) {
+                    //使用者按下「確定」要做的事
+
+                    window.location.href='@Url.Action("Auth","Login")'
+                    
+
+                    
+
+                }
+            });
+
+       
+
+    });*@
+
+    $("#sub").click(function () {
+        swal({
+            title: "Good job!恭喜獲得 $ PetCoin 200 點",
+            text: "你已成為我們的會員,即將跳轉至官網!",
+            icon: "success"
+        });
+    });
+
+
+</script>
+
+<script>
+
+    $(document).ready(function () {
+        $("#Citys").change(function () { ChangeCity(); });
+    });
+
+    function ChangeCity() {
+        var selectedValue = $("#Citys option:selected").val();//cityid
+        if ($.trim(selectedValue).length > 0) {
+            GetOrders(selectedValue);
+        }
+    }
+
+    //GetOrders() 這個 function 內就透過 jQuery.Ajax() 向後端取得 Orders 的 JSON 資料，最後再由這份 JSON 資料去增加下拉選單的 option 內容
+
+    function GetOrders(cityID) {
+        $.ajax({
+            url: '@Url.Action("Regions", "MemberFront")',//指定的action跟controller
+            data: { "cityID": cityID },//傳入到jsonresult的資料
+            type: 'post',
+            cache: false,
+            async: false,
+            dataType: 'json',
+            success: function (data) {
+                if (data.length > 0) {
+                    $('#Regions').empty();
+                    $('#Regions').append($('<option></option>').val('').text('請選擇區域'));
+                    $.each(data, function (i, item) {
+                        $('#Regions').append($('<option></option>').val(item.Key).text(item.Value));
+                    });
+                }
+            }
+        });
+    }
+</script>
+
+@*data:
+      傳送到伺服器的資料，要求為Object或String型別的引數。
+    如果已經不是字串，將自動轉換為字串格式。
+    get請求中將附加在url後。防止這種自動轉換，
+    可以檢視processData（防止自動轉換）選項。
+    物件必須為key/value格式，例如{foo1:”bar1″,foo2:”bar2″}
+    轉換為&foo1=bar1&foo2=bar2。如果是陣列，JQuery將自動為不同值對應同一個名稱。
+    例如{foo:[“bar1″,”bar2”]}轉換為&foo=bar1&foo=bar2。*@

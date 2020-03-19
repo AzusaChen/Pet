@@ -1,0 +1,80 @@
+﻿@model IEnumerable<prjNewPet.Models.tOrder_Detail>
+@using prjNewPet.Models
+@{
+    ViewBag.Title = "Details";
+    tMember member = Session[CDictionary.SK_LOGINED_USER] as tMember;
+}
+
+
+
+<style>
+
+    table {
+        table-layout: fixed;
+    }
+
+    td {
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+</style>
+
+<div id="main-content">
+    <div class="container-fluid">
+        <div class="row" id="orderdiv">
+            <div class="col-md-8">
+                <div class="panel-content">
+                    <h3 class="heading"><i class="fa fa-square"></i>會員訂單資料</h3>
+                    <div class="table-responsive">
+                        <table class="table table-striped no-margin">
+                            <thead>
+                                <tr>
+                                    <th>商品名稱</th>
+                                    <th>單價</th>
+                                    <th>數量</th>
+                                    <th>金額</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.tProduct.fName)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.fUnitPrice)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.fQuantity)
+                                        </td>
+                                        <td>
+                                            @((item.fUnitPrice * item.fQuantity).ToString("F0"))
+                                        </td>
+                                    </tr>
+
+
+                                }
+                            </tbody>
+                            </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section featuredicon {
+
+    <img src="@member.fIcon" class="img-responsive img-circle user-photo" alt="User Profile Picture">
+
+}
+
+@section featuredname{
+
+    @member.fName
+}
+

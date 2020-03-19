@@ -1,0 +1,30 @@
+
+========
+2020-02-13 18:19:03：System.InvalidOperationException: Error saving file C:\Users\USER\test.xlsx ---> System.IO.DirectoryNotFoundException: 找不到路徑 'C:\Users\USER\test.xlsx' 的一部分。
+   於 System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   於 System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   於 System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy)
+   於 System.IO.FileStream..ctor(String path, FileMode mode)
+   於 OfficeOpenXml.ExcelPackage.Save()
+   --- 內部例外狀況堆疊追蹤的結尾 ---
+   於 OfficeOpenXml.ExcelPackage.Save()
+   於 prj_LogNExcel.Models.ExcelOut.CreateExcelFile() 於 C:\Users\jiand_000\Desktop\prj_LogNExcel66\prj_LogNExcel\Models\ExcelOut.cs: 行 37
+   於 prj_LogNExcel.Controllers.HomeController.Index() 於 C:\Users\jiand_000\Desktop\prj_LogNExcel66\prj_LogNExcel\Controllers\HomeController.cs: 行 18
+========
+2020-02-13 18:32:02：System.NullReferenceException: 並未將物件參考設定為物件的執行個體。
+   於 prjNewPet.Controllers.MemberFrontController.New(tMember member) 於 C:\Users\jiand_000\Desktop\0129(恭梓)\prjNewPet\Controllers\MemberFrontController.cs: 行 79
+========
+2020-02-13 18:53:42：System.NullReferenceException: 並未將物件參考設定為物件的執行個體。
+   於 prjNewPet.Controllers.MemberFrontController.New(tMember member) 於 C:\Users\jiand_000\Desktop\0129(恭梓)\prjNewPet\Controllers\MemberFrontController.cs: 行 79
+========
+ERROR 2020/03/02 15:46:55 Web                  Index                System.DivideByZeroException: 嘗試以零除。
+   於 prjNewPet.Controllers.HomeController.Index() 於 C:\Users\user\OneDrive\桌面\0301\完整版(0301)\0221(合併)\prjNewPet\Controllers\HomeController.cs: 行 23
+ERROR 2020/03/02 15:51:30 Web                  Index                System.DivideByZeroException: 嘗試以零除。
+   於 prjNewPet.Controllers.HomeController.Index() 於 C:\Users\user\OneDrive\桌面\0301\完整版(0301)\0221(合併)\prjNewPet\Controllers\HomeController.cs: 行 23
+ERROR 2020/03/02 16:00:17 Web                  Index                System.DivideByZeroException: 嘗試以零除。
+   於 prjNewPet.Controllers.HomeController.Index() 於 C:\Users\user\OneDrive\桌面\0301\完整版(0301)\0221(合併)\prjNewPet\Controllers\HomeController.cs: 行 23
+ERROR 2020/03/02 16:53:40 Web                  Index                System.DivideByZeroException: 嘗試以零除。
+   於 prjNewPet.Controllers.HomeController.Index() 於 C:\Users\user\OneDrive\桌面\0301\完整版(0301)\0221(合併)\prjNewPet\Controllers\HomeController.cs: 行 23
+ERROR 2020/03/02 16:57:16 Web                  Index                System.DivideByZeroException: 嘗試以零除。
+   於 prjNewPet.Controllers.HomeController.Index() 於 C:\Users\user\OneDrive\桌面\0301\完整版(0301)\0221(合併)\prjNewPet\Controllers\HomeController.cs: 行 23
+

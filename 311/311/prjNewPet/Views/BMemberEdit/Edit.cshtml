@@ -1,0 +1,153 @@
+﻿@model prjNewPet.Models.tMember
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+        crossorigin="anonymous"></script>
+
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+
+<style>
+    #main-content{
+        margin-top:50px;
+
+    }
+
+
+</style>
+
+<!-- MAIN CONTENT -->
+<div id="main-content">
+    <div class="container-fluid">     
+        <div class="row">
+            <div class="col-md-6">
+                <div class="panel-content">
+                    <h2 class="heading"><i class="fa fa-pencil-square-o"></i>基本會員資料</h2>
+
+                    @using (Html.BeginForm("Edit", "BMemberEdit", null, FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        @Html.HiddenFor(model => model.fMemberID)
+
+                        <div class="form-group">
+                            <label>會員名稱</label>
+                            @Html.EditorFor(model => model.fName, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.fName, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            <label>暱稱</label>
+                            @Html.EditorFor(model => model.fNickName, new { htmlAttributes = new { @class = "form-control", id = 4 } })
+                            @Html.ValidationMessageFor(model => model.fNickName, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            <label>密碼</label>
+                            @Html.EditorFor(model => model.fPassword, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.fPassword, "", new { @class = "text-danger" })
+                        </div>
+                        @*<div class="form-group">
+                            <label>確認密碼</label>
+                            <input type="email" class="form-control" required>
+                            </div>*@
+
+                        <h2 class="heading"><i class="fa fa-pencil-square"></i>其他會員資料</h2>
+
+                        <div class="form-group">
+                            <label for="text-input1">信箱</label>
+                            @Html.EditorFor(model => model.fEMail, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.fEMail, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            <label for="text-input2">城市</label>
+                            @Html.DropDownList("fCityID", (SelectList)ViewBag.SelectList, "請選擇城市", htmlAttributes: new { @class = "form-control", id = "Citys" })
+                            @Html.ValidationMessageFor(model => model.fCityID, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            <label for="text-input3">地區</label>
+                            <select id="Regions" name="fRegionID" class="form-control"><option>@Model.tRegion.fName</option></select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="text-input3">電話</label>
+                            @Html.EditorFor(model => model.fPhone, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.fPhone, "", new { @class = "text-danger" })
+                        </div>
+                        @*<div class="form-group">
+                            <label for="text-input4">經濟狀況</label>
+                             @Html.EditorFor(model => model.fAddressDetail, new { htmlAttributes = new { @class = "form-control" } })
+                             @Html.ValidationMessageFor(model => model.fAddressDetail, "", new { @class = "text-danger" })
+                             </div>*@
+
+                        <div class="form-group">
+                            <label for="text-input4">詳細地址</label>
+                            @Html.EditorFor(model => model.fAddressDetail, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.fAddressDetail, "", new { @class = "text-danger" })
+                        </div>
+
+                       
+                        <div class="form-group">
+
+                            <img src="@Model.fIcon" />
+
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="text-input4">頭像</label>
+                            @*@Html.EditorFor(model => model.fIcon, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.fIcon, "", new { @class = "text-danger" })*@
+                            <input type="file" name="photo" class="form-control" />
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">修改</button>
+                    }
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script>
+
+    $(document).ready(function () {
+        $("#Citys").change(function () { ChangeCity(); });
+    });
+
+    function ChangeCity() {
+        var selectedValue = $("#Citys option:selected").val();//cityid
+        if ($.trim(selectedValue).length > 0) {
+            GetOrders(selectedValue);
+        }
+    }
+
+    //GetOrders() 這個 function 內就透過 jQuery.Ajax() 向後端取得 Orders 的 JSON 資料，最後再由這份 JSON 資料去增加下拉選單的 option 內容
+
+    function GetOrders(cityID) {
+        $.ajax({
+            url: '@Url.Action("Regions", "BMemberEdit")',
+            data: { cityID: cityID },
+            type: 'post',
+            cache: false,
+            async: false,
+            dataType: 'json',
+            success: function (data) {
+                if (data.length > 0) {
+                    $('#Regions').empty();
+                    $('#Regions').append($('<option></option>').val('').text('請選擇區域'));
+                    $.each(data, function (i, item) {
+                        $('#Regions').append($('<option></option>').val(item.Key).text(item.Value));
+                    });
+                }
+            }
+        });
+    }
+</script>
+
+<!-- END MAIN CONTENT -->
+<div class="clearfix"></div>

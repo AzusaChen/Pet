@@ -1,0 +1,213 @@
+﻿@using prjNewPet.Models
+@{
+    ViewBag.Title = "BlogList";
+}
+
+@section styles{
+
+    <link href="~/Content/DataTables/css/jquery.dataTables.css" rel="stylesheet" />
+    <link href="~/Content/tablecss.css" rel="stylesheet" />
+
+    <style>
+
+        table {
+            table-layout: fixed;
+        }
+
+        td {
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+    </style>
+
+}
+
+<h3 class="mt-2">部落格一覽表</h3><a class="anchor" name="tables"></a>
+<div class="row grid-responsive">
+    <div class="column ">
+        <div class="card">
+            <div class="card-title">
+                <h3>部落格管理</h3>
+            </div>
+            <div class="card-block">
+
+                <table id="todotable" class="dataTables_wrapper table-striped display" style="font-family:微軟正黑體;font-weight:bold">
+                    <thead>
+                        <tr>
+                            <td>文章編號</td>
+                            <td>作者</td>
+                            <td>標題</td>
+                            <td>看板分類</td>
+                            <td>發文時間</td>
+                            <td>檢舉狀態</td>
+                            <td>權限管理</td>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+            integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+            crossorigin="anonymous"></script>
+
+    <script src="~/Scripts/DataTables/jquery.dataTables.js"></script>
+
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    <script>
+
+        $(document).ready(function () {
+
+            $.ajax({
+                type: 'post',
+                //url: "/api/TodoItems",
+                url:'@Url.Action("Regions", "BackCenterBlog")'
+
+            }).done(function (data) {
+                $("#todotable").dataTable({
+                    "order": [[4, "desc"]],
+                    "language": {
+                        "url":"@Url.Content("~/i18n/zh-tw.json")"
+                    }
+                });
+                fillthedata(data);
+            }).fail(function (err) {
+
+                alert(err.statusText);
+            });
+
+        });
+
+        function fillthedata(data) {
+
+            for (var i = 0; i < data.length; i++) {
+
+                item = data[i];
+                //str = "";
+                //str1 = "";
+                $("#todotable").dataTable().fnAddData([
+                    item.fArticleID,
+                    item.fMemberID,
+                    "<p style='color:indianred;'  id='changetosingle" + item.fArticleID + "'" + ">" + item.fTitle + "</p>",
+                    item.fDiscussionClassID,
+                    item.fCreateDate,
+                    //"<p>55</p>",
+
+                    //"<a id='ccr' href='FavoriteDelete/?articleid=" + item.fArticleID + "'" + " class='btn btn-danger fa fa-remove' >無檢舉</a>",
+
+                    "<button id='ccr" + item.fArticleID + "'" + ">無檢舉</button>",
+                    "<button id='author" + item.fArticleID + "'" + ">未封鎖</button>"
+
+                ]);
+
+                 if (item.fReportcheck == true ) {
+
+                     $("#ccr" + item.fArticleID).css("background-color", "red").text("有檢舉");
+
+                     $("#todotable").on("click", "#ccr" + item.fArticleID, function () {
+                         var id = $(this).attr("id");
+
+                        $.ajax({
+                            type: 'post',
+
+                            url: '@Url.Action("getreport", "BackCenterBlog")',
+
+                            data: {
+
+                                "rearticleid": id.substring(3)
+
+                            }
+
+                        }).done(function (data) {
+
+                            for (var i = 0; i < data.length; i++) {
+
+                                itemforreport = data[i];
+
+                                swal({
+
+                                    title: "檢舉內容:" + itemforreport.fReportComment,
+                                    text: "檢舉人:" + itemforreport.fMemberID,
+                                    icon: "warning",
+
+                                });
+
+                            }
+
+                        }).fail(function (err) {
+
+                            alert(err.statusText);
+
+                        });
+
+                    });
+
+
+
+                 }
+
+                if (item.fLock == true) {
+
+                    $("#author" + item.fArticleID).css("background-color", "red").text("已封鎖");
+                }
+
+
+
+
+
+                $("#todotable").on("click", "#author" + item.fArticleID, function () {
+
+
+
+                    $(this).css("background-color", "red").text("已封鎖");
+
+                    var id = $(this).attr("id");
+
+                    $.ajax({
+
+                            type: 'post',
+
+                            url: '@Url.Action("getLock", "BackCenterBlog")',
+
+                            data: {
+
+                                "lockid": id.substring(6)
+
+                            }
+
+
+                    }).done(function () {
+
+                        swal({
+
+                            title: "已封鎖完成",
+
+                            icon: "success",
+
+                        });
+
+                    }).fail(function (err) {
+                        alert(err.statusText);
+                    });
+
+
+                });
+
+
+
+
+
+
+
+
+            }
+
+        }
+    </script>
+
+}

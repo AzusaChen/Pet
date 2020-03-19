@@ -1,0 +1,368 @@
+﻿@model IEnumerable<prjNewPet.Models.tShoppingCart>
+@using prjNewPet.Models
+
+@{
+    ViewBag.Title = "OrderInfo";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+
+<head>
+    <title>Super Market an Ecommerce Online Shopping Category Flat Bootstrap Responsive Website Template | Products :: w3layouts</title>
+    <!-- for-mobile-apps -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="Super Market Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+    <script type="application/x-javascript">
+        addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
+               function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <!-- //for-mobile-apps -->
+    <link href="~/Content/ShoppingCSS/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="~/Content/ShoppingCSS/Shoppingstyle.css" rel="stylesheet" type="text/css" media="all" />
+    <link rel="stylesheet" type="text/css" href="~/Scripts/jquery-ui.js">
+
+    <!-- font-awesome icons -->
+    <link href="~/Content/ShoppingCSS/font-awesome.css" rel="stylesheet">
+    <!-- //font-awesome icons -->
+    <!-- js -->
+    <script src="~/Scripts/Shopping/jquery-1.11.1.min.js"></script>
+    <!-- //js -->
+    <link href='//fonts.googleapis.com/css?family=Raleway:400,100,100italic,200,200italic,300,400italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
+    <!-- start-smoth-scrolling -->
+    <script type="text/javascript" src="~/Scripts/Shopping/move-top.js"></script>
+    <script type="text/javascript" src="~/Scripts/Shopping/easing.js"></script>
+    <script type="text/javascript">
+        jQuery(document).ready(function ($) {
+            $(".scroll").click(function (event) {
+                event.preventDefault();
+                $('html,body').animate({ scrollTop: $(this.hash).offset().top }, 1000);
+            });
+        });
+    </script>
+    <!-- start-smoth-scrolling -->
+
+    <style>
+        .submit {
+            padding: 10px 30px;
+            color: #fff;
+            font-size: 1em;
+            background: #212121;
+            text-decoration: none;
+        }
+
+            .submit:hover {
+                background: #fe9126;
+            }
+
+        form label {
+            display: inline-block;
+            width: 100px;
+        }
+
+        form div {
+            margin-bottom: 10px;
+        }
+
+
+        .error {
+            color: red;
+            margin-left: 5px;
+        }
+
+
+        label.error {
+            display: inline;
+        }
+    </style>
+</head>
+<!-- header -->
+<!-- breadcrumbs -->
+<div class="breadcrumbs">
+    <div class="container">
+        <ol class="breadcrumb breadcrumb1">
+            <li>
+                <a href="/CShopping/ShoppingIndex"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a>
+            </li>
+            <li class="active">Checkout Page</li>
+        </ol>
+    </div>
+</div>
+<!-- //breadcrumbs -->
+<!-- checkout -->
+<div class="checkout">
+    <div class="container">
+        <h2 style="font-family:微軟正黑體">
+            您的訂單資訊如下:
+        </h2>
+        <div class="checkout-right">
+            <table class="timetable_sub">
+                <thead>
+                    <tr style="font-family:微軟正黑體">
+                        <th>產品照片</th>
+                        <th>產品名稱</th>
+                        <th>數量</th>
+                        <th>價錢</th>
+                    </tr>
+                </thead>
+                @foreach (var item in Model)
+                {
+                    <tr class="@item.fCartID">
+                        <td class="invert-image">
+                            <a><img src="@item.fPic" alt=" " class="img-responsive" /></a>
+                        </td>
+                        <td class="invert">@item.tProduct.fName</td>
+                        <td class="invert">
+                            <div class="quantity">
+                                <div class="quantity-select">
+
+                                    <div id="total_qty_@item.fProductID">
+                                        <span>@item.fQuantity</span>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </td>
+                        <td class="invert total" id="total_@item.fProductID">NT.@((item.fUnitPrice * @item.fQuantity).ToString("F0"))</td>
+
+                    </tr>
+
+                }
+                <tfoot>
+                    <tr>
+                        <td colspan="2">
+
+                            @{ dbNewPetEntities db = new dbNewPetEntities();
+                                var fUserId = Session[CDictionary.SK_LOGINED_USER] as tMember;
+                                var coin = Convert.ToInt32(fUserId.fPetCoin);
+                                <div class="checkout-left-basket">
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" id="customCheck1">
+                                        <label class="custom-control-label" for="customCheck1" style="font-family:微軟正黑體">使用PetCoin折扣</label>
+                                        <br />
+                                        <label>您目前擁有的PetCoin：<label id="coin">@coin</label></label>
+                                        <br />
+                                        <label>（每100點將折抵1元）</label>
+
+                                    </div>
+                                </div>
+                            }
+
+                        </td>
+
+                        <td colspan="2" style="text-align:center">
+                            <span class="invert" id="totalPrice"></span>
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+
+        <div class="checkout-left">
+            <form id="form" method="post" role="form">
+                @{
+                    Html.RenderAction("ReceiptInfo");
+                    Html.RenderAction("payment");
+                }
+
+
+                <div class="checkout-right-basket">
+                    <a href="javascript:void(0)" onclick="addOrder()"><span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>完成結帳</a>
+                </div>
+                <div class="clearfix"> </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- //checkout -->
+<!-- Bootstrap Core JavaScript -->
+<script src="~/Scripts/bootstrap.min.js"></script>
+<!-- top-header and slider -->
+<!-- here stars scrolling icon -->
+<script type="text/javascript">
+    $(document).ready(function () {
+        /*
+            var defaults = {
+            containerID: 'toTop', // fading element id
+            containerHoverID: 'toTopHover', // fading element hover id
+            scrollSpeed: 1200,
+            easingType: 'linear'
+            };
+        */
+
+        $().UItoTop({ easingType: 'easeOutQuart' });
+
+    });
+</script>
+<!-- //here ends scrolling icon -->
+<script src="~/Scripts/minicart.min.js"></script>
+<script>
+    // Mini Cart
+    paypal.minicart.render({
+        action: '#'
+    });
+
+    if (~window.location.search.indexOf('reset=true')) {
+        paypal.minicart.reset();
+    }
+</script>
+<!-- main slider-banner -->
+<script src="~/Scripts/skdslider.min.js"></script>
+<link href="~/Content/ShoppingCSS/skdslider.css" rel="stylesheet">
+<!--引用SweetAlert2.js-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.0.0/sweetalert2.all.js"></script>
+<!--引用jquery.validate-->
+@*<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>*@
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+
+<script type="text/javascript">
+    jQuery(document).ready(function () {
+        jQuery('#demo1').skdslider({ 'delay': 5000, 'animationSpeed': 2000, 'showNextPrev': true, 'showPlayButton': true, 'autoSlide': true, 'animationType': 'fading' });
+
+        jQuery('#responsive').change(function () {
+            $('#responsive_wrapper').width(jQuery(this).val());
+        });
+
+        priceSum();
+    });
+</script>
+
+<script type="text/javascript">
+
+    var PetCoinsum = 0;//去存petcoin的
+    var PetCoinPercent = 0.3;//petcoin回饋%數
+    var sum = 0;
+    var use = false;
+
+    function priceSum() {
+
+        $(".total").each(function () {
+
+            sum += parseInt($(this).text().substring(3));
+        });
+        PetCoinsum = sum * PetCoinPercent;//將總值存回
+        $('#totalPrice').text("總價：NT." + sum /*+ "  PetCoin回饋" + PetCoinsum + "點"*/);
+    };
+
+     //PetCoin使用
+     $("#customCheck1").click(function () {
+
+        var discount = parseInt(($('#coin').text()) / 100,10)
+
+         if ($(this).prop("checked")) {
+
+            $('#totalPrice').text("總價：NT." + (sum - discount));
+             PetCoinsum = (sum - discount) * PetCoinPercent;//將總值存回
+
+             use = true;
+        }
+        else {
+             $('#totalPrice').text("總價：NT." + sum);
+             PetCoinsum = sum * PetCoinPercent;//將總值存回
+
+             use = false;
+        }
+    });
+
+    swal.setDefaults({
+        confirmButtonText: "查看訂單",
+        cancelButtonText: "返回商城首頁"
+    });
+
+    $(function() {
+        $('#form').validate({
+
+            onkeyup: function (element, event) {
+                //去除左側空白
+                var value = this.elementValue(element).replace(/^\s+/g, "");
+                $(element).val(value);
+            },
+            rules: {
+                ReceiverName: {
+                    required: true
+                },
+                ReceiverPhone: {
+                    required: true,
+                    minlength: 8,
+                    maxlength: 10,
+                    number: true
+                },
+                AddressDetail: {
+                    required: true,
+                },
+            },
+            messages: {
+                ReceiverName: {
+                    required: '必填'
+                },
+                ReceiverPhone: {
+                    required: '必填',
+                    minlength: '不得少於8位',
+                    maxlength: '不得多於10位',
+                    number: '電話須為數字'
+                },
+                AddressDetail: '必填',
+
+            },
+        });
+    })
+
+    function addOrder() {
+        var flag = $("#form").valid();
+        //var data = $("#form").serializeObject();
+        if (!flag) {
+            return;
+        }
+
+        else if ($('input:radio[name="payway"]:checked').val() == null) {
+            alert("請選擇一種付款方式");
+        }
+
+        else {
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("addOrder", "CShopping")',
+            data: {
+                fRn: $('#ReceiverName').val(),
+                fRp: $('#ReceiverPhone').val(),
+                fAd: $('#AddressDetail').val(),
+                fRm: $('#ReceiverMail').val(),
+                fPwId: $("input[name=payway]:checked").attr('id'),
+                fcId: $('#Citys').val(),
+                frId: $('#Regions').val(),
+                fPC: use,
+            },
+            success: function (data) {
+
+                    if (data) {
+                        //自訂預設值
+
+                        swal({
+                            title: "訂單已成立",
+                            html: "獲得PetCoin" + parseInt(PetCoinsum,10) +"回饋！",
+                            type: "success",
+                            showCancelButton: true//顯示取消按鈕
+                        }).then(
+                            function (result) {
+                                if (result.value) {
+                                    //使用者按下「確定」要做的事
+
+                                    window.location='@Url.Action("MemOrderList", "Order", new { memId = (Session[CDictionary.SK_LOGINED_USER] as tMember).fMemberID })';
+                                } else if (result.dismiss === "cancel") {
+                                    //使用者按下「取消」要做的事
+                                    window.location='@Url.Action("ShoppingIndex", "CShopping")';
+                                }//end else
+                            });//end then
+                    }
+                },
+                dataType: "JSON"
+            });
+        }
+    };
+
+
+</script>
+
+<!-- //main slider-banner -->

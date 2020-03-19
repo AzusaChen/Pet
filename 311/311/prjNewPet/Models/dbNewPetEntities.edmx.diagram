@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="db0d9ad0c0764f0a8fcba726525372c9" Name="Diagram1">
+        <EntityTypeShape EntityType="dbNewPetModel.sysdiagram" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="dbNewPetModel.tActivity" Width="1.5" PointX="2.75" PointY="0.75" />
+        <EntityTypeShape EntityType="dbNewPetModel.tAdoptMessage" Width="1.5" PointX="10.5" PointY="30.875" />
+        <EntityTypeShape EntityType="dbNewPetModel.tAuthority" Width="1.5" PointX="0.75" PointY="3.75" />
+        <EntityTypeShape EntityType="dbNewPetModel.tBreed" Width="1.5" PointX="3" PointY="27.75" />
+        <EntityTypeShape EntityType="dbNewPetModel.tCategory" Width="1.5" PointX="5.25" PointY="19" />
+        <EntityTypeShape EntityType="dbNewPetModel.tCity" Width="1.5" PointX="0.75" PointY="21.125" />
+        <EntityTypeShape EntityType="dbNewPetModel.tComment" Width="1.5" PointX="10.5" PointY="27.75" />
+        <EntityTypeShape EntityType="dbNewPetModel.tCurse" Width="1.5" PointX="2.75" PointY="3.75" />
+        <EntityTypeShape EntityType="dbNewPetModel.tDiscussion" Width="1.5" PointX="13.5" PointY="26.75" />
+        <EntityTypeShape EntityType="dbNewPetModel.tDiscussionClass" Width="1.5" PointX="11.25" PointY="34.125" />
+        <EntityTypeShape EntityType="dbNewPetModel.tEmployee" Width="1.5" PointX="4.75" PointY="0.75" />
+        <EntityTypeShape EntityType="dbNewPetModel.tFavorite" Width="1.5" PointX="18.75" PointY="27.875" />
+        <EntityTypeShape EntityType="dbNewPetModel.tFoundPet" Width="1.5" PointX="5.25" PointY="26.5" />
+        <EntityTypeShape EntityType="dbNewPetModel.tLike" Width="1.5" PointX="15.75" PointY="30.875" />
+        <EntityTypeShape EntityType="dbNewPetModel.tLogInWay" Width="1.5" PointX="4.75" PointY="3.75" />
+        <EntityTypeShape EntityType="dbNewPetModel.tLostPet" Width="1.5" PointX="15.75" PointY="21.5" />
+        <EntityTypeShape EntityType="dbNewPetModel.tMember" Width="1.5" PointX="8.25" PointY="25.5" />
+        <EntityTypeShape EntityType="dbNewPetModel.tOrder_Detail" Width="1.5" PointX="18.75" PointY="24.625" />
+        <EntityTypeShape EntityType="dbNewPetModel.tOrder" Width="1.5" PointX="13.5" PointY="31.75" />
+        <EntityTypeShape EntityType="dbNewPetModel.tPayWay" Width="1.5" PointX="11.25" PointY="37.125" />
+        <EntityTypeShape EntityType="dbNewPetModel.tPetClass" Width="1.5" PointX="0.75" PointY="27.875" />
+        <EntityTypeShape EntityType="dbNewPetModel.tPetMember" Width="1.5" PointX="13.5" PointY="20.5" />
+        <EntityTypeShape EntityType="dbNewPetModel.tProduct" Width="1.5" PointX="7.5" PointY="19.75" />
+        <EntityTypeShape EntityType="dbNewPetModel.tPurchase" Width="1.5" PointX="7.5" PointY="16.875" />
+        <EntityTypeShape EntityType="dbNewPetModel.tPurchase_Detials" Width="1.5" PointX="9.75" PointY="19.25" />
+        <EntityTypeShape EntityType="dbNewPetModel.tPurchaseShoppingCart" Width="1.5" PointX="12.75" PointY="16.375" />
+        <EntityTypeShape EntityType="dbNewPetModel.tRegion" Width="1.5" PointX="3" PointY="34" />
+        <EntityTypeShape EntityType="dbNewPetModel.tReply" Width="1.5" PointX="6.75" PointY="0.75" />
+        <EntityTypeShape EntityType="dbNewPetModel.tReport" Width="1.5" PointX="15.75" PointY="27.875" />
+        <EntityTypeShape EntityType="dbNewPetModel.tShipVia" Width="1.5" PointX="0.75" PointY="6.75" />
+        <EntityTypeShape EntityType="dbNewPetModel.tShoppingCart" Width="1.5" PointX="10.5" PointY="23.625" />
+        <EntityTypeShape EntityType="dbNewPetModel.tSupplier" Width="1.5" PointX="5.25" PointY="22.25" />
+        <AssociationConnector Association="dbNewPetModel.FK_tAdoptMessage_tMember" />
+        <AssociationConnector Association="dbNewPetModel.FK_tAdoptMessage_tPetMember" />
+        <AssociationConnector Association="dbNewPetModel.FK_tFoundPet_tPetsBreed" />
+        <AssociationConnector Association="dbNewPetModel.FK_tPetMember_tPetsBreed" />
+        <AssociationConnector Association="dbNewPetModel.FK_tPetsBreed_tPetsClass" />
+        <AssociationConnector Association="dbNewPetModel.FK_tProduct_tCategory" />
+        <AssociationConnector Association="dbNewPetModel.FK_tFoundPet_tCity" />
+        <AssociationConnector Association="dbNewPetModel.FK_tMember_tCity" />
+        <AssociationConnector Association="dbNewPetModel.FK_tOrders_tCity" />
+        <AssociationConnector Association="dbNewPetModel.FK_tPetMember_tCity" />
+        <AssociationConnector Association="dbNewPetModel.FK_tRegion_tCity" />
+        <AssociationConnector Association="dbNewPetModel.FK_tSupplier_tCity" />
+        <AssociationConnector Association="dbNewPetModel.FK_tComment_tDiscussion" />
+        <AssociationConnector Association="dbNewPetModel.FK_tComment_tMember" />
+        <AssociationConnector Association="dbNewPetModel.FK_tDiscussion_tDiscussionClass" />
+        <AssociationConnector Association="dbNewPetModel.FK_tDiscussion_tMember" />
+        <AssociationConnector Association="dbNewPetModel.FK_tFavorite_tDiscussion" />
+        <AssociationConnector Association="dbNewPetModel.FK_tLike_tDiscussion" />
+        <AssociationConnector Association="dbNewPetModel.FK_tReport_tDiscussion" />
+        <AssociationConnector Association="dbNewPetModel.FK_tFavorite_tMember" />
+        <AssociationConnector Association="dbNewPetModel.FK_tFoundPet_tMember" />
+        <AssociationConnector Association="dbNewPetModel.FK_tFoundPet_tPetsClass" />
+        <AssociationConnector Association="dbNewPetModel.FK_tFoundPet_tRegion" />
+        <AssociationConnector Association="dbNewPetModel.FK_tLike_tMember" />
+        <AssociationConnector Association="dbNewPetModel.FK_tLostPet_tPetMember" />
+        <AssociationConnector Association="dbNewPetModel.FK_tMember_tRegion" />
+        <AssociationConnector Association="dbNewPetModel.FK_tOrders_tMember" />
+        <AssociationConnector Association="dbNewPetModel.FK_tPetMember_tMember" />
+        <AssociationConnector Association="dbNewPetModel.FK_tReport_tMember" />
+        <AssociationConnector Association="dbNewPetModel.FK_tShoppingCart_tMember" />
+        <AssociationConnector Association="dbNewPetModel.FK_tOrder_Detail_tOrders" />
+        <AssociationConnector Association="dbNewPetModel.FK_tOrder_Detail_tProduct" />
+        <AssociationConnector Association="dbNewPetModel.FK_tOrders_tPayWay" />
+        <AssociationConnector Association="dbNewPetModel.FK_tOrders_tRegion" />
+        <AssociationConnector Association="dbNewPetModel.FK_tPetMember_tPetsClass" />
+        <AssociationConnector Association="dbNewPetModel.FK_tPetMember_tRegion" />
+        <AssociationConnector Association="dbNewPetModel.FK_tProduct_tSupplier" />
+        <AssociationConnector Association="dbNewPetModel.FK_tPurchase_Detials_tProduct" />
+        <AssociationConnector Association="dbNewPetModel.FK_tPurchaseShoppingCart_tProduct" />
+        <AssociationConnector Association="dbNewPetModel.FK_tShoppingCart_tProduct" />
+        <AssociationConnector Association="dbNewPetModel.FK_tPurchase_Detials_tPurchase" />
+        <AssociationConnector Association="dbNewPetModel.FK_tPurchase_Detials_tSupplier" />
+        <AssociationConnector Association="dbNewPetModel.FK_tPurchaseShoppingCart_tSupplier" />
+        <AssociationConnector Association="dbNewPetModel.FK_tSupplier_tRegion" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

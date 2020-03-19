@@ -1,0 +1,50 @@
+﻿@model IEnumerable<prjNewPet.Models.tProduct>
+@using prjNewPet.Models
+
+@foreach(var sitem in Model)
+{
+<div class="col-md-3 top_brand_left-1">
+    <div class="hover14 column">
+        <div class="agile_top_brand_left_grid">
+            <div class="agile_top_brand_left_grid_pos">
+                <img src="~/images/ProductImages/offer.png" alt=" " class="img-responsive">
+            </div>
+            <div class="agile_top_brand_left_grid1">
+                <figure>
+                    <div class="snipcart-item block">
+                        <div class="snipcart-thumb">
+                            <a href="@Url.Action("ProductDetail","CShopping",new { pId=sitem.fProductID})"><img title=" " alt=" " src="@sitem.fPic" style="width:150px;height:150px"></a>
+                            <p>@sitem.fName</p>
+                            <div class="stars">
+                                <i class="fa fa-star blue-star" aria-hidden="true"></i>
+                                <i class="fa fa-star blue-star" aria-hidden="true"></i>
+                                <i class="fa fa-star blue-star" aria-hidden="true"></i>
+                                <i class="fa fa-star blue-star" aria-hidden="true"></i>
+                                <i class="fa fa-star gray-star" aria-hidden="true"></i>
+                            </div>
+                            <h4>$@sitem.fUnitPrice.ToString("F0") <span>@((sitem.fUnitPrice * (decimal)1.5).ToString("F0"))</span></h4>
+                        </div>
+                        <div class="snipcart-details top_brand_home_details">
+                            <form action="#" method="post">
+                                <fieldset>
+                                    <input type="hidden" name="cmd" value="_cart">
+                                    <input type="hidden" name="add" value="1">
+                                    <input type="hidden" name="business" value=" ">
+                                    <input type="hidden" name="item_name" value="Fortune Sunflower Oil">
+                                    <input type="hidden" name="amount" value="35.99">
+                                    <input type="hidden" name="discount_amount" value="1.00">
+                                    <input type="hidden" name="currency_code" value="USD">
+                                    <input type="hidden" name="return" value=" ">
+                                    <input type="hidden" name="cancel_return" value=" ">
+                                    <input type="submit" name="submit" value="加入購物車" class="button">
+                                </fieldset>
+                            </form>
+                        </div>
+                    </div>
+                </figure>
+            </div>
+        </div>
+    </div>
+</div>
+}
+

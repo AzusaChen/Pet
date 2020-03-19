@@ -1,0 +1,71 @@
+﻿@model prjNewPet.Models.tOrder
+
+<style>
+    .formlbl {
+        margin-bottom: 15px
+    }
+</style>
+
+<div class="checkout-left-basket">
+    <h4>收貨資訊</h4>
+    <div class="form-group">
+        <div class="input-group">
+            <div>
+                <label for="ReceiverName" class="formlbl">收貨人姓名</label>
+                <input type="text" class="form-control" id="ReceiverName" name="ReceiverName" placeholder="請輸入真實姓名" style="margin-bottom: 20px; width:285px">
+            </div>
+            <div>
+                <label for="ReceiverPhone" class="formlbl">收貨人電話</label>
+                <input type="text" class="form-control" id="ReceiverPhone" name="ReceiverPhone" placeholder="請輸入真實電話" maxlength="10" style="margin-bottom: 20px">
+            </div>
+            <div>
+                <label for="AddressDetail" class="formlbl">收貨地址</label>
+                <br />
+                @Html.DropDownList("fCityID", (SelectList)ViewBag.CityName, "請選擇城市", htmlAttributes: new { @class = "form-control", id = "Citys", style = "width:135px;margin-right:14px" })
+                @Html.ValidationMessageFor(model => model.fCityID, "", new { @class = "text-danger" })
+
+                <select id="Regions" name="fRegionID" class="form-control" style="width:135px;margin-bottom:10px;"><option>---------</option></select>
+                <input type="text" class="form-control" id="AddressDetail" name="AddressDetail" placeholder="請輸入真實地址" style="margin-bottom:20px">
+            </div>
+            <div>
+                <label for="ReceiverMail" class="formlbl">電子信箱</label>
+                <input type="text" class="form-control" id="ReceiverMail" name="ReceiverMail" placeholder="填入會將訂單資訊寄至信箱" style="margin-bottom: 20px">
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $("#Citys").change(function () {
+            changecity();
+        });
+    });
+
+    function changecity() {
+        var selectValue = $("#Citys option:selected").val();
+        if (selectValue != null) {
+            GetRegions(selectValue);
+        }
+    }
+
+    function GetRegions(cityID) {
+        $.ajax({
+            url: '@Url.Action("Regions", "CShopping")',
+            data: { cityID: cityID },
+            type: 'post',
+            cache: false,
+            async: false,
+            dataType: 'json',
+            success: function (data) {
+                if (data.length > 0) {
+                    $('#Regions').empty();
+                    $('#Regions').append($('<option></option>').val('').text('請選擇地區'));
+                    $.each(data, function (i, item) {
+                        $('#Regions').append($('<option></option>').val(item.Key).text(item.Value));
+                    });
+                }
+            }
+        });
+    }
+</script>

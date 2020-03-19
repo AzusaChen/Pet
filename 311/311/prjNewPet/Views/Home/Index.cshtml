@@ -1,0 +1,351 @@
+﻿@using prjNewPet.Models
+@{
+    ViewBag.Title = "Home Page";
+
+}
+<style>
+
+    #iframe_block {
+        float: right;
+        position: fixed;
+        left: 80%;
+        top: 140px;
+        right: 0;
+        bottom: 0;
+        border: none;
+        margin-top:250px;
+    }
+
+    iframe {
+        width: 0px;
+        height: 0px;
+        /*border: solid;*/
+    }
+</style>
+@Html.ActionLink("test", "test", "FoundPet")
+<div class="banner2Index">
+    <div class="w3layouts-banner-slider">
+        <div class="container">
+            <div class="slider">
+                <div class="callbacks_container">
+                    <ul class="rslides callbacks callbacks1" id="slider4">
+                        <li>
+                            <div class="agileits-banner-info">
+                                <h4>
+                                    幫助寵物找到他們的家 <span>
+                                    </span>讓寵物早點與主人團圓
+                                </h4>
+                                <div class="w3-button">
+                                    <a href="single.html">More</a>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="agileits-banner-info">
+                                <h4>
+                                    獲得寵物飼養相關知識<span>
+                                    </span>最適合寵物的產品
+                                </h4>
+                                <div class="w3-button">
+                                    <a href="single.html">More</a>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <script src="~/Scripts/responsiveslides.min.js"></script>
+
+                <script>
+                    // You can also use "$(window).load(function() {"
+                    $(function () {
+                        // Slideshow 4
+                        $("#slider4").responsiveSlides({
+                            auto: true,
+                            pager: true,
+                            nav: true,
+                            speed: 500,
+                            namespace: "callbacks",
+                            before: function () {
+                                $('.events').append("<li>before event fired.</li>");
+                            },
+                            after: function () {
+                                $('.events').append("<li>after event fired.</li>");
+                            }
+                        });
+
+                    });
+                </script>
+                <!--banner Slider starts Here-->
+            </div>
+        </div>
+    </div>
+</div>
+<div class="welcome">
+    <div class="container">
+        <div class="w3ls-heading">
+            <h2>最新走失登錄</h2>
+        </div>
+        <div class="welcome-grids">
+            <div class="col-md-6 agile-welcome-grid">
+                <div class="grid">
+                    <div class="col-md-6 agileits-left">
+                        <figure class="effect-chico">
+                            <img src="~/images/2.jpg" alt="" />
+                            <figcaption>
+                                <h4>嘿炭</h4>
+                                <p>在公園散步時走失...</p>
+                            </figcaption>
+                        </figure>
+                    </div>
+                    <div class="col-md-6 agileits-left">
+                        <figure class="effect-chico">
+                            <img src="~/images/3.jpg" alt=" " />
+                            <figcaption>
+                                <h4>橘皮皮</h4>
+                                <p>在我家附近散步時走失...</p>
+                            </figcaption>
+                        </figure>
+                    </div>
+                    <div class="clearfix"> </div>
+                </div>
+
+            </div>
+            <div class="col-md-6 agile-welcome-grid">
+                <div class="grid">
+                    <div class="col-md-6 agileits-left">
+                        <figure class="effect-chico">
+                            <img src="~/images/bb.jpg" alt="" />
+                            <figcaption>
+                                <h4>BiBi</h4>
+                                <p>那天牠說要去廟裡拜拜後就走失了...</p>
+                            </figcaption>
+                        </figure>
+                    </div>
+                    <div class="col-md-6 agileits-left">
+                        <figure class="effect-chico">
+                            <img src="~/images/a1.jpg" alt=" " />
+                            <figcaption>
+                                <h4>愛睏ㄟ</h4>
+                                <p>那天牠說睡醒之後會來找我的....</p>
+                            </figcaption>
+                        </figure>
+                    </div>
+                    <div class="clearfix"> </div>
+                </div>
+
+            </div>
+            <!-- <div class="col-md-6 agileinfo-welcome-right">
+                <div class="grid">
+                    <div class="col-md-6 agileits-left">
+                        <figure class="effect-chico">
+                            <img src="images/bb.jpg" alt="" />
+                            <figcaption>
+                                <h4>BiBi</h4>
+                                <p>在廟裡拜拜後走失...</p>
+                            </figcaption>
+                        </figure>
+                    </div>
+                    <div class="col-md-6 agileits-left">
+                        <figure class="effect-chico">
+                            <img src="images/3.jpg" alt=" " />
+                            <figcaption>
+                                <h4>橘皮皮</h4>
+                                <p>在我家附近散步時走失...</p>
+                            </figcaption>
+                        </figure>
+                    </div>
+                    <div class="clearfix"> </div>
+                </div>
+                <h4></h4>
+                <p><span></span></p>
+
+            </div> -->
+            <div class="clearfix"> </div>
+        </div>
+    </div>
+</div>
+<!-- banner-bottom -->
+<!-- services -->
+<div class="services">
+    <div class="container">
+        <div class="w3ls-heading">
+            <h3>我們提供...</h3>
+        </div>
+        <div class="wthree-services-grids">
+            <div class="col-md-6 w3ls-about-left">
+                <div class="agileits-icon-grid">
+                    <div class="icon-left hvr-radial-out">
+                        <a href="@Url.Content("~/PetMember/PetMemlist")"><i class="fa fa-cog" aria-hidden="true"></i></a>
+
+                    </div>
+                    <div class="icon-right">
+                        <h5>寵物走失協尋比對</h5>
+                        <p>透過網站自動資料比對功能，能夠更加快速幫會員掌握每一筆尋獲資訊，並將訊息傳送至會員所提供之聯絡資訊</p>
+                    </div>
+                    <div class="clearfix"> </div>
+                </div>
+                <div class="agileits-icon-grid">
+                    <div class="icon-left hvr-radial-out">
+                        <a href="@Url.Content("~/Activity")"><i class="fa fa-heart" aria-hidden="true"></i></a>
+                    </div>
+                    <div class="icon-right">
+                        <h5>寵物交流</h5>
+                        <p>快來參加寵物相關的活動，並且認識其他愛好寵物的會員吧!</p>
+                    </div>
+                    <div class="clearfix"> </div>
+                </div>
+                <div class="agileits-icon-grid">
+                    <div class="icon-left hvr-radial-out">
+                        <a href="@Url.Content("~/Blog/Total")"><i class="fa fa-paper-plane" aria-hidden="true"></i></a>
+                    </div>
+                    <div class="icon-right">
+                        <h5>會員專屬討論區</h5>
+                        <p>在這裡可以分享飼養心得及愛寵的照片，透過每篇文章所獲得的讚數數量的PetCoin。</p>
+                    </div>
+                    <div class="clearfix"> </div>
+                </div>
+            </div>
+            <div class="col-md-6 w3ls-about-left">
+                <div class="agileits-icon-grid">
+                    <div class="icon-left hvr-radial-out">
+                        <a href="@Url.Content("~/Bulletin/BulletinForLostPet")"><i class="fa fa-user" aria-hidden="true"></i></a>
+                    </div>
+                    <div class="icon-right">
+                        <h5>寵物走失尋獲送養公告</h5>
+                        <p>為了使會員也能夠成為協尋力量的一部分，一旦會員尋獲或是發現走失的寵物並登錄為資料，本站將提供PetCoin作為獎勵！</p>
+                    </div>
+                    <div class="clearfix"> </div>
+                </div>
+                <div class="agileits-icon-grid">
+                    <div class="icon-left hvr-radial-out">
+                        <a href="@Url.Content("~/CShopping/ShoppingIndex")"><i class="fa fa-thumbs-up" aria-hidden="true"></i></a>
+                    </div>
+                    <div class="icon-right">
+                        <h5>疼愛寵物精選</h5>
+                        <p>由本站精心篩選各家廠商所提供之寵物商品，省下會員們挑選品牌的時間，而獲得的PetCoin，可做為購買產品的折扣！</p>
+                    </div>
+                    <div class="clearfix"> </div>
+                </div>
+                <div class="agileits-icon-grid">
+                    <div class="icon-left hvr-radial-out">
+                        <a href="@Url.Content("~/PetMember/PetMemlist")"><i class="fa fa-bell" aria-hidden="true"></i></a>
+                    </div>
+                    <div class="icon-right">
+                        <h5>寵物活動相關消息</h5>
+                        <p>本站將不定時舉辦寵物相關的活動，例如寵物選美大賽或是寵物路跑，優勝者將獲得本站提供的豐富獎勵，請各位會員踴躍參加！</p>
+                    </div>
+                    <div class="clearfix"> </div>
+                </div>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+    </div>
+</div>
+<!-- //services -->
+<!-- news -->
+<div class="news">
+    <div class="container">
+        <div class="w3ls-heading">
+            <h3>最新文章與活動</h3>
+        </div>
+        <div class="w3-agileits-news-grids">
+            <div class="col-md-6 news-left">
+                <div class="w3-agile-news-date">
+                    <div class="agile-news-icon">
+                        <i class="fa fa-calendar" aria-hidden="true"></i>
+                        <p>Nov 24</p>
+                    </div>
+                    <div class="agileits-line"> </div>
+                    <div class="agile-news-icon">
+                        <a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i></a>
+                        <p>2 comments</p>
+                    </div>
+                    <div class="agileits-line"> </div>
+                    <div class="agile-news-icon">
+                        <a href="#"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i></a>
+                        <p>3482</p>
+                    </div>
+                </div>
+                <div class="w3-agile-news-img">
+                    <a href="single.html"><img src="~/images/4.jpg" alt="" /></a>
+                    <h4><a href="single.html">如何幫貓咪洗澡，太詳盡啦！</a></h4>
+                    <p>儘管貓具有自我清潔能力，它也可能沾上塵土，皮毛也會變得油膩需要護理，有時給它們洗個澡可是非常有必要的。給貓咪洗澡又不給它們帶來壓力確實很難，但如果你遵循一些關鍵原則也並非不可能。下面教你如果不費吹灰之力給貓咪洗澡。</p>
+                </div>
+                <div class="clearfix"> </div>
+            </div>
+            <div class="col-md-6 news-right">
+                <div class="news-right-grid">
+                    <a href="single.html">貓自己在家會孤單嗎？身為獨居動物的它們擁有你想像不到的一面!</a>
+                    <h5>06th Nov,2016</h5>
+                    <p>國慶長假期間，很多鏟屎官都有外出計劃，或者短途出行一兩天，如果只出門一兩天的話，我就會讓喵星人自己待在家裡，為它準備充足的貓糧和飲用水，再多準備一個貓砂盆，就讓它自己待在家裡，避免更換生活環境讓它感到不適應。</p>
+                </div>
+                <div class="news-right-grid">
+                    <a href="single.html">50個你所不知道的 關於貓咪的豆知識!</a>
+                    <h5>17th Nov,2016</h5>
+                    <p>貓咪是這個世界上最常見的寵物，但是有許多關於貓咪的豆知識未必也這麼普遍。現在就一起去看看，你所不知道的、關於貓咪的50個豆知識。</p>
+                </div>
+                <div class="news-right-grid">
+                    <a href="single.html">養貓前的準備工作。</a>
+                    <h5>29th Nov,2016</h5>
+                    <p>跟愛貓展開新生活前，別忘了為貓貓準備下列的物品</p>
+                </div>
+            </div>
+            <div class="clearfix"> </div>
+
+
+
+            @*CHATBOT*@
+            <div class="container" id="iframe_block">
+                <p onclick="showAndHide()" class="iframe" style="width:300px;font-family:'Microsoft JhengHei UI'; text-align:right;"><img style="width:120px;" src="~/images/機器人.png" /></p>
+                <iframe id="kk" src='https://webchat.botframework.com/embed/newpetqnaservice-bot?s=7xBDdTEW7jE.452vODp5Wv1tJ2HT3doxn4Z9G0i3yNjio4lWUW6-D8I'></iframe>
+            </div>
+
+
+           
+
+            <label id="get50" class="hidden">@ViewBag.GET50</label>
+
+        </div>
+    </div>
+</div>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+<script>
+    var selectedtext = $("#get50").text();
+    $(document).ready(function () {
+        if (selectedtext == 1) {
+            swal({
+                title: "歡迎回到寵愛有家",
+                text: "每日登入 + PetCoin 50  點",
+                icon: "success"
+            });
+        }
+    });
+
+
+
+    var flag = false;
+
+    function showAndHide()
+    {
+
+        if (flag) {
+            document.all.kk.style.width = 0;
+            document.all.kk.style.height = 0;
+
+            flag = false;
+        }
+        else {
+
+            document.all.kk.style.width = "300px";
+            document.all.kk.style.height = "400px";
+            flag = true;
+        }
+
+    }
+
+  
+
+</script>
+
+<!-- //news -->

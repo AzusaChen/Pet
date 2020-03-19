@@ -1,0 +1,270 @@
+﻿@model IEnumerable<prjNewPet.Models.tProduct>
+
+@{
+    ViewBag.Title = "ProductList";
+}
+
+<h2 style="font-family:微軟正黑體">商品列表</h2>
+@section styles{
+
+    <link href="~/Content/DataTables/css/jquery.dataTables.css" rel="stylesheet" />
+
+    <style>
+
+        hr.style-four {
+            height: 12px;
+            border: 0;
+            box-shadow: inset 0 12px 12px -12px rgba(0,0,0,0.5);
+        }
+
+        .ui-widget-header, .ui-state-default, ui-button {
+            background: #3C3C3C;
+            border: 3px solid #b9cd6d;
+            color: #FFFFFF;
+            font-weight: bold;
+            height: auto;
+        }
+
+        th {
+            background-color: lightblue
+        }
+
+        tr:nth-child(odd) {
+            background-color: #ffd3d3;
+        }
+
+        tr:nth-child(even) {
+            background: #d1ebd0;
+        }
+
+        .th:first-child, .td:first-child {
+            border-bottom-left-radius: 8px;
+            border-top-left-radius: 8px;
+        }
+
+        .th:last-child, .td:last-child {
+            border-bottom-right-radius: 8px;
+            border-top-right-radius: 8px;
+        }
+    </style>
+}
+
+
+<!--引用css-->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.10.3/sweetalert2.css" />
+
+<hr class="style-four" />
+
+<link href="http://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel="stylesheet" />
+
+<form id="formProdcutId" method="post" action="" enctype="multipart/form-data">
+    <p>
+        @*@Html.ActionLink("新增商品", "New", null, new { @class = "btn btn-danger" })*@
+        <a href="~/Product/New"><input type="button" class="btn btn-success" value="新增商品" style="font-family:微軟正黑體;font-size:16px"></a>
+    </p>
+    @*<select id="selectProductId">
+            <option value="0">所有類別</option>
+            <option value="1">食品類</option>
+            <option value="2">服飾類</option>
+            <option value="3">玩具類</option>
+            <option value="4">其他</option>
+        </select>
+        <select id="selectSuppId">
+            <option value="0">所有供應商</option>
+            <option value="1">寵i美容院</option>
+            <option value="2">小森林獸醫院</option>
+            <option value="3">渴望Orijen</option>
+            <option value="4">梅亞奶奶</option>
+        </select>*@
+
+
+
+    @Html.DropDownList("fCategoryID", (SelectList)ViewBag.selectListcategories, "所有類別", htmlAttributes: new { @class = "form-control", id = "Categories" })
+
+
+    @Html.DropDownList("fSupplierID", (SelectList)ViewBag.selectListsuppliers, "所有供應商", htmlAttributes: new { @class = "form-control", id = "Suppliers" })
+
+
+    <input type="submit" value="搜尋" onclick="categorychange()" />
+</form>
+
+@section productsearch{
+    <script type="text/javascript">
+        function categorychange() {
+
+            var ca = document.getElementById("Categories");
+            var strUser = ca.options[ca.selectedIndex].value;
+
+            var supp = document.getElementById("Suppliers");
+            var strUser2 = supp.options[supp.selectedIndex].value;
+
+            var stri = "?cateId=" + strUser + "&suppId=" + strUser2
+            //alert(stri)
+            x = document.getElementById("formProdcutId");
+            x.action = stri;
+
+        }
+
+    </script>
+}
+
+
+<table class="table display" id="myDataTalbe" style="font-family:微軟正黑體;font-weight:bold">
+    <thead>
+        <tr>
+            <th>
+                @Html.Label("商品照片")
+            </th>
+            <th>
+                @Html.Label("商品名稱")
+            </th>
+            <th>
+                @Html.Label("單價")
+            </th>
+            <th>
+                @Html.Label("訂單數量")
+            </th>
+            <th>
+                @Html.Label("庫存量")
+            </th>
+            <th>
+                @Html.Label("上架日期")
+            </th>
+            <th>
+                @Html.Label("安全庫存量")
+            </th>
+
+            <th>
+                @Html.Label("商品類別")
+            </th>
+            <th>
+                @Html.Label("供應商")
+            </th>
+            <th>
+                @Html.Label("修改"@*, new { @style = "color:white" }*@)
+            </th>
+            <th>
+                @Html.Label("刪除"@*, new { @style = "color:white" }*@)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <img src="@item.fPic" width="80" />
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fName)
+                </td>
+                <td>
+                    @Math.Round(item.fUnitPrice)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fUnitOnOrder)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fUnitInStock)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fOnShelfDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fSafeStock)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.tCategory.fName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.tSupplier.fName)
+                </td>
+
+                <td>
+                    <a href="~/Product/Edit/?fProductID=@item.fProductID.ToString()" class="btn btn-info"><img src="~/images/EditIcon.png" width="60" /></a>
+                </td>
+                <td>
+                    <a onclick="opened(@item.fProductID.ToString())"><img src="~/images/DeleteIcon.jpg" width="60" /></a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div id="dialog-1" title="刪除" style="font-family:微軟正黑體;color:orangered;font-weight:600">確定要刪除嗎?</div>
+
+<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+
+<script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+
+<script src="~/Scripts/DataTables/jquery.dataTables.js"></script>
+
+<!--引用SweetAlert2.js-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.0.0/sweetalert2.all.js"></script>
+
+<script>
+
+     $(document).ready(function () {
+            $("#myDataTalbe").DataTable({
+                searching: true, //關閉filter功能
+                columnDefs: [{
+                    targets: [3],
+                    orderable: false,
+                }],
+                "language": {
+                        "url":"@Url.Content("~/i18n/zh-tw.json")"
+                    }
+            });
+        });
+
+
+
+    var ppp;
+
+    function opened(prodID) {
+        ppp = prodID;
+        $("#dialog-1").dialog("open");
+
+    };
+
+    $(function () {
+
+        $("#dialog-1").dialog({
+
+            autoOpen: false,
+
+            show: "scale",
+
+            hide: "scale",
+
+            buttons: {
+
+                "確定": function () {
+                    $.ajax({
+                        type: "post",
+                        url: "/Product/Delete/?fProductID=" + ppp,
+
+
+                    }).done(function (data) {
+
+                        swal("刪除", "資料已刪除!", "success").then(function skip(result) { location.reload(); });
+
+                    }).fail(function (err) {
+                        alert("失敗")
+                    });
+
+
+                    $(this).dialog("close");
+                },
+
+                "取消": function () { $(this).dialog("close"); }
+
+            }
+
+        });
+
+
+    });
+
+</script>

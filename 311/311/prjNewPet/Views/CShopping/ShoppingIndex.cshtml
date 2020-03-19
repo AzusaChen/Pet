@@ -1,0 +1,382 @@
+﻿@model IPagedList<prjNewPet.Models.tProduct>
+@using prjNewPet.Models
+@using PagedList
+@using PagedList.Mvc
+
+@{
+    ViewBag.Title = "ShoppingIndex";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section ShoppingStyles{
+    <title>Super Market an Ecommerce Online Shopping Category Flat Bootstrap Responsive Website Template | Products :: w3layouts</title>
+    <!-- for-mobile-apps -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="Super Market Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+    <script type="application/x-javascript">
+        addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
+               function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <!-- //for-mobile-apps -->
+   
+    <link href="~/Content/ShoppingCSS/Shoppingstyle.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="~/Content/PagedList.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="~/Scripts/jquery-ui.js">
+
+    <!-- font-awesome icons -->
+    <link href="~/Content/ShoppingCSS/font-awesome.css" rel="stylesheet">
+    <!-- //font-awesome icons -->
+    <!-- js -->
+    <script src="~/Scripts/Shopping/jquery-1.11.1.min.js"></script>
+    <!-- //js -->
+    <link href='//fonts.googleapis.com/css?family=Raleway:400,100,100italic,200,200italic,300,400italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
+    <!-- start-smoth-scrolling -->
+    <script type="text/javascript" src="~/Scripts/Shopping/move-top.js"></script>
+    <script type="text/javascript" src="~/Scripts/Shopping/easing.js"></script>
+    <script type="text/javascript">
+        jQuery(document).ready(function ($) {
+            $(".scroll").click(function (event) {
+                event.preventDefault();
+                $('html,body').animate({ scrollTop: $(this.hash).offset().top }, 1000);
+            });
+        });
+    </script>
+    <!-- start-smoth-scrolling -->
+}
+<!-- header -->
+<!-- breadcrumbs -->
+<div class="breadcrumbs">
+    <div class="container">
+        <ol class="breadcrumb breadcrumb1 animated wow slideInLeft" data-wow-delay=".5s">
+            <li>
+                <a href="~/CShopping/ShoppingIndex"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a>
+            </li>
+            <li class="active">Products</li>
+        </ol>
+    </div>
+</div>
+<!-- //breadcrumbs -->
+<!--- products --->
+
+<div class="products">
+    <div class="container">
+        <div class="col-md-4 products-left">
+            <div class="categories">
+                <h2>Categories</h2>
+                <ul class="cate">
+                    <li>
+                        <a href="products.html"><i class="fa fa-arrow-right" aria-hidden="true"></i>狗狗飼料</a>
+                    </li>
+                    <ul>
+                        @{
+                            dbNewPetEntities db = new dbNewPetEntities();
+                            var q = from s in db.tProducts
+                                    where s.fCategoryID == 1
+                                    group s by s.tSupplier.fName into g
+                                    select g;
+
+                            int x = 0;
+                            int y = 0;
+                            foreach (var item in q)
+                            {
+                                foreach (var items in item)
+                                {
+                                    x = items.fSupplierID;
+                                    y = items.fCategoryID;
+                                }
+
+                                <li>
+                                    <a onclick="change('sup_@x',@y)" id='sup_@x' class="@y"><i class="fa fa-arrow-right" aria-hidden="true"></i>@item.Key</a>
+                                </li>
+                            }
+                        }
+                    </ul>
+                    <li>
+                        <a href="products.html"><i class="fa fa-arrow-right" aria-hidden="true"></i>狗狗專區</a>
+                    </li>
+                    <ul>
+                        @{
+                            var q2 = from s in db.tProducts
+                                     where s.fCategoryID == 2 || s.fCategoryID == 3 || s.fCategoryID == 4
+                                     group s by s.tCategory.fName into g
+                                     select g;
+
+                            foreach (var item in q2)
+                            {
+                                foreach (var items in item)
+                                {
+                                    y = items.fCategoryID;
+                                }
+                                <li>
+                                    <a onclick="change1('ctg_@y')" id='ctg_@y'><i class="fa fa-arrow-right" aria-hidden="true"></i>@item.Key</a>
+                                </li>
+                            }
+                        }
+                    </ul>
+                    <li>
+                        <a href="products.html"><i class="fa fa-arrow-right" aria-hidden="true"></i>貓咪飼料</a>
+                    </li>
+                    <ul>
+                        @{
+
+                            var q1 = from s in db.tProducts
+                                     where s.fCategoryID == 5
+                                     group s by s.tSupplier.fName into g
+                                     select g;
+
+
+                            foreach (var item in q1)
+                            {
+                                foreach (var items in item)
+                                {
+                                    x = items.fSupplierID;
+                                    y = items.fCategoryID;
+                                }
+
+                                <li>
+                                    <a onclick="change('sup_@x',@y)" id='sup_@x' class="@y"><i class="fa fa-arrow-right" aria-hidden="true"></i>@item.Key</a>
+                                </li>
+                            }
+                        }
+
+                    </ul>
+                    <li>
+                        <a href="products.html"><i class="fa fa-arrow-right" aria-hidden="true"></i>貓咪專區</a>
+                    </li>
+                    <ul>
+                        @{
+                            var q3 = from s in db.tProducts
+                                     where s.fCategoryID == 6 || s.fCategoryID == 7 || s.fCategoryID == 8
+                                     group s by s.tCategory.fName into g
+                                     select g;
+
+
+                            foreach (var item in q3)
+                            {
+                                foreach (var items in item)
+                                {
+                                    y = items.fCategoryID;
+                                }
+                                <li>
+                                    <a onclick="change1('ctg_@y')" id='ctg_@y'><i class="fa fa-arrow-right" aria-hidden="true"></i>@item.Key</a>
+                                </li>
+                            }
+                        }
+                    </ul>
+                    <li>
+                        <a href="products.html"><i class="fa fa-arrow-right" aria-hidden="true"></i>其他專區</a>
+                    </li>
+                    <ul>
+                        <li>
+                            <a href="products.html"><i class="fa fa-arrow-right" aria-hidden="true"></i>鳥兒專區</a>
+                        </li>
+                        <li>
+                            <a href="products.html"><i class="fa fa-arrow-right" aria-hidden="true"></i>鼠鼠專區</a>
+                        </li>
+                        <li>
+                            <a href="products.html"><i class="fa fa-arrow-right" aria-hidden="true"></i>兔兔專區</a>
+                        </li>
+                    </ul>
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-8 products-right">
+            <div class="products-right-grid">
+                <div class="products-right-grids">
+                    <div class="sorting">
+                        <select id="country" onchange="change_country(this.value)" class="frm-field required sect">
+                            <option value="null"><i class="fa fa-arrow-right" aria-hidden="true"></i>排序方式</option>
+                            <option value="null"><i class="fa fa-arrow-right" aria-hidden="true"></i>Sort by popularity</option>
+                            <option value="null"><i class="fa fa-arrow-right" aria-hidden="true"></i>Sort by average rating</option>
+                            <option value="null"><i class="fa fa-arrow-right" aria-hidden="true"></i>Sort by price</option>
+                        </select>
+                    </div>
+                    <div class="sorting-left">
+                        <select id="country1" onchange="change_country(this.value)" class="frm-field required sect">
+                            <option value="null"><i class="fa fa-arrow-right" aria-hidden="true"></i>每頁9筆</option>
+                            <option value="null"><i class="fa fa-arrow-right" aria-hidden="true"></i>每頁18筆</option>
+                            <option value="null"><i class="fa fa-arrow-right" aria-hidden="true"></i>每頁32筆</option>
+                            <option value="null"><i class="fa fa-arrow-right" aria-hidden="true"></i>全部</option>
+                        </select>
+                    </div>
+                    <div class="clearfix"> </div>
+                </div>
+            </div>
+            <div class="agile_top_brands_grids" id="categoryChange">
+                @foreach (var item in Model)
+                {
+                    <div class="col-md-4 top_brand_left" style="margin-bottom:15px;height:400px">
+                        <div class="hover14 column" style="border-radius:15px 0 15px 15px">
+                            <div class="agile_top_brand_left_grid" style="border-radius:15px 0 15px 15px">
+                                <div class="agile_top_brand_left_grid_pos" style="border-radius:15px 0 15px 15px">
+                                    <img src="~/images/ProductImages/offer.png" alt=" " class="img-responsive">
+                                </div>
+                                <div class="agile_top_brand_left_grid1">
+                                    <figure>
+                                        <div class="snipcart-item block">
+                                            <div class="snipcart-thumb">
+
+                                                <a href="@Url.Action("ProductDetail","CShopping",new { pId=item.fProductID})"><img src="@item.fPic" width="150" height="150" /></a>
+                                                <p>@Html.DisplayFor(modelItem => item.fName)</p>
+                                                <h4>
+                                                    $@item.fUnitPrice.ToString("F0")
+                                                    <span>$@((item.fUnitPrice / (decimal)0.9).ToString("F0"))</span>
+                                                </h4>
+                                            </div>
+                                            @if (item.fUnitInStock > 0)
+                                            {
+                                                <div class="snipcart-details top_brand_home_details">
+                                                    <a href="javascript:void(0)" onclick="AddToCart('@item.fProductID')"><input type="button" class="button" value="加入購物車" /></a>
+                                                </div>
+                                            }
+                                            else
+                                            {
+                                                <div class="snipcart-details top_brand_home_details">
+                                                    <a href="javascript:void(0)" onclick="AddToCart('@item.fProductID')"><input type="button" disabled="disabled" class="button" value="商品無庫存" style="background-color:gray" /></a>
+                                                </div>
+                                            }
+                                        </div>
+                                    </figure>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+                <div class="clearfix"> </div>
+            </div>
+            <nav class="numbering">
+                @Html.PagedListPager(Model, page => Url.Action("ShoppingIndex", new { page }), PagedListRenderOptions.ClassicPlusFirstAndLast)
+            </nav>
+        </div>
+        <div class="clearfix"> </div>
+    </div>
+</div>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="~/Scripts/Shopping/bootstrap.min.js"></script>
+<!-- top-header and slider -->
+<!-- here stars scrolling icon -->
+@*<script type="text/javascript">
+    $(document).ready(function () {
+
+        //var defaults = {
+        //containerID: 'toTop', // fading element id
+        //containerHoverID: 'toTopHover', // fading element hover id
+        //scrollSpeed: 1200,
+        //easingType: 'linear'
+        //};
+
+
+        $().UItoTop({ easingType: 'easeOutQuart' });
+
+
+    });
+</script>*@
+<!-- //here ends scrolling icon -->
+<!-- main slider-banner -->
+<script src="~/Scripts/Shopping/skdslider.min.js"></script>
+<link href="~/Content/ShoppingCSS/skdslider.css" rel="stylesheet">
+
+<!--引用SweetAlert2.js-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.0.0/sweetalert2.all.js"></script>
+
+<script type="text/javascript">
+    jQuery(document).ready(function () {
+        jQuery('#demo1').skdslider({ 'delay': 5000, 'animationSpeed': 2000, 'showNextPrev': true, 'showPlayButton': true, 'autoSlide': true, 'animationType': 'fading' });
+
+        jQuery('#responsive').change(function () {
+            $('#responsive_wrapper').width(jQuery(this).val());
+        });
+
+    });
+</script>
+
+<script>
+     function AddToCart(id) {
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("AddToCart", "CShopping")',
+                data: { fPId: id },
+                success: function (data) {
+
+                    if (data == 1) {
+
+                        swal.setDefaults({
+                            confirmButtonText: "立即登入",
+                        });
+
+                        swal({
+                            title: '請先登入會員',
+                            text: '10秒後自動導向登入頁面',
+                            timer: 10000
+                        }).then(
+                            function skip(result) { window.location.href = '../Login/Auth'},
+                            // handling the promise rejection
+                            function (dismiss) {
+                                if (dismiss === 'timer') {
+                                    skip();
+                                }
+                            }
+                        )
+                    }
+                    else if (data == 2) {
+
+                        swal({
+                            text: '已新增至購物車',
+                            type: 'success',
+                            timer: 1000
+                        }).then(function () {
+                             $('#minicartitems').load('@Url.Action("Minicart", "CShopping")');
+                        }
+                        )
+                    }
+                },
+                dataType: "JSON"
+            });
+    };
+
+</script>
+
+
+
+<script>
+    function change(id,cId) {
+
+        var pro = $("#" + id).attr("id").substring(4);
+        var cate = $("." + cId).attr("class");
+
+        $.ajax({
+            type: 'POST',
+            url: '@Url.Action("Change", "CShopping")',
+            data: {
+                pro: pro,
+                cate: cate
+            },
+            success: function (data) {
+                $('#categoryChange').html(data);
+            },
+            dataType:'HTML'
+        })
+    }
+    function change1(cId) {
+
+        var cate = $("#" + cId).attr("id").substring(4);
+
+        $.ajax({
+            type: 'POST',
+            url: '@Url.Action("Change1", "CShopping")',
+            data: {
+                cate: cate
+            },
+            success: function (data) {
+                $('#categoryChange').html(data);
+            },
+            dataType:'HTML'
+        })
+    }
+</script>
+
+<!-- //main slider-banner -->
+<!--- products --->

@@ -1,0 +1,20 @@
+﻿@model IEnumerable<prjNewPet.Models.tAdoptMessage>
+
+<table class="table">
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            寵物會員 @Html.DisplayFor(modelItem => item.tMember.fNickName)
+        </td>
+
+        <td>
+            想領養您的 @Html.DisplayFor(modelItem => item.tPetMember.fPetName)
+        </td>
+        <td>
+            <button class="btn btn-danger" id="apply+@item.fMemberID" onclick="showApplierData(event)">申請資料</button>
+        </td>
+    </tr>
+}
+
+</table>

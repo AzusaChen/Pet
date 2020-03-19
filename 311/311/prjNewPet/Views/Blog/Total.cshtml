@@ -1,0 +1,341 @@
+﻿@using PagedList
+@using PagedList.Mvc
+@using prjNewPet.Models
+
+@model  IPagedList<prjNewPet.Models.tDiscussion>
+
+@{
+    ViewBag.Title = "Total";
+}
+
+@section styles{
+
+    <link href="~/Content/PagedList.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="~/3dgallery/css/style.css" />
+
+    <style>
+        #subject, #subjecttitle {
+            font-size: 20px;
+            color: brown;
+        }
+
+        #subjectlock {
+            font-size: 20px;
+        }
+
+        #titlebanner {
+            padding-top: 60px;
+        }
+
+        #borderforblog {
+            border: 6px groove rgba(173,137,104,0.61);
+            border-radius: 0px 40px 0px 0px;
+        }
+
+        #contentfix {
+            float: right;
+        }
+
+        #imgfix {
+            width: 20px;
+            float: right;
+        }
+
+        #afix {
+            color: dodgerblue;
+        }
+
+        /*站方公告------------------------------------*/
+
+        .hovertreebox {
+            width: 340px;
+            margin: 0 auto;
+            overflow: hidden;
+            /*border: 1px solid #CFCFCF;*/
+            /*padding: 50px;*/
+        }
+
+        #HoverTreeScroll {
+            width: 340px;
+            height: 300px;
+            overflow: hidden;
+        }
+
+            /*这里的高度和超出隐藏是必须的*/
+            #HoverTreeScroll li {
+                height: 90px;
+                width: 340px;
+                padding: 0 20px;
+                background: url(ico-4.gif) no-repeat 10px 23px;
+                overflow: hidden;
+                vertical-align: bottom;
+                zoom: 1;
+                border-bottom: #B7B7B7 dashed 1px;
+            }
+
+                #HoverTreeScroll li h3 {
+                    height: 24px;
+                    padding-top: 13px;
+                    font-size: 14px;
+                    color: #353535;
+                    line-height: 24px;
+                    width: 300px;
+                }
+
+                    #HoverTreeScroll li h3 a {
+                        color: #353535;
+                        text-decoration: none;
+                    }
+
+                        #HoverTreeScroll li h3 a:hover {
+                            color: #F00;
+                        }
+
+                #HoverTreeScroll li div {
+                    height: 36px;
+                    width: 300px;
+                    color: #416A7F;
+                    line-height: 18px;
+                    overflow: hidden;
+                }
+
+                    #HoverTreeScroll li div a {
+                        color: #416A7F;
+                        text-decoration: none;
+                    }
+
+        .scroltit {
+            height: 26px;
+            line-height: 26px;
+            padding-bottom: 4px;
+            margin-bottom: 4px;
+        }
+
+            .scroltit h3 {
+                width: 100px;
+                float: left;
+            }
+
+            .scroltit .updown {
+                float: right;
+                width: 32px;
+                height: 22px;
+                margin-left: 4px;
+            }
+
+        #but_up {
+            background: url(http://hovertree.com/texiao/jquery/64/images/up.gif) no-repeat 0 0;
+            text-indent: -9999px;
+        }
+
+        #but_down {
+            background: url(http://hovertree.com/texiao/jquery/64/images/down.gif) no-repeat 0 0;
+            text-indent: -9999px;
+        }
+
+        .hovertreeinfo {
+            text-align: center;
+        }
+
+            .hovertreeinfo a {
+                color: blue;
+            }
+
+        /*站方公告------------------------------------*/
+    </style>
+
+}
+
+<div class="banner2">
+    <div class="about-heading">
+        <div class="container" id="titlebanner">
+            <h2>寵物討論區 @ViewBag.disname</h2>
+        </div>
+    </div>
+</div>
+
+@*---------------------------------------------------------------------*@
+@*輪播*@
+
+<section id="dg-container" class="dg-container">
+    <div class="dg-wrapper">
+        <a href="~/Activity/Index/"><img src="~/images/Disscusionforpet/activityforpets-1.jpg" alt="image01"><div>寵物尾牙</div></a>
+        <a href="~/Activity/Index/"><img src="~/images/Disscusionforpet/activityforpets-2.jpg" alt="image02"><div>寵物公益</div></a>
+        <a href="~/Activity/Index/"><img src="~/images/Disscusionforpet/activityforpets-3.jpg" alt="image03"><div>寵物展</div></a>
+        <a href="~/Activity/Index/"><img src="~/images/Disscusionforpet/activityforpets-4.jpg" alt="image04"><div>寵物用品展</div></a>
+        <a href="~/Activity/Index/"><img src="~/images/Disscusionforpet/activityforpets-5.jpg" alt="image05"><div>貓&美術展</div></a>
+        <a href="~/Activity/Index/"><img src="~/images/Disscusionforpet/activityforpets-6.jpg" alt="image06"><div>萌主爭霸戰</div></a>
+        <a href="~/Activity/Index/"><img src="~/images/Disscusionforpet/activityforpets-7.jpg" alt="image07"><div>毛孩守公約,城市更友善</div></a>
+        <a href="~/Activity/Index/"><img src="~/images/Disscusionforpet/activityforpets-8.jpg" alt="image08"><div>寵物統統給我跑起來</div></a>
+        <a href="~/Activity/Index/"><img src="~/images/Disscusionforpet/activityforpets-9.jpg" alt="image09"><div>寵物家族動員令</div></a>
+        <a href="~/Activity/Index/"><img src="~/images/Disscusionforpet/activityforpets-10.jpg" alt="image10"><div>寵物HOTEL</div></a>
+        <a href="~/Activity/Index/"><img src="~/images/Disscusionforpet/activityforpets-11.jpg" alt="image11"><div>買貓砂送貓糧</div></a>
+        <a href="~/Activity/Index/"><img src="~/images/Disscusionforpet/activityforpets-12.jpg" alt="image12"><div>寵物揪一波</div></a>
+    </div>
+    <nav>
+        <span class="dg-prev">&lt;</span>
+        <span class="dg-next">&gt;</span>
+    </nav>
+</section>
+
+@*---------------------------------------------------------------------*@
+<div class="blog">
+    <!-- container -->
+    <div class="container">
+        <div class="blog-top-grids">
+            <div class="col-md-8 blog-top-left-grid">
+                <div class="left-blog">
+
+                    @foreach (var item in Model)
+                    {
+
+                        dbNewPetEntities db = new dbNewPetEntities();
+
+                        int commentcount = db.tComments.Where(m => m.fArticleID == item.fArticleID).Count();
+
+                        <div class="blog-left" id="borderforblog">
+                            <div class="blog-left-left">
+                                <p>作者: <a href="#">@item.tMember.fName</a> &nbsp;&nbsp;@item.tDiscussionClass.fName &nbsp;&nbsp; @item.fCreateDate &nbsp;&nbsp; <a href="#">留言數 (@commentcount)</a>     </p>
+
+                                @{
+                                    if (item.fLock == true)
+                                    {
+                                        <p id="subjectlock">@Html.ActionLink("主題:" + item.fTitle, "Lockpage", "Blog", null, null)</p>
+                                        <p>@Html.ActionLink("詳細內容請點擊查看.....", "Lockpage", "Blog", null, null)</p>
+                                    }
+                                    else
+                                    {
+                                        <p id="subjecttitle">主題: <a id="subject" href="~/Blog/Single/?articleid=@item.fArticleID">@item.fTitle</a></p>
+                                        <p> <a id="afix" href="~/Blog/Single/?articleid=@item.fArticleID">詳細內容請點擊查看.....</a></p>
+                                    }
+
+                                }
+
+                                @*AJAX*@
+
+                                <a id="contentfix" href="~/FavoriteFront/Favlist/?articleid=@item.fArticleID"><img id="imgfix" src="@Url.Content("~/images/chngstar.gif")" />加入收藏</a>
+                                @*AJAX*@
+                            </div>
+                            @*<div class="blog-left-right">
+
+                                    <a href="single.html"><img src="~/images/b1.jpg" alt="" /></a>
+                                </div>*@
+                            <div class="clearfix"> </div>
+                        </div>
+                    }
+                </div>
+                <nav>
+                    <ul class="pagination">
+
+                        <li>@Html.PagedListPager(Model, page => Url.Action("Total", new { page, disid = ViewBag.identity })) </li>
+                    </ul>
+                </nav>
+            </div>
+
+            <div class="col-md-4 blog-top-right-grid">
+                <div class="Categories">
+                    <h3>站方公告</h3>
+                    <div class="hovertreebox">
+                        <div id="HoverTreeScroll">
+                            <ul>
+                                <li><h3>歡迎來到寵友討論區</h3><div>文章請使用本看板所提供分類,自訂分類或無分類者文章一律刪除...</div></li>
+                                <li><h3>寵物活動開跑囉</h3> <div>即日起凡參加寵物活動者,商城商品一律9折起,佛心回饋</div></li>
+                                <li><h3>嚴防武漢疫情</h3> <div>因應武漢疫情請市民在家自行遛狗,也請將寵物戴上專用口罩,杜絕病毒</div></li>
+                                <li><h3>你不可不知的狗狗大小事</h3> <div>根據英國研究統計,全球99.9%的狗狗叫聲都是汪而有少數則是汪汪</div></li>
+                                <li><h3>遺失協尋</h3> <div>新北陳先生的寵物米克斯於捷運古亭站附近走失,毛色:全白 並配有藍色項圈</div></li>
+                                <li><h3>定期維護公告</h3> <div>本網站將於台灣時間3月17日早上8點進行定期維護,不便之處,敬請見諒。</div></li>
+                            </ul>
+                        </div>
+                        <div class="scroltit"><div class="updown" id="but_down">向上</div><div class="updown" id="but_up">向下</div></div>
+                    </div>
+                </div>
+
+                <div class="Categories">
+                    <h3>看板分類</h3>
+                    <ul>
+
+                        <li>@Html.ActionLink("寵狗版", "Total", new { disid = 1 })</li>
+                        <li>@Html.ActionLink("寵貓版", "Total", new { disid = 2 })</li>
+                        <li>@Html.ActionLink("其他寵物版", "Total", new { disid = 3 })</li>
+                    </ul>
+                </div>
+
+                <div class="Categories">
+                    <h3>熱門文章</h3>
+                    @{
+                        dbNewPetEntities dbcontext = new dbNewPetEntities();
+
+                        var hotcomment = dbcontext.tDiscussions.OrderByDescending(m => m.fLike).Take(5);
+
+                        foreach (var item in hotcomment)
+                        {
+
+                            if (item.fLock == true)
+                            {
+
+                                <ul class="marked-list offs1">
+                                    <li><a href="~/Blog/Lockpage">@item.fTitle (@item.fLike)</a></li>
+                                </ul>
+                            }
+                            else
+                            {
+                                <ul class="marked-list offs1">
+                                    <li><a href="~/Blog/Single/?articleid=@item.fArticleID">@item.fTitle (@item.fLike)</a></li>
+                                </ul>
+                            }
+
+                        }
+                    }
+                </div>
+
+                <div class="comments">
+                    <h3>PetCoin排行榜</h3>
+                    @{
+                        var hotpetcoin = dbcontext.tMembers.OrderByDescending(m => m.fPetCoin).Take(3);
+                        foreach (var item in hotpetcoin)
+                        {
+                            <div class="comments-text">
+                                <div class="col-md-3 comments-left">
+                                    <img src="@item.fIcon" alt="" />
+                                </div>
+                                <div class="col-md-9 comments-right">
+                                    <h5>@item.fNickName</h5>
+                                    <p>目前持有PetCoin--@item.fPetCoin</p>
+                                    <p>創辦日期:@item.fRegisterDate</p>
+                                </div>
+                                <div class="clearfix"> </div>
+                            </div>
+                        }
+                    }
+                </div>
+
+                @*//add*@
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+    </div>
+    <!-- //container -->
+</div>
+<!-- //blog -->
+
+@section scripts{
+
+    <script type="text/javascript" src="~/3dgallery/js/jquery.gallery.js"></script>
+    <script type="text/javascript" src="~/3dgallery/js/modernizr.custom.53451.js"></script>
+
+    <script src="http://hovertree.com/texiao/jquery/64/js/jq_scroll.js" type="text/javascript"></script>
+
+    <script type="text/javascript">
+        $(function () {
+            $('#dg-container').gallery({
+                autoplay: true,
+                interval: 3000
+            });
+        });
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#HoverTreeScroll").Scroll({ line: 1, speed: 500, timer: 2000, up: "but_up", down: "but_down" });
+        });
+    </script>
+}

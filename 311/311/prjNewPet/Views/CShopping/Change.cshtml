@@ -1,0 +1,42 @@
+﻿@model IEnumerable<prjNewPet.Models.tProduct>
+@using prjNewPet.Models
+
+@foreach (var item in Model)
+{
+    <div class="col-md-4 top_brand_left" style="margin-bottom:15px;height:400px">
+        <div class="hover14 column" style="border-radius:15px 0 15px 15px">
+            <div class="agile_top_brand_left_grid" style="border-radius:15px 0 15px 15px">
+                <div class="agile_top_brand_left_grid_pos" style="border-radius:15px 0 15px 15px">
+                    <img src="~/images/ProductImages/offer.png" alt=" " class="img-responsive">
+                </div>
+                <div class="agile_top_brand_left_grid1">
+                    <figure>
+                        <div class="snipcart-item block">
+                            <div class="snipcart-thumb">
+
+                                <a href="@Url.Action("ProductDetail","CShopping",new { pId=item.fProductID})"><img src="@item.fPic" width="150" height="150" /></a>
+                                <p>@Html.DisplayFor(modelItem => item.fName)</p>
+                                <h4>
+                                    $@item.fUnitPrice.ToString("F0")
+                                    <span>$@((item.fUnitPrice / (decimal)0.9).ToString("F0"))</span>
+                                </h4>
+                            </div>
+                            @if (item.fUnitInStock > 0)
+                            {
+                                <div class="snipcart-details top_brand_home_details">
+                                    <a href="javascript:void(0)" onclick="AddToCart('@item.fProductID')"><input type="button" class="button" value="加入購物車" /></a>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="snipcart-details top_brand_home_details">
+                                    <a href="javascript:void(0)" onclick="AddToCart('@item.fProductID')"><input type="button" disabled="disabled" class="button" value="商品無庫存" style="background-color:gray" /></a>
+                                </div>
+                            }
+                        </div>
+                    </figure>
+                </div>
+            </div>
+        </div>
+    </div>
+}

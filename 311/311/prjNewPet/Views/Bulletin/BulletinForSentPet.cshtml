@@ -1,0 +1,211 @@
+﻿@model IEnumerable<prjNewPet.Models.tPetMember>
+@using prjNewPet.Models
+
+
+@{
+    ViewBag.Title = "BulletinForSentPet";
+
+    var mem = Session[CDictionary.SK_LOGINED_USER] as tMember;
+    dbNewPetEntities db = new dbNewPetEntities();
+
+
+}
+
+<div class="banner2">
+    <div class="about-heading">
+        <div class="container">
+            <h2>寵物送養公告欄</h2>
+        </div>
+    </div>
+</div>
+<!-- //banner -->
+<!-- about -->
+<div class="about">
+    <!-- about-top -->
+    <div class="agileits-about-top">
+        <div class="container">
+            <div class="agileits-about-top-heading">
+
+
+
+                <form id="petchangesumit" method="post" action="" enctype="multipart/form-data">
+                    <select id="petclass">
+                        <option value="0">所有寵物</option>
+                        <option value="1">狗狗</option>
+                        <option value="2">貓貓</option>
+                    </select>
+                    縣市: <input type="text" id="city" size="6" />
+                    區域: <input padding-left:2px type="text" id="region" size="6" /><span><input type="submit" value="搜尋" onclick="classchange()" /></span>
+                </form>
+
+                @section petsearch{
+                    <script type="text/javascript">
+                        function classchange() {
+                            var e = document.getElementById("petclass");
+                            var strUser = e.options[e.selectedIndex].value;
+                            var c = document.getElementById("city");
+                            var r = document.getElementById("region");
+
+
+                            //var str = "?classID=" + strUser;
+                            var stri = "?classID=" + strUser + "&cityName=" + c.value + "&regionName=" + r.value;
+                            
+                            x = document.getElementById("petchangesumit");
+                            x.action = stri;
+                        }
+                    </script>
+                }
+
+
+
+            </div>
+            <div class="agileinfo-top-grids">
+                <div @*class="team"*@>
+                    <div class="container">
+                        <div class="agile_team_grids">
+
+
+                            @{ foreach (var sent in Model)
+                                {
+
+                                    <div class="col-md-3 agile_team_grid">
+                                        <div class="agile_team_grid_main">
+
+                                            <img style="height:250px" src="~/images/@sent.fPetPic" alt=" " class="img-responsive">
+                                            <div class="p-mask">
+                                                <ul class="top-links two">
+                                                    @if (mem != null)
+                                                    {
+                                                        var adopt = from a in db.tAdoptMessages
+                                                                    where a.fPetID == sent.fPetID
+                                                                    where a.fMemberID == mem.fMemberID
+                                                                    select a;
+
+                                                        if (adopt.ToList().Count > 0)
+                                                        {
+                                                                <li id="@sent.fPetID">
+                                                                    <a onclick="retractApply(@sent.fPetID)" href="#"><i class="btn-danger">收回申請</i></a>
+                                                                    <a style="display:none" onclick="applyAdopt(@sent.fPetID)" href="#"><i class="btn-primary">我要領養</i></a>
+                                                                </li>
+                                                        }
+                                                        else
+                                                        {
+                                                    
+                                                                <li id="@sent.fPetID">
+                                                                    <a style="display:none" onclick="retractApply(@sent.fPetID)" href="#"><i class="btn-danger">收回申請</i></a>
+                                                                    <a onclick="applyAdopt(@sent.fPetID)" href="#"><i class="btn-primary">我要領養</i></a>
+                                                                </li>
+
+                                                        }
+                                                    }
+                                                    else
+                                                    {
+                                                        <li id="@sent.fPetID">
+                                                            <a onclick="applyAdopt(@sent.fPetID)" href="#"><i class="btn-primary">我要領養</i></a>
+                                                        </li>
+                                                    }
+
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="agile_team_grid1">
+                                            <h3>@sent.tBreed.fName</h3>
+                                            <p>主人暱稱:@sent.tMember.fNickName</p>
+                                        </div>
+
+                                    </div>
+
+                                }
+
+
+                            }
+
+
+
+                            <div class="clearfix"> </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- //team -->
+            </div>
+            <div class="col-sm-4 wthree-top-grid">
+                <img src="" href="" alt="" />
+                <h5></h5>
+                <p></p>
+            </div>
+
+            <div class="clearfix"> </div>
+        </div>
+    </div>
+</div>
+<!-- //about-top -->
+<!-- choose -->
+
+
+
+
+@section scripts{
+
+    <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+
+    <script type="text/javascript">
+
+
+        function applyAdopt(adoptPetID) {
+
+            $.ajax({
+                type: "post",
+                url: "/PetMember/PetAdoptApply?PetID=" + adoptPetID,
+                dataType: "json"
+            }).done(function (data) {
+
+                if (data == "1") {
+
+                    alert("申請成功");
+
+                    $('#' + adoptPetID).find('a:contains("我要領養")').attr("style", "display:none");
+                    $('#' + adoptPetID).find('a:contains("收回申請")').attr("style", "display:inline-block");
+                }
+                if(data=="2") {
+                    alert("請先登入會員!")
+                    window.location.href = window.location.href = "../Login/Auth";
+                }
+                if (data == "3") {
+                    alert("無法申請自己的寵物!");
+                    
+                }
+                if (data == "4") {
+                    alert("一次只能申請一筆!");
+
+                }
+     
+
+            }).fail(function (err) {
+                alert("申請失敗")
+            })
+
+        }
+
+        function retractApply(adoptPetID) {
+
+            $.ajax({
+                type: "post",
+                url: "/PetMember/PetAdoptRetract?PetID=" + adoptPetID,
+
+            }).done(function (data) {
+
+                alert("收回申請");
+                $('#' + adoptPetID).find('a:contains("我要領養")').attr("style", "display:inline-bloc");
+                $('#' + adoptPetID).find('a:contains("收回申請")').attr("style", "display:none");
+
+            }).fail(function (err) {
+                alert("收回失敗")
+            })
+
+        }
+
+
+
+    </script>
+
+}

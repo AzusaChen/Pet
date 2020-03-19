@@ -1,0 +1,42 @@
+﻿@model IEnumerable<prjNewPet.Models.tOrder_Detail>
+@using prjNewPet.Models
+@{
+    ViewBag.Title = "BackDetails";
+
+}
+
+
+<table class="table" id="detailT">
+    <thead style="background-color:darkseagreen">
+        <tr>
+            <th>商品名稱</th>
+            <th>單價</th>
+            <th>數量</th>
+            <th>金額</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+
+            <tr id="@item.fOrderID">
+                <td>
+                    @Html.DisplayFor(modelItem => item.tProduct.fName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fUnitPrice)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fQuantity)
+                </td>
+                <td>
+                    @((item.fUnitPrice * item.fQuantity).ToString("F0"))
+                </td>
+            </tr>
+
+
+        }
+    </tbody>
+</table>
+

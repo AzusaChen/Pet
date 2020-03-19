@@ -1,0 +1,29 @@
+﻿
+@{
+    ViewBag.Title = "_Layout_Lockpage";
+}
+
+<!doctype html>
+<html lang="en">
+
+<head>
+
+
+
+    @RenderSection("styles", required: false)
+
+   
+
+</head>
+
+<body onload="initial();">
+
+
+    @RenderBody()
+
+    @RenderSection("scripts", required: false)
+</body>
+
+
+
+</html>

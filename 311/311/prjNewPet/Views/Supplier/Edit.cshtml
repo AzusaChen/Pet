@@ -1,0 +1,125 @@
+﻿@model prjNewPet.Models.tSupplier
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+        crossorigin="anonymous"></script>
+
+<h2 style="font-family:微軟正黑體">供應商資料修改</h2>
+
+<style>
+    hr.style-four {
+        height: 12px;
+        border: 0;
+        box-shadow: inset 0 12px 12px -12px rgba(0,0,0,0.5);
+    }
+</style>
+<hr class="style-four" />
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal" style="font-family:微軟正黑體">
+
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.fSupplierID)
+
+        <div class="form-group">
+            @Html.Label("供應商名稱", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.fName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.fName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("聯絡人", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.fContactName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.fContactName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("地址", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.fAddress, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.fAddress, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.fCityID, "城市", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("fCityID", (SelectList)ViewBag.SelectListcity, "請選擇城市", htmlAttributes: new { @class = "form-control", id = "Citys" })
+                @Html.ValidationMessageFor(model => model.fCityID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.fRegionID, "地區", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <select id="Regions" name="fRegionID" class="form-control"><option>@Model.tRegion.fName</option></select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("電話", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.fPhone, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.fPhone, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="儲存" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div style="font-family:微軟正黑體">
+    @Html.ActionLink("返回供應商列表", "SupplierList", null, new { @style = "color:blue;text-decoration:underline" })
+</div>
+
+<script>
+
+    $(document).ready(function () {
+        $("#Citys").change(function () { ChangeCity(); });
+    });
+
+    function ChangeCity() {
+        var selectedValue = $("#Citys option:selected").val();//cityid
+        if ($.trim(selectedValue).length > 0) {
+            GetOrders(selectedValue);
+        }
+    }
+
+    //GetOrders() 這個 function 內就透過 jQuery.Ajax() 向後端取得 Orders 的 JSON 資料，最後再由這份 JSON 資料去增加下拉選單的 option 內容
+
+    function GetOrders(cityID) {
+        $.ajax({
+            url: '@Url.Action("Regions", "Supplier")',
+            data: { cityID: cityID },
+            type: 'post',
+            cache: false,
+            async: false,
+            dataType: 'json',
+            success: function (data) {
+                if (data.length > 0) {
+                    $('#Regions').empty();
+                    $('#Regions').append($('<option></option>').val('').text('請選擇區域'));
+                    $.each(data, function (i, item) {
+                        $('#Regions').append($('<option></option>').val(item.Key).text(item.Value));
+                    });
+                }
+            }
+        });
+    }
+</script>

@@ -1,0 +1,203 @@
+﻿@model IEnumerable<prjNewPet.Models.tSupplier>
+
+@{
+    ViewBag.Title = "SupplierList";
+}
+
+
+@section styles{
+    <link href="~/Content/tablecss.css" rel="stylesheet" />
+
+    <style>
+        hr.style-four {
+            height: 12px;
+            border: 0;
+            box-shadow: inset 0 12px 12px -12px rgba(0,0,0,0.5);
+        }
+
+        .ui-widget-header, .ui-state-default, ui-button {
+            background: #3C3C3C;
+            border: 3px solid #b9cd6d;
+            color: #FFFFFF;
+            font-weight: bold;
+            height: auto;
+        }
+    </style>
+}
+
+
+<h2 style="font-family:微軟正黑體">供應商列表</h2>
+
+<hr class="style-four" />
+<link href="http://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel="stylesheet" />
+
+<link href="~/Content/DataTables/css/jquery.dataTables.css" rel="stylesheet" />
+
+<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+
+<script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+
+<form id="formSupplierId" method="post" action="" enctype="multipart/form-data">
+    <p>
+        <a href="~/Supplier/New"><input type="button" class="btn btn-success" value="新增供應商" style="font-family:微軟正黑體;font-size:16px"></a>
+    </p>
+
+    @Html.DropDownList("fCityID", (SelectList)ViewBag.selectListsuppliers, "請選擇城市", htmlAttributes: new { @class = "form-control", id = "Citys" })
+
+    <input type="submit" value="搜尋" onclick="categorychange()" />
+</form>
+
+@section suppliersearch{
+    <script type="text/javascript">
+        function categorychange() {
+
+            var supp = document.getElementById("Citys");
+            var strUser2 = supp.options[supp.selectedIndex].value;
+
+            var stri = "?cityId=" + strUser2
+            //alert(stri)
+            x = document.getElementById("formSupplierId");
+            x.action = stri;
+
+        }
+
+    </script>
+}
+
+<table class="table table-striped display" id="myDataTalbe" style="font-family:微軟正黑體;font-weight:bold">
+    <thead>
+        <tr>
+            <th width="15%">
+                @Html.Label("供應商")
+            </th>
+            <th width="15%">
+                @Html.Label("聯絡人")
+            </th>
+            <th width="30%">
+                @Html.Label("地址")
+            </th>
+            <th width="10%">
+                @Html.Label("電話")
+            </th>
+            <th width="10%">
+                @Html.Label("城市")
+            </th>
+            <th width="10%">
+                @Html.Label("地區")
+            </th>
+            <th width="5%">
+                @Html.Label("修改"@*, new { @style = "color:white" }*@)
+            </th>
+            <th width="5%">
+                @Html.Label("刪除"@*, new { @style = "color:white" }*@)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fContactName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fAddress)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fPhone)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.tCity.fName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.tRegion.fName)
+                </td>
+                <td>
+                    <a href="~/Supplier/Edit/?fSupplierID=@item.fSupplierID.ToString()"><img src="~/images/EditIcon.png" width="60" /></a>
+                </td>
+                <td>
+                    @*<a href="~/Supplier/Delete/?fSupplierID=@item.fSupplierID.ToString()" onclick="return confirm('確認要刪除嗎?')"><img src="~/images/DeleteIcon.jpg" width="60" /></a>*@
+                    @*<button onclick="opened(@item.fSupplierID.ToString())">刪除</button>*@
+                    <a onclick="opened(@item.fSupplierID.ToString())"><img src="~/images/DeleteIcon.jpg" width="60" /></a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div id="dialog-1" title="刪除" style="font-family:微軟正黑體;color:orangered;font-weight:600">確定要刪除嗎?</div>
+
+@*<button id="opener">刪除</button>*@
+
+<script src="~/Scripts/DataTables/jquery.dataTables.js"></script>
+
+<script>
+
+    $(document).ready(function () {
+            $("#myDataTalbe").DataTable({
+                searching: true, //關閉filter功能
+                columnDefs: [{
+                    targets: [3],
+                    orderable: false,
+                }],
+                "language": {
+                        "url":"@Url.Content("~/i18n/zh-tw.json")"
+                    }
+            });
+        });
+
+
+
+    var sss;
+
+    function opened(suppID) {
+        sss = suppID;
+        $("#dialog-1").dialog("open");
+
+    };
+
+    $(function () {
+
+        $("#dialog-1").dialog({
+
+            autoOpen: false,
+
+            show: "scale",
+
+            hide: "scale",
+
+            buttons: {
+
+                "確定": function () {
+                    $.ajax({
+                        type: "post",
+                        url: "/Supplier/Delete/?fSupplierID=" + sss,
+
+
+                    }).done(function (data) {
+
+                        location.reload();
+
+                    }).fail(function (err) {
+                        alert("失敗")
+                    });
+
+
+                    $(this).dialog("close");
+                },
+
+                "取消": function () { $(this).dialog("close"); }
+
+            }
+
+        });
+
+
+    });
+
+
+
+</script>

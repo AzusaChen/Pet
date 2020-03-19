@@ -1,0 +1,98 @@
+﻿@model IEnumerable<prjNewPet.Models.tLostPet>
+
+@{
+    ViewBag.Title = "BulletinForLostPet";
+}
+
+<div class="banner2">
+    <div class="about-heading">
+        <div class="container">
+            <h2>寵物走失公告欄</h2>
+        </div>
+    </div>
+</div>
+<!-- //banner -->
+<!-- about -->
+<div class="about">
+    <!-- about-top -->
+    <div class="agileits-about-top">
+        <div class="container">
+            <div class="agileits-about-top-heading">
+
+
+
+                <form id="petchangesumit" method="post" action="" enctype="multipart/form-data">
+                    <select id="petclass">
+                        <option value="0">所有寵物</option>
+                        <option value="1">狗狗</option>
+                        <option value="2">貓貓</option>
+                    </select>
+                    縣市: <input type="text" id="city" size="6" />
+                    區域: <input padding-left:2px type="text" id="region" size="6" /><span><input type="submit" value="搜尋" onclick="classchange()" /></span>
+                </form>
+
+                @section petsearch{
+                    <script type="text/javascript">
+                        function classchange() {
+                            var e = document.getElementById("petclass");
+                            var strUser = e.options[e.selectedIndex].value;
+                            var c = document.getElementById("city");
+                            var r = document.getElementById("region");
+
+
+                            //var str = "?classID=" + strUser;
+                            var stri = "?classID=" + strUser + "&cityName=" + c.value + "&regionName=" + r.value;
+                            
+                            x = document.getElementById("petchangesumit");
+                            x.action = stri;
+                        }
+                    </script>
+                }
+
+
+
+            </div>
+            <div class="agileinfo-top-grids">
+
+                @{ foreach (var lost in Model)
+                    {
+                        <div class="col-sm-4 wthree-top-grid">
+                            <img style="height:400px" src="~/images/@lost.tPetMember.fPetPic" href="" alt="" />
+                            <h5>
+                                @lost.tPetMember.fPetName,走失時間:@lost.fLostTime.ToShortDateString()<span> @Html.ActionLink("詳細資料", "LostDetail", "Bulletin", new { lostID = lost.fPetID.ToString() }, new { @class = "btn btn-danger" })</span>
+                            </h5>
+                            <p>走失地點:@lost.tPetMember.tCity.fName,@lost.tPetMember.tRegion.fName</p>
+                        </div>
+
+                    }
+
+                }
+
+                <div class="clearfix"> </div>
+            </div>
+        </div>
+    </div>
+   
+ </div>   
+<!-- //copyright -->
+<script src="~/js/SmoothScroll.min.js"></script>
+<script type="text/javascript" src="~/js/move-top.js"></script>
+<script type="text/javascript" src="~/js/easing.js"></script>
+<!-- here stars scrolling icon -->
+<script type="text/javascript">
+    $(document).ready(function () {
+        /*
+            var defaults = {
+            containerID: 'toTop', // fading element id
+            containerHoverID: 'toTopHover', // fading element hover id
+            scrollSpeed: 1200,
+            easingType: 'linear'
+            };
+        */
+
+        $().UItoTop({ easingType: 'easeOutQuart' });
+
+    });
+</script>
+
+

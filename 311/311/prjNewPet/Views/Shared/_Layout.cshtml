@@ -1,0 +1,287 @@
+﻿@using prjNewPet.Models
+
+@{
+    ViewBag.Title = "Home";
+
+    tMember member = Session[CDictionary.SK_LOGINED_USER] as tMember;
+    string welcome = "";
+    string logout = "";
+    string login = "";
+    string memberdata = "";
+    string dash = "";
+    if (member != null)
+    {
+        welcome = "歡迎" + member.fName + "蒞臨";
+        logout = "登出";
+        memberdata = "會員中心";
+        dash = "---";
+    }
+    else
+    {
+        login = "登入";
+
+    }
+
+    //為了分別權限
+}
+
+<!--A Design by W3layouts
+Author: W3layout
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <title>寵愛有家</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <meta name="keywords" content="Cat Club Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <!-- bootstrap-css -->
+
+    <link href="~/oldversion/bootstrap.css" rel="stylesheet" />
+    <!--// bootstrap-css -->
+    <!-- css -->
+    <link rel="stylesheet" href="~/oldversion/style.css" type="text/css" media="all" />
+    <!--// css -->
+    <!-- font-awesome icons -->
+    <link href="~/oldversion/font-awesome.css" rel="stylesheet">
+    <!-- //font-awesome icons -->
+    <link href="~/oldversion/lightbox.css" rel="stylesheet" />
+
+    <!-- font -->
+    <link href='//fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+    <link href="//fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <link href='//fonts.googleapis.com/css?family=Roboto+Condensed:400,700italic,700,400italic,300italic,300' rel='stylesheet' type='text/css'>
+    <!-- //font -->
+    <script src="~/Scripts/jquery-1.11.1.min.js"></script>
+
+    <script src="~/Scripts/bootstrap.js"></script>
+    <script type="text/javascript">
+        jQuery(document).ready(function ($) {
+            $(".scroll").click(function (event) {
+                event.preventDefault();
+                $('html,body').animate({ scrollTop: $(this.hash).offset().top }, 1000);
+            });
+        });
+    </script>
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <![endif]-->
+    <style>
+        /*導覽列遮住區塊解決方法*/
+        body {
+            padding-top: 70px;
+        }
+    </style>
+
+    @RenderSection("petsearch", false)
+    @RenderSection("styles", false)
+    @RenderSection("ShoppingStyles", false)
+
+</head>
+
+<body>
+    <!-- banner -->
+    <div class="banner navbar-fixed-top">
+        <div class="header">
+            <div class="container">
+                <div class="header-left">
+                    <div class="w3layouts-logo">
+                        <h1>
+                            @Html.ActionLink("寵愛有家", "Index", "Home")
+                        </h1>
+                    </div>
+                </div>
+                <div class="header-right">
+                    <div class="top-nav">
+                        <nav class="navbar navbar-default">
+                            <div class="navbar-header">
+                                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                                    <span class="sr-only">Toggle navigation</span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                </button>
+                            </div>
+                            <!-- Collect the nav links, forms, and other content for toggling -->
+                            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                                <ul class="nav navbar-nav">
+                                    <li><i class="fa fa-home">@Html.ActionLink("首頁", "Index", "Home")</i></li>                                    
+                                    <li class="">
+                                        <a href="#" class="dropdown-toggle hvr-bounce-to-bottom " data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">公告欄<span class="caret"></span></a>
+                                        <ul class="dropdown-menu">
+                                            <li>@Html.ActionLink("走失", "BulletinForLostPet", "Bulletin")</li>
+                                            <li>
+                                                @Html.ActionLink("尋獲", "BulletinForFoundPet", "Bulletin")
+                                            </li>
+                                            <li>
+                                                @Html.ActionLink("送養", "BulletinForSentPet", "Bulletin")
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <i class="fa fa-calendar"> @Html.ActionLink("寵友交流", "Index", "Activity")</i>
+                                    </li>
+                                    <li>
+                                        <a href="~/Blog/Total"><i class=" fa  fa-globe">討論區</i></a>
+                                    </li>
+                                    <li>
+                                        <a href="~/CShopping/ShoppingIndex"><i class="fa fa-shopping-cart">寵愛商城</i></a>
+                                    </li>
+                                    @*<li><a href="member.html">@memberdata</a></li>*@
+                                    @*//購物車下拉選單//*@
+                                    <li class="dropdown">
+
+                                        <i class="fa fa-cart-arrow-down fa-2x" id="icon" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
+
+                                        <ul class="dropdown-menu" style="width:450px ; border-radius:15px ; padding:15px ; background-color:beige ;box-shadow: 10px 10px 5px grey;" id="minicartitems"></ul>
+                                    </li>
+                                </ul>
+                                <div class="clearfix"> </div>
+                            </div>
+                        </nav>
+                    </div>
+
+                    <div style="float:right">
+                        <div class="top-nav">
+                            <nav class="navbar navbar-default">
+
+                                <!-- Collect the nav links, forms, and other content for toggling -->
+                                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                                    <ul class="nav navbar-nav">
+
+                                        <li class="">
+                                            <a href="~/Login/Auth" class="btn btn btn-info dropdown-toggle dropdown-toggle-split" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class=" fa  fa-check-square">@login@welcome </i> <span class="caret"></span></a>
+
+                                            <div class="dropdown-menu">
+                                                <a class="dropdown-item" href="~/Login/Auth">@login</a> @*把登入的fa拿掉*@
+
+                                                @{
+                                                    if (member != null)
+                                                    {
+                                                        <p> <a class="dropdown-item" href="~/MemberFrontedit/Edit/?fid=@member.fMemberID">@memberdata</a></p>
+                                                    }
+                                                }
+
+                                                <p><a class="dropdown-item" href="~/Login/forgetMe">@logout</a></p>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                    <div class="clearfix"> </div>
+                                </div>
+                            </nav>
+                        </div>
+
+                        @*<div class="btn btn-info">
+
+                                <a href="~/Login/Auth" style="color:white">@login</a>
+                                <span>@welcome</span>
+                                <span>@dash</span>
+                                <a href="~/Login/forgetMe">@logout</a>
+                            </div>*@
+                        <div class="clearfix"> </div>
+                    </div>
+                    <div class="clearfix"> </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- //banner -->
+    <!-- banner-bottom -->
+    @RenderBody()
+    <!-- //copyright -->
+    <script src="~/Scripts/responsiveslides.min.js"></script>
+    <script src="~/Scripts/SmoothScroll.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/move-top.js"></script>
+    <script type="text/javascript" src="~/Scripts/easing.js"></script>
+
+    <!-- here stars scrolling icon -->
+    <script type="text/javascript">
+        $(document).ready(function () {
+            /*
+                var defaults = {
+                containerID: 'toTop', // fading element id
+                containerHoverID: 'toTopHover', // fading element hover id
+                scrollSpeed: 1200,
+                easingType: 'linear'
+                };
+            */
+
+            $().UItoTop({ easingType: 'easeOutQuart' });
+
+        });
+    </script>
+    <!-- //here ends scrolling icon -->
+    <!-- footer -->
+    <footer>
+        <div class="container">
+            <div class="agileits-w3layouts-footer-grids">
+                <div class="col-md-4 footer-left">
+                    <h3>
+                        <a href="~/Views/Home/Index.cshtml">寵愛有家</a>
+                    </h3>
+                    <div class="footer-social-grids">
+                        
+                    </div>
+                </div>
+                <div class="col-md-4 footer-left">
+                    <h4>導覽列</h4>
+                    <div class="col-md-6 footer-grid-left">
+                        <ul>
+                            <li>
+                                @Html.ActionLink("首頁", "Index", "Home")
+                               
+                            </li>
+                            <li>
+                                @Html.ActionLink("公告欄", "BulletinForLostPet", "Bulletin")
+                            </li>
+                            <li>
+                                @Html.ActionLink("寵友交流", "Index", "Activity")
+                            </li>
+                            <li>
+                                <a href="~/Blog/Total">討論區</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6 footer-grid-left">
+                       
+                    </div>
+                    <div class="clearfix"> </div>
+                </div>
+                <div class="col-md-4 footer-left">
+                   
+                </div>
+                <div class="clearfix"> </div>
+            </div>
+        </div>
+    </footer>
+    <!-- footer -->
+
+    <script>
+         //讀取迷你購物車畫面
+        $('#minicartitems').load('@Url.Action("Minicart", "CShopping")');
+    </script>
+
+    <script>
+        $('ul.nav li.dropdown').hover(function () {
+            $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeIn(500);
+        }, function () {
+            $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeOut(500);
+        });
+    </script>
+
+
+    @RenderSection("scripts", false)
+
+
+
+
+
+</body>
+</html>

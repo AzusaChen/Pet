@@ -1,0 +1,2700 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="dbNewPetModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="tActivity">
+          <Key>
+            <PropertyRef Name="fActivityID" />
+          </Key>
+          <Property Name="fActivityID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="fEffectiveDate" Type="datetime" Nullable="false" />
+          <Property Name="fContext" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="fDMPic" Type="nvarchar(max)" />
+          <Property Name="fClosedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tAdoptMessage">
+          <Key>
+            <PropertyRef Name="fMessageID" />
+          </Key>
+          <Property Name="fMessageID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fPetID" Type="int" Nullable="false" />
+          <Property Name="fMemberID" Type="int" Nullable="false" />
+          <Property Name="fContent" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="tAuthority">
+          <Key>
+            <PropertyRef Name="fAuthorityID" />
+          </Key>
+          <Property Name="fAuthorityID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fName" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tBreed">
+          <Key>
+            <PropertyRef Name="fBreedID" />
+          </Key>
+          <Property Name="fBreedID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="fPetClassID" Type="int" Nullable="false" />
+          <Property Name="fPic" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tCategory">
+          <Key>
+            <PropertyRef Name="fCategoryID" />
+          </Key>
+          <Property Name="fCategoryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="fDescription" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tCity">
+          <Key>
+            <PropertyRef Name="fCityID" />
+          </Key>
+          <Property Name="fCityID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fName" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tComment">
+          <Key>
+            <PropertyRef Name="fId" />
+          </Key>
+          <Property Name="fId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fMemberID" Type="int" />
+          <Property Name="fContent" Type="nvarchar(max)" />
+          <Property Name="fCreateDate" Type="datetime" />
+          <Property Name="fArticleID" Type="int" />
+        </EntityType>
+        <EntityType Name="tCurse">
+          <Key>
+            <PropertyRef Name="fCurseID" />
+          </Key>
+          <Property Name="fCurseID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fName" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tDiscussion">
+          <Key>
+            <PropertyRef Name="fArticleID" />
+          </Key>
+          <Property Name="fArticleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fMemberID" Type="int" />
+          <Property Name="fContent" Type="nvarchar(max)" />
+          <Property Name="fDiscussionClassID" Type="int" Nullable="false" />
+          <Property Name="fTitle" Type="nvarchar(max)" />
+          <Property Name="fCreateDate" Type="datetime" />
+          <Property Name="fPicture" Type="nvarchar" MaxLength="50" />
+          <Property Name="fCommenttime" Type="int" />
+          <Property Name="fReportcheck" Type="bit" />
+          <Property Name="fLike" Type="int" />
+          <Property Name="fLock" Type="bit" />
+        </EntityType>
+        <EntityType Name="tDiscussionClass">
+          <Key>
+            <PropertyRef Name="fDiscussionClassID" />
+          </Key>
+          <Property Name="fDiscussionClassID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fName" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tEmployee">
+          <Key>
+            <PropertyRef Name="fEmployeeID" />
+          </Key>
+          <Property Name="fEmployeeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fAccount" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="fPassword" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tFavorite">
+          <Key>
+            <PropertyRef Name="fFavoriteID" />
+          </Key>
+          <Property Name="fFavoriteID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fMemberID" Type="int" />
+          <Property Name="fArticleID" Type="int" />
+        </EntityType>
+        <EntityType Name="tFoundPet">
+          <Key>
+            <PropertyRef Name="fFoundPetID" />
+          </Key>
+          <Property Name="fFoundPetID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fMemberID" Type="int" />
+          <Property Name="fStatus" Type="nvarchar" MaxLength="50" />
+          <Property Name="fFoundTime" Type="datetime" Nullable="false" />
+          <Property Name="fGender" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="fPetClassID" Type="int" Nullable="false" />
+          <Property Name="fBreedID" Type="int" Nullable="false" />
+          <Property Name="fPetPic" Type="nvarchar(max)" />
+          <Property Name="fSkin" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="fCollar" Type="nvarchar" MaxLength="50" />
+          <Property Name="fChipID" Type="nvarchar" MaxLength="50" />
+          <Property Name="fCityID" Type="int" Nullable="false" />
+          <Property Name="fRegionID" Type="int" Nullable="false" />
+          <Property Name="fRemark" Type="nvarchar(max)" />
+          <Property Name="fSignInDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tLike">
+          <Key>
+            <PropertyRef Name="fLikeID" />
+          </Key>
+          <Property Name="fLikeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fArticleID" Type="int" />
+          <Property Name="fMemberID" Type="int" />
+        </EntityType>
+        <EntityType Name="tLogInWay">
+          <Key>
+            <PropertyRef Name="fLogInWayID" />
+          </Key>
+          <Property Name="fLogInWayID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="fIcon" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tLostPet">
+          <Key>
+            <PropertyRef Name="fLostID" />
+          </Key>
+          <Property Name="fLostID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fPetID" Type="int" Nullable="false" />
+          <Property Name="fLostPlace" Type="nvarchar(max)" />
+          <Property Name="fLostTime" Type="datetime" Nullable="false" />
+          <Property Name="fReward" Type="money" />
+          <Property Name="fRemark" Type="nvarchar(max)" />
+          <Property Name="fCompareLevel" Type="nvarchar" MaxLength="10" />
+          <Property Name="fSignInDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tMember">
+          <Key>
+            <PropertyRef Name="fMemberID" />
+          </Key>
+          <Property Name="fMemberID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="fGender" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="fIDCardNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="fNickName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="fAccount" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="fPassword" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="fBirthDate" Type="datetime" Nullable="false" />
+          <Property Name="fEnconomicStatus" Type="nvarchar" MaxLength="50" />
+          <Property Name="fPhone" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="fEMail" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="fRegisterDate" Type="datetime" />
+          <Property Name="fLogInWayID" Type="int" />
+          <Property Name="fIcon" Type="nvarchar(max)" />
+          <Property Name="fRecentLogInDate" Type="datetime" />
+          <Property Name="fCityID" Type="int" Nullable="false" />
+          <Property Name="fRegionID" Type="int" Nullable="false" />
+          <Property Name="fAddressDetail" Type="nvarchar" MaxLength="100" />
+          <Property Name="fPetCoin" Type="money" />
+        </EntityType>
+        <EntityType Name="tOrder_Detail">
+          <Key>
+            <PropertyRef Name="fOrderID" />
+            <PropertyRef Name="fProductID" />
+          </Key>
+          <Property Name="fOrderID" Type="int" Nullable="false" />
+          <Property Name="fProductID" Type="int" Nullable="false" />
+          <Property Name="fName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="fUnitPrice" Type="money" Nullable="false" />
+          <Property Name="fQuantity" Type="int" Nullable="false" />
+          <Property Name="fPic" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="tOrders">
+          <Key>
+            <PropertyRef Name="fOrderID" />
+          </Key>
+          <Property Name="fOrderID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fMemberID" Type="int" Nullable="false" />
+          <Property Name="fOrderDate" Type="datetime" />
+          <Property Name="fShipOutDate" Type="datetime" />
+          <Property Name="fReceiverName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="fReceiverPhone" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="fCityID" Type="int" Nullable="false" />
+          <Property Name="fRegionID" Type="int" Nullable="false" />
+          <Property Name="fAddressDetail" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="fReceiverMail" Type="nvarchar" MaxLength="100" />
+          <Property Name="fPayWayID" Type="int" Nullable="false" />
+          <Property Name="fStatus" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tPayWay">
+          <Key>
+            <PropertyRef Name="fPayWayID" />
+          </Key>
+          <Property Name="fPayWayID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fName" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tPetClass">
+          <Key>
+            <PropertyRef Name="fPetClassID" />
+          </Key>
+          <Property Name="fPetClassID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fName" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tPetMember">
+          <Key>
+            <PropertyRef Name="fPetID" />
+          </Key>
+          <Property Name="fPetID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fMemberID" Type="int" Nullable="false" />
+          <Property Name="fPetName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="fGender" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="fPetClassID" Type="int" Nullable="false" />
+          <Property Name="fBreedID" Type="int" Nullable="false" />
+          <Property Name="fCityID" Type="int" Nullable="false" />
+          <Property Name="fRegionID" Type="int" Nullable="false" />
+          <Property Name="fPetPic" Type="nvarchar(max)" />
+          <Property Name="fChipID" Type="nvarchar" MaxLength="50" />
+          <Property Name="fCollar" Type="nvarchar" MaxLength="50" />
+          <Property Name="fSkin" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="fStatus" Type="nvarchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="tProduct">
+          <Key>
+            <PropertyRef Name="fProductID" />
+          </Key>
+          <Property Name="fProductID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="fPic" Type="nvarchar(max)" />
+          <Property Name="fCategoryID" Type="int" Nullable="false" />
+          <Property Name="fUnitPrice" Type="money" Nullable="false" />
+          <Property Name="fUnitOnOrder" Type="int" Nullable="false" />
+          <Property Name="fUnitInStock" Type="int" Nullable="false" />
+          <Property Name="fOnShelfDate" Type="datetime" />
+          <Property Name="fSupplierID" Type="int" Nullable="false" />
+          <Property Name="fSafeStock" Type="int" Nullable="false" />
+          <Property Name="fDescription" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="tPurchase">
+          <Key>
+            <PropertyRef Name="fPurchaseID" />
+          </Key>
+          <Property Name="fPurchaseID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fPurchaseDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tPurchase_Detials">
+          <Key>
+            <PropertyRef Name="fPurchaseID" />
+            <PropertyRef Name="fProductID" />
+          </Key>
+          <Property Name="fPurchaseID" Type="int" Nullable="false" />
+          <Property Name="fProductID" Type="int" Nullable="false" />
+          <Property Name="fUnitPrice" Type="money" Nullable="false" />
+          <Property Name="fQuantity" Type="int" Nullable="false" />
+          <Property Name="fName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="fPic" Type="nvarchar(max)" />
+          <Property Name="fSupplierID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tPurchaseShoppingCart">
+          <Key>
+            <PropertyRef Name="fCartID" />
+          </Key>
+          <Property Name="fCartID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fProductID" Type="int" Nullable="false" />
+          <Property Name="fSupplierID" Type="int" Nullable="false" />
+          <Property Name="fUnitPrice" Type="money" Nullable="false" />
+          <Property Name="fQuantity" Type="int" Nullable="false" />
+          <Property Name="fPic" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="tRegion">
+          <Key>
+            <PropertyRef Name="fRegionID" />
+          </Key>
+          <Property Name="fRegionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fName" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="fCityID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tReply">
+          <Key>
+            <PropertyRef Name="fReplyID" />
+          </Key>
+          <Property Name="fReplyID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fArticleID" Type="int" Nullable="false" />
+          <Property Name="fMemberID" Type="int" Nullable="false" />
+          <Property Name="fContext" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tReport">
+          <Key>
+            <PropertyRef Name="fReportID" />
+          </Key>
+          <Property Name="fReportID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fArticleID" Type="int" Nullable="false" />
+          <Property Name="fMemberID" Type="int" Nullable="false" />
+          <Property Name="fReportComment" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="tShipVia">
+          <Key>
+            <PropertyRef Name="fShipViaID" />
+          </Key>
+          <Property Name="fShipViaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fName" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tShoppingCart">
+          <Key>
+            <PropertyRef Name="fCartID" />
+          </Key>
+          <Property Name="fCartID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fProductID" Type="int" Nullable="false" />
+          <Property Name="fMemberID" Type="int" Nullable="false" />
+          <Property Name="fUnitPrice" Type="money" Nullable="false" />
+          <Property Name="fQuantity" Type="int" Nullable="false" />
+          <Property Name="fPic" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tSupplier">
+          <Key>
+            <PropertyRef Name="fSupplierID" />
+          </Key>
+          <Property Name="fSupplierID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="fContactName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="fAddress" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="fCityID" Type="int" Nullable="false" />
+          <Property Name="fRegionID" Type="int" Nullable="false" />
+          <Property Name="fPhone" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_tAdoptMessage_tMember">
+          <End Role="tMember" Type="Self.tMember" Multiplicity="1" />
+          <End Role="tAdoptMessage" Type="Self.tAdoptMessage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tMember">
+              <PropertyRef Name="fMemberID" />
+            </Principal>
+            <Dependent Role="tAdoptMessage">
+              <PropertyRef Name="fMemberID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tAdoptMessage_tPetMember">
+          <End Role="tPetMember" Type="Self.tPetMember" Multiplicity="1" />
+          <End Role="tAdoptMessage" Type="Self.tAdoptMessage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tPetMember">
+              <PropertyRef Name="fPetID" />
+            </Principal>
+            <Dependent Role="tAdoptMessage">
+              <PropertyRef Name="fPetID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tComment_tDiscussion">
+          <End Role="tDiscussion" Type="Self.tDiscussion" Multiplicity="0..1" />
+          <End Role="tComment" Type="Self.tComment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tDiscussion">
+              <PropertyRef Name="fArticleID" />
+            </Principal>
+            <Dependent Role="tComment">
+              <PropertyRef Name="fArticleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tComment_tMember">
+          <End Role="tMember" Type="Self.tMember" Multiplicity="0..1" />
+          <End Role="tComment" Type="Self.tComment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tMember">
+              <PropertyRef Name="fMemberID" />
+            </Principal>
+            <Dependent Role="tComment">
+              <PropertyRef Name="fMemberID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tDiscussion_tDiscussionClass">
+          <End Role="tDiscussionClass" Type="Self.tDiscussionClass" Multiplicity="1" />
+          <End Role="tDiscussion" Type="Self.tDiscussion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tDiscussionClass">
+              <PropertyRef Name="fDiscussionClassID" />
+            </Principal>
+            <Dependent Role="tDiscussion">
+              <PropertyRef Name="fDiscussionClassID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tDiscussion_tMember">
+          <End Role="tMember" Type="Self.tMember" Multiplicity="0..1" />
+          <End Role="tDiscussion" Type="Self.tDiscussion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tMember">
+              <PropertyRef Name="fMemberID" />
+            </Principal>
+            <Dependent Role="tDiscussion">
+              <PropertyRef Name="fMemberID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tFavorite_tDiscussion">
+          <End Role="tDiscussion" Type="Self.tDiscussion" Multiplicity="0..1" />
+          <End Role="tFavorite" Type="Self.tFavorite" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tDiscussion">
+              <PropertyRef Name="fArticleID" />
+            </Principal>
+            <Dependent Role="tFavorite">
+              <PropertyRef Name="fArticleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tFavorite_tMember">
+          <End Role="tMember" Type="Self.tMember" Multiplicity="0..1" />
+          <End Role="tFavorite" Type="Self.tFavorite" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tMember">
+              <PropertyRef Name="fMemberID" />
+            </Principal>
+            <Dependent Role="tFavorite">
+              <PropertyRef Name="fMemberID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tFoundPet_tCity">
+          <End Role="tCity" Type="Self.tCity" Multiplicity="1" />
+          <End Role="tFoundPet" Type="Self.tFoundPet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tCity">
+              <PropertyRef Name="fCityID" />
+            </Principal>
+            <Dependent Role="tFoundPet">
+              <PropertyRef Name="fCityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tFoundPet_tMember">
+          <End Role="tMember" Type="Self.tMember" Multiplicity="0..1" />
+          <End Role="tFoundPet" Type="Self.tFoundPet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tMember">
+              <PropertyRef Name="fMemberID" />
+            </Principal>
+            <Dependent Role="tFoundPet">
+              <PropertyRef Name="fMemberID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tFoundPet_tPetsBreed">
+          <End Role="tBreed" Type="Self.tBreed" Multiplicity="1" />
+          <End Role="tFoundPet" Type="Self.tFoundPet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tBreed">
+              <PropertyRef Name="fBreedID" />
+            </Principal>
+            <Dependent Role="tFoundPet">
+              <PropertyRef Name="fBreedID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tFoundPet_tPetsClass">
+          <End Role="tPetClass" Type="Self.tPetClass" Multiplicity="1" />
+          <End Role="tFoundPet" Type="Self.tFoundPet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tPetClass">
+              <PropertyRef Name="fPetClassID" />
+            </Principal>
+            <Dependent Role="tFoundPet">
+              <PropertyRef Name="fPetClassID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tFoundPet_tRegion">
+          <End Role="tRegion" Type="Self.tRegion" Multiplicity="1" />
+          <End Role="tFoundPet" Type="Self.tFoundPet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tRegion">
+              <PropertyRef Name="fRegionID" />
+            </Principal>
+            <Dependent Role="tFoundPet">
+              <PropertyRef Name="fRegionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tLike_tDiscussion">
+          <End Role="tDiscussion" Type="Self.tDiscussion" Multiplicity="0..1" />
+          <End Role="tLike" Type="Self.tLike" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tDiscussion">
+              <PropertyRef Name="fArticleID" />
+            </Principal>
+            <Dependent Role="tLike">
+              <PropertyRef Name="fArticleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tLike_tMember">
+          <End Role="tMember" Type="Self.tMember" Multiplicity="0..1" />
+          <End Role="tLike" Type="Self.tLike" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tMember">
+              <PropertyRef Name="fMemberID" />
+            </Principal>
+            <Dependent Role="tLike">
+              <PropertyRef Name="fMemberID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tLostPet_tPetMember">
+          <End Role="tPetMember" Type="Self.tPetMember" Multiplicity="1" />
+          <End Role="tLostPet" Type="Self.tLostPet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tPetMember">
+              <PropertyRef Name="fPetID" />
+            </Principal>
+            <Dependent Role="tLostPet">
+              <PropertyRef Name="fPetID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tMember_tCity">
+          <End Role="tCity" Type="Self.tCity" Multiplicity="1" />
+          <End Role="tMember" Type="Self.tMember" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tCity">
+              <PropertyRef Name="fCityID" />
+            </Principal>
+            <Dependent Role="tMember">
+              <PropertyRef Name="fCityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tMember_tRegion">
+          <End Role="tRegion" Type="Self.tRegion" Multiplicity="1" />
+          <End Role="tMember" Type="Self.tMember" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tRegion">
+              <PropertyRef Name="fRegionID" />
+            </Principal>
+            <Dependent Role="tMember">
+              <PropertyRef Name="fRegionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tOrder_Detail_tOrders">
+          <End Role="tOrders" Type="Self.tOrders" Multiplicity="1" />
+          <End Role="tOrder_Detail" Type="Self.tOrder_Detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tOrders">
+              <PropertyRef Name="fOrderID" />
+            </Principal>
+            <Dependent Role="tOrder_Detail">
+              <PropertyRef Name="fOrderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tOrder_Detail_tProduct">
+          <End Role="tProduct" Type="Self.tProduct" Multiplicity="1" />
+          <End Role="tOrder_Detail" Type="Self.tOrder_Detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tProduct">
+              <PropertyRef Name="fProductID" />
+            </Principal>
+            <Dependent Role="tOrder_Detail">
+              <PropertyRef Name="fProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tOrders_tCity">
+          <End Role="tCity" Type="Self.tCity" Multiplicity="1" />
+          <End Role="tOrders" Type="Self.tOrders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tCity">
+              <PropertyRef Name="fCityID" />
+            </Principal>
+            <Dependent Role="tOrders">
+              <PropertyRef Name="fCityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tOrders_tMember">
+          <End Role="tMember" Type="Self.tMember" Multiplicity="1" />
+          <End Role="tOrders" Type="Self.tOrders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tMember">
+              <PropertyRef Name="fMemberID" />
+            </Principal>
+            <Dependent Role="tOrders">
+              <PropertyRef Name="fMemberID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tOrders_tPayWay">
+          <End Role="tPayWay" Type="Self.tPayWay" Multiplicity="1" />
+          <End Role="tOrders" Type="Self.tOrders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tPayWay">
+              <PropertyRef Name="fPayWayID" />
+            </Principal>
+            <Dependent Role="tOrders">
+              <PropertyRef Name="fPayWayID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tOrders_tRegion">
+          <End Role="tRegion" Type="Self.tRegion" Multiplicity="1" />
+          <End Role="tOrders" Type="Self.tOrders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tRegion">
+              <PropertyRef Name="fRegionID" />
+            </Principal>
+            <Dependent Role="tOrders">
+              <PropertyRef Name="fRegionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tPetMember_tCity">
+          <End Role="tCity" Type="Self.tCity" Multiplicity="1" />
+          <End Role="tPetMember" Type="Self.tPetMember" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tCity">
+              <PropertyRef Name="fCityID" />
+            </Principal>
+            <Dependent Role="tPetMember">
+              <PropertyRef Name="fCityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tPetMember_tMember">
+          <End Role="tMember" Type="Self.tMember" Multiplicity="1" />
+          <End Role="tPetMember" Type="Self.tPetMember" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tMember">
+              <PropertyRef Name="fMemberID" />
+            </Principal>
+            <Dependent Role="tPetMember">
+              <PropertyRef Name="fMemberID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tPetMember_tPetsBreed">
+          <End Role="tBreed" Type="Self.tBreed" Multiplicity="1" />
+          <End Role="tPetMember" Type="Self.tPetMember" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tBreed">
+              <PropertyRef Name="fBreedID" />
+            </Principal>
+            <Dependent Role="tPetMember">
+              <PropertyRef Name="fBreedID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tPetMember_tPetsClass">
+          <End Role="tPetClass" Type="Self.tPetClass" Multiplicity="1" />
+          <End Role="tPetMember" Type="Self.tPetMember" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tPetClass">
+              <PropertyRef Name="fPetClassID" />
+            </Principal>
+            <Dependent Role="tPetMember">
+              <PropertyRef Name="fPetClassID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tPetMember_tRegion">
+          <End Role="tRegion" Type="Self.tRegion" Multiplicity="1" />
+          <End Role="tPetMember" Type="Self.tPetMember" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tRegion">
+              <PropertyRef Name="fRegionID" />
+            </Principal>
+            <Dependent Role="tPetMember">
+              <PropertyRef Name="fRegionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tPetsBreed_tPetsClass">
+          <End Role="tPetClass" Type="Self.tPetClass" Multiplicity="1" />
+          <End Role="tBreed" Type="Self.tBreed" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tPetClass">
+              <PropertyRef Name="fPetClassID" />
+            </Principal>
+            <Dependent Role="tBreed">
+              <PropertyRef Name="fPetClassID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tProduct_tCategory">
+          <End Role="tCategory" Type="Self.tCategory" Multiplicity="1" />
+          <End Role="tProduct" Type="Self.tProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tCategory">
+              <PropertyRef Name="fCategoryID" />
+            </Principal>
+            <Dependent Role="tProduct">
+              <PropertyRef Name="fCategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tProduct_tSupplier">
+          <End Role="tSupplier" Type="Self.tSupplier" Multiplicity="1" />
+          <End Role="tProduct" Type="Self.tProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tSupplier">
+              <PropertyRef Name="fSupplierID" />
+            </Principal>
+            <Dependent Role="tProduct">
+              <PropertyRef Name="fSupplierID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tPurchase_Detials_tProduct">
+          <End Role="tProduct" Type="Self.tProduct" Multiplicity="1" />
+          <End Role="tPurchase_Detials" Type="Self.tPurchase_Detials" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tProduct">
+              <PropertyRef Name="fProductID" />
+            </Principal>
+            <Dependent Role="tPurchase_Detials">
+              <PropertyRef Name="fProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tPurchase_Detials_tPurchase">
+          <End Role="tPurchase" Type="Self.tPurchase" Multiplicity="1" />
+          <End Role="tPurchase_Detials" Type="Self.tPurchase_Detials" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tPurchase">
+              <PropertyRef Name="fPurchaseID" />
+            </Principal>
+            <Dependent Role="tPurchase_Detials">
+              <PropertyRef Name="fPurchaseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tPurchase_Detials_tSupplier">
+          <End Role="tSupplier" Type="Self.tSupplier" Multiplicity="1" />
+          <End Role="tPurchase_Detials" Type="Self.tPurchase_Detials" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tSupplier">
+              <PropertyRef Name="fSupplierID" />
+            </Principal>
+            <Dependent Role="tPurchase_Detials">
+              <PropertyRef Name="fSupplierID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tPurchaseShoppingCart_tProduct">
+          <End Role="tProduct" Type="Self.tProduct" Multiplicity="1" />
+          <End Role="tPurchaseShoppingCart" Type="Self.tPurchaseShoppingCart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tProduct">
+              <PropertyRef Name="fProductID" />
+            </Principal>
+            <Dependent Role="tPurchaseShoppingCart">
+              <PropertyRef Name="fProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tPurchaseShoppingCart_tSupplier">
+          <End Role="tSupplier" Type="Self.tSupplier" Multiplicity="1" />
+          <End Role="tPurchaseShoppingCart" Type="Self.tPurchaseShoppingCart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tSupplier">
+              <PropertyRef Name="fSupplierID" />
+            </Principal>
+            <Dependent Role="tPurchaseShoppingCart">
+              <PropertyRef Name="fSupplierID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tRegion_tCity">
+          <End Role="tCity" Type="Self.tCity" Multiplicity="1" />
+          <End Role="tRegion" Type="Self.tRegion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tCity">
+              <PropertyRef Name="fCityID" />
+            </Principal>
+            <Dependent Role="tRegion">
+              <PropertyRef Name="fCityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tReport_tDiscussion">
+          <End Role="tDiscussion" Type="Self.tDiscussion" Multiplicity="1" />
+          <End Role="tReport" Type="Self.tReport" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tDiscussion">
+              <PropertyRef Name="fArticleID" />
+            </Principal>
+            <Dependent Role="tReport">
+              <PropertyRef Name="fArticleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tReport_tMember">
+          <End Role="tMember" Type="Self.tMember" Multiplicity="1" />
+          <End Role="tReport" Type="Self.tReport" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tMember">
+              <PropertyRef Name="fMemberID" />
+            </Principal>
+            <Dependent Role="tReport">
+              <PropertyRef Name="fMemberID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tShoppingCart_tMember">
+          <End Role="tMember" Type="Self.tMember" Multiplicity="1" />
+          <End Role="tShoppingCart" Type="Self.tShoppingCart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tMember">
+              <PropertyRef Name="fMemberID" />
+            </Principal>
+            <Dependent Role="tShoppingCart">
+              <PropertyRef Name="fMemberID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tShoppingCart_tProduct">
+          <End Role="tProduct" Type="Self.tProduct" Multiplicity="1" />
+          <End Role="tShoppingCart" Type="Self.tShoppingCart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tProduct">
+              <PropertyRef Name="fProductID" />
+            </Principal>
+            <Dependent Role="tShoppingCart">
+              <PropertyRef Name="fProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tSupplier_tCity">
+          <End Role="tCity" Type="Self.tCity" Multiplicity="1" />
+          <End Role="tSupplier" Type="Self.tSupplier" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tCity">
+              <PropertyRef Name="fCityID" />
+            </Principal>
+            <Dependent Role="tSupplier">
+              <PropertyRef Name="fCityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tSupplier_tRegion">
+          <End Role="tRegion" Type="Self.tRegion" Multiplicity="1" />
+          <End Role="tSupplier" Type="Self.tSupplier" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tRegion">
+              <PropertyRef Name="fRegionID" />
+            </Principal>
+            <Dependent Role="tSupplier">
+              <PropertyRef Name="fRegionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="dbNewPetModelStoreContainer">
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tActivity" EntityType="Self.tActivity" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tAdoptMessage" EntityType="Self.tAdoptMessage" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tAuthority" EntityType="Self.tAuthority" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tBreed" EntityType="Self.tBreed" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tCategory" EntityType="Self.tCategory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tCity" EntityType="Self.tCity" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tComment" EntityType="Self.tComment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tCurse" EntityType="Self.tCurse" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tDiscussion" EntityType="Self.tDiscussion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tDiscussionClass" EntityType="Self.tDiscussionClass" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tEmployee" EntityType="Self.tEmployee" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tFavorite" EntityType="Self.tFavorite" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tFoundPet" EntityType="Self.tFoundPet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tLike" EntityType="Self.tLike" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tLogInWay" EntityType="Self.tLogInWay" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tLostPet" EntityType="Self.tLostPet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tMember" EntityType="Self.tMember" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tOrder_Detail" EntityType="Self.tOrder_Detail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tOrders" EntityType="Self.tOrders" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tPayWay" EntityType="Self.tPayWay" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tPetClass" EntityType="Self.tPetClass" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tPetMember" EntityType="Self.tPetMember" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tProduct" EntityType="Self.tProduct" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tPurchase" EntityType="Self.tPurchase" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tPurchase_Detials" EntityType="Self.tPurchase_Detials" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tPurchaseShoppingCart" EntityType="Self.tPurchaseShoppingCart" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tRegion" EntityType="Self.tRegion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tReply" EntityType="Self.tReply" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tReport" EntityType="Self.tReport" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tShipVia" EntityType="Self.tShipVia" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tShoppingCart" EntityType="Self.tShoppingCart" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tSupplier" EntityType="Self.tSupplier" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_tAdoptMessage_tMember" Association="Self.FK_tAdoptMessage_tMember">
+            <End Role="tMember" EntitySet="tMember" />
+            <End Role="tAdoptMessage" EntitySet="tAdoptMessage" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tAdoptMessage_tPetMember" Association="Self.FK_tAdoptMessage_tPetMember">
+            <End Role="tPetMember" EntitySet="tPetMember" />
+            <End Role="tAdoptMessage" EntitySet="tAdoptMessage" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tComment_tDiscussion" Association="Self.FK_tComment_tDiscussion">
+            <End Role="tDiscussion" EntitySet="tDiscussion" />
+            <End Role="tComment" EntitySet="tComment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tComment_tMember" Association="Self.FK_tComment_tMember">
+            <End Role="tMember" EntitySet="tMember" />
+            <End Role="tComment" EntitySet="tComment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tDiscussion_tDiscussionClass" Association="Self.FK_tDiscussion_tDiscussionClass">
+            <End Role="tDiscussionClass" EntitySet="tDiscussionClass" />
+            <End Role="tDiscussion" EntitySet="tDiscussion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tDiscussion_tMember" Association="Self.FK_tDiscussion_tMember">
+            <End Role="tMember" EntitySet="tMember" />
+            <End Role="tDiscussion" EntitySet="tDiscussion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tFavorite_tDiscussion" Association="Self.FK_tFavorite_tDiscussion">
+            <End Role="tDiscussion" EntitySet="tDiscussion" />
+            <End Role="tFavorite" EntitySet="tFavorite" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tFavorite_tMember" Association="Self.FK_tFavorite_tMember">
+            <End Role="tMember" EntitySet="tMember" />
+            <End Role="tFavorite" EntitySet="tFavorite" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tFoundPet_tCity" Association="Self.FK_tFoundPet_tCity">
+            <End Role="tCity" EntitySet="tCity" />
+            <End Role="tFoundPet" EntitySet="tFoundPet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tFoundPet_tMember" Association="Self.FK_tFoundPet_tMember">
+            <End Role="tMember" EntitySet="tMember" />
+            <End Role="tFoundPet" EntitySet="tFoundPet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tFoundPet_tPetsBreed" Association="Self.FK_tFoundPet_tPetsBreed">
+            <End Role="tBreed" EntitySet="tBreed" />
+            <End Role="tFoundPet" EntitySet="tFoundPet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tFoundPet_tPetsClass" Association="Self.FK_tFoundPet_tPetsClass">
+            <End Role="tPetClass" EntitySet="tPetClass" />
+            <End Role="tFoundPet" EntitySet="tFoundPet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tFoundPet_tRegion" Association="Self.FK_tFoundPet_tRegion">
+            <End Role="tRegion" EntitySet="tRegion" />
+            <End Role="tFoundPet" EntitySet="tFoundPet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tLike_tDiscussion" Association="Self.FK_tLike_tDiscussion">
+            <End Role="tDiscussion" EntitySet="tDiscussion" />
+            <End Role="tLike" EntitySet="tLike" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tLike_tMember" Association="Self.FK_tLike_tMember">
+            <End Role="tMember" EntitySet="tMember" />
+            <End Role="tLike" EntitySet="tLike" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tLostPet_tPetMember" Association="Self.FK_tLostPet_tPetMember">
+            <End Role="tPetMember" EntitySet="tPetMember" />
+            <End Role="tLostPet" EntitySet="tLostPet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tMember_tCity" Association="Self.FK_tMember_tCity">
+            <End Role="tCity" EntitySet="tCity" />
+            <End Role="tMember" EntitySet="tMember" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tMember_tRegion" Association="Self.FK_tMember_tRegion">
+            <End Role="tRegion" EntitySet="tRegion" />
+            <End Role="tMember" EntitySet="tMember" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tOrder_Detail_tOrders" Association="Self.FK_tOrder_Detail_tOrders">
+            <End Role="tOrders" EntitySet="tOrders" />
+            <End Role="tOrder_Detail" EntitySet="tOrder_Detail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tOrder_Detail_tProduct" Association="Self.FK_tOrder_Detail_tProduct">
+            <End Role="tProduct" EntitySet="tProduct" />
+            <End Role="tOrder_Detail" EntitySet="tOrder_Detail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tOrders_tCity" Association="Self.FK_tOrders_tCity">
+            <End Role="tCity" EntitySet="tCity" />
+            <End Role="tOrders" EntitySet="tOrders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tOrders_tMember" Association="Self.FK_tOrders_tMember">
+            <End Role="tMember" EntitySet="tMember" />
+            <End Role="tOrders" EntitySet="tOrders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tOrders_tPayWay" Association="Self.FK_tOrders_tPayWay">
+            <End Role="tPayWay" EntitySet="tPayWay" />
+            <End Role="tOrders" EntitySet="tOrders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tOrders_tRegion" Association="Self.FK_tOrders_tRegion">
+            <End Role="tRegion" EntitySet="tRegion" />
+            <End Role="tOrders" EntitySet="tOrders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tPetMember_tCity" Association="Self.FK_tPetMember_tCity">
+            <End Role="tCity" EntitySet="tCity" />
+            <End Role="tPetMember" EntitySet="tPetMember" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tPetMember_tMember" Association="Self.FK_tPetMember_tMember">
+            <End Role="tMember" EntitySet="tMember" />
+            <End Role="tPetMember" EntitySet="tPetMember" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tPetMember_tPetsBreed" Association="Self.FK_tPetMember_tPetsBreed">
+            <End Role="tBreed" EntitySet="tBreed" />
+            <End Role="tPetMember" EntitySet="tPetMember" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tPetMember_tPetsClass" Association="Self.FK_tPetMember_tPetsClass">
+            <End Role="tPetClass" EntitySet="tPetClass" />
+            <End Role="tPetMember" EntitySet="tPetMember" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tPetMember_tRegion" Association="Self.FK_tPetMember_tRegion">
+            <End Role="tRegion" EntitySet="tRegion" />
+            <End Role="tPetMember" EntitySet="tPetMember" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tPetsBreed_tPetsClass" Association="Self.FK_tPetsBreed_tPetsClass">
+            <End Role="tPetClass" EntitySet="tPetClass" />
+            <End Role="tBreed" EntitySet="tBreed" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tProduct_tCategory" Association="Self.FK_tProduct_tCategory">
+            <End Role="tCategory" EntitySet="tCategory" />
+            <End Role="tProduct" EntitySet="tProduct" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tProduct_tSupplier" Association="Self.FK_tProduct_tSupplier">
+            <End Role="tSupplier" EntitySet="tSupplier" />
+            <End Role="tProduct" EntitySet="tProduct" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tPurchase_Detials_tProduct" Association="Self.FK_tPurchase_Detials_tProduct">
+            <End Role="tProduct" EntitySet="tProduct" />
+            <End Role="tPurchase_Detials" EntitySet="tPurchase_Detials" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tPurchase_Detials_tPurchase" Association="Self.FK_tPurchase_Detials_tPurchase">
+            <End Role="tPurchase" EntitySet="tPurchase" />
+            <End Role="tPurchase_Detials" EntitySet="tPurchase_Detials" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tPurchase_Detials_tSupplier" Association="Self.FK_tPurchase_Detials_tSupplier">
+            <End Role="tSupplier" EntitySet="tSupplier" />
+            <End Role="tPurchase_Detials" EntitySet="tPurchase_Detials" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tPurchaseShoppingCart_tProduct" Association="Self.FK_tPurchaseShoppingCart_tProduct">
+            <End Role="tProduct" EntitySet="tProduct" />
+            <End Role="tPurchaseShoppingCart" EntitySet="tPurchaseShoppingCart" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tPurchaseShoppingCart_tSupplier" Association="Self.FK_tPurchaseShoppingCart_tSupplier">
+            <End Role="tSupplier" EntitySet="tSupplier" />
+            <End Role="tPurchaseShoppingCart" EntitySet="tPurchaseShoppingCart" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tRegion_tCity" Association="Self.FK_tRegion_tCity">
+            <End Role="tCity" EntitySet="tCity" />
+            <End Role="tRegion" EntitySet="tRegion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tReport_tDiscussion" Association="Self.FK_tReport_tDiscussion">
+            <End Role="tDiscussion" EntitySet="tDiscussion" />
+            <End Role="tReport" EntitySet="tReport" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tReport_tMember" Association="Self.FK_tReport_tMember">
+            <End Role="tMember" EntitySet="tMember" />
+            <End Role="tReport" EntitySet="tReport" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tShoppingCart_tMember" Association="Self.FK_tShoppingCart_tMember">
+            <End Role="tMember" EntitySet="tMember" />
+            <End Role="tShoppingCart" EntitySet="tShoppingCart" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tShoppingCart_tProduct" Association="Self.FK_tShoppingCart_tProduct">
+            <End Role="tProduct" EntitySet="tProduct" />
+            <End Role="tShoppingCart" EntitySet="tShoppingCart" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tSupplier_tCity" Association="Self.FK_tSupplier_tCity">
+            <End Role="tCity" EntitySet="tCity" />
+            <End Role="tSupplier" EntitySet="tSupplier" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tSupplier_tRegion" Association="Self.FK_tSupplier_tRegion">
+            <End Role="tRegion" EntitySet="tRegion" />
+            <End Role="tSupplier" EntitySet="tSupplier" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="dbNewPetModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="dbNewPetEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="sysdiagrams" EntityType="dbNewPetModel.sysdiagram" />
+          <EntitySet Name="tActivities" EntityType="dbNewPetModel.tActivity" />
+          <EntitySet Name="tAdoptMessages" EntityType="dbNewPetModel.tAdoptMessage" />
+          <EntitySet Name="tAuthorities" EntityType="dbNewPetModel.tAuthority" />
+          <EntitySet Name="tBreeds" EntityType="dbNewPetModel.tBreed" />
+          <EntitySet Name="tCategories" EntityType="dbNewPetModel.tCategory" />
+          <EntitySet Name="tCities" EntityType="dbNewPetModel.tCity" />
+          <EntitySet Name="tComments" EntityType="dbNewPetModel.tComment" />
+          <EntitySet Name="tCurses" EntityType="dbNewPetModel.tCurse" />
+          <EntitySet Name="tDiscussions" EntityType="dbNewPetModel.tDiscussion" />
+          <EntitySet Name="tDiscussionClasses" EntityType="dbNewPetModel.tDiscussionClass" />
+          <EntitySet Name="tEmployees" EntityType="dbNewPetModel.tEmployee" />
+          <EntitySet Name="tFavorites" EntityType="dbNewPetModel.tFavorite" />
+          <EntitySet Name="tFoundPets" EntityType="dbNewPetModel.tFoundPet" />
+          <EntitySet Name="tLikes" EntityType="dbNewPetModel.tLike" />
+          <EntitySet Name="tLogInWays" EntityType="dbNewPetModel.tLogInWay" />
+          <EntitySet Name="tLostPets" EntityType="dbNewPetModel.tLostPet" />
+          <EntitySet Name="tMembers" EntityType="dbNewPetModel.tMember" />
+          <EntitySet Name="tOrder_Detail" EntityType="dbNewPetModel.tOrder_Detail" />
+          <EntitySet Name="tOrders" EntityType="dbNewPetModel.tOrder" />
+          <EntitySet Name="tPayWays" EntityType="dbNewPetModel.tPayWay" />
+          <EntitySet Name="tPetClasses" EntityType="dbNewPetModel.tPetClass" />
+          <EntitySet Name="tPetMembers" EntityType="dbNewPetModel.tPetMember" />
+          <EntitySet Name="tProducts" EntityType="dbNewPetModel.tProduct" />
+          <EntitySet Name="tPurchases" EntityType="dbNewPetModel.tPurchase" />
+          <EntitySet Name="tPurchase_Detials" EntityType="dbNewPetModel.tPurchase_Detials" />
+          <EntitySet Name="tPurchaseShoppingCarts" EntityType="dbNewPetModel.tPurchaseShoppingCart" />
+          <EntitySet Name="tRegions" EntityType="dbNewPetModel.tRegion" />
+          <EntitySet Name="tReplies" EntityType="dbNewPetModel.tReply" />
+          <EntitySet Name="tReports" EntityType="dbNewPetModel.tReport" />
+          <EntitySet Name="tShipVias" EntityType="dbNewPetModel.tShipVia" />
+          <EntitySet Name="tShoppingCarts" EntityType="dbNewPetModel.tShoppingCart" />
+          <EntitySet Name="tSuppliers" EntityType="dbNewPetModel.tSupplier" />
+          <AssociationSet Name="FK_tAdoptMessage_tMember" Association="dbNewPetModel.FK_tAdoptMessage_tMember">
+            <End Role="tMember" EntitySet="tMembers" />
+            <End Role="tAdoptMessage" EntitySet="tAdoptMessages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tAdoptMessage_tPetMember" Association="dbNewPetModel.FK_tAdoptMessage_tPetMember">
+            <End Role="tPetMember" EntitySet="tPetMembers" />
+            <End Role="tAdoptMessage" EntitySet="tAdoptMessages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tFoundPet_tPetsBreed" Association="dbNewPetModel.FK_tFoundPet_tPetsBreed">
+            <End Role="tBreed" EntitySet="tBreeds" />
+            <End Role="tFoundPet" EntitySet="tFoundPets" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tPetMember_tPetsBreed" Association="dbNewPetModel.FK_tPetMember_tPetsBreed">
+            <End Role="tBreed" EntitySet="tBreeds" />
+            <End Role="tPetMember" EntitySet="tPetMembers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tPetsBreed_tPetsClass" Association="dbNewPetModel.FK_tPetsBreed_tPetsClass">
+            <End Role="tPetClass" EntitySet="tPetClasses" />
+            <End Role="tBreed" EntitySet="tBreeds" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tProduct_tCategory" Association="dbNewPetModel.FK_tProduct_tCategory">
+            <End Role="tCategory" EntitySet="tCategories" />
+            <End Role="tProduct" EntitySet="tProducts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tFoundPet_tCity" Association="dbNewPetModel.FK_tFoundPet_tCity">
+            <End Role="tCity" EntitySet="tCities" />
+            <End Role="tFoundPet" EntitySet="tFoundPets" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tMember_tCity" Association="dbNewPetModel.FK_tMember_tCity">
+            <End Role="tCity" EntitySet="tCities" />
+            <End Role="tMember" EntitySet="tMembers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tOrders_tCity" Association="dbNewPetModel.FK_tOrders_tCity">
+            <End Role="tCity" EntitySet="tCities" />
+            <End Role="tOrder" EntitySet="tOrders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tPetMember_tCity" Association="dbNewPetModel.FK_tPetMember_tCity">
+            <End Role="tCity" EntitySet="tCities" />
+            <End Role="tPetMember" EntitySet="tPetMembers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tRegion_tCity" Association="dbNewPetModel.FK_tRegion_tCity">
+            <End Role="tCity" EntitySet="tCities" />
+            <End Role="tRegion" EntitySet="tRegions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tSupplier_tCity" Association="dbNewPetModel.FK_tSupplier_tCity">
+            <End Role="tCity" EntitySet="tCities" />
+            <End Role="tSupplier" EntitySet="tSuppliers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tComment_tDiscussion" Association="dbNewPetModel.FK_tComment_tDiscussion">
+            <End Role="tDiscussion" EntitySet="tDiscussions" />
+            <End Role="tComment" EntitySet="tComments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tComment_tMember" Association="dbNewPetModel.FK_tComment_tMember">
+            <End Role="tMember" EntitySet="tMembers" />
+            <End Role="tComment" EntitySet="tComments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tDiscussion_tDiscussionClass" Association="dbNewPetModel.FK_tDiscussion_tDiscussionClass">
+            <End Role="tDiscussionClass" EntitySet="tDiscussionClasses" />
+            <End Role="tDiscussion" EntitySet="tDiscussions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tDiscussion_tMember" Association="dbNewPetModel.FK_tDiscussion_tMember">
+            <End Role="tMember" EntitySet="tMembers" />
+            <End Role="tDiscussion" EntitySet="tDiscussions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tFavorite_tDiscussion" Association="dbNewPetModel.FK_tFavorite_tDiscussion">
+            <End Role="tDiscussion" EntitySet="tDiscussions" />
+            <End Role="tFavorite" EntitySet="tFavorites" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tLike_tDiscussion" Association="dbNewPetModel.FK_tLike_tDiscussion">
+            <End Role="tDiscussion" EntitySet="tDiscussions" />
+            <End Role="tLike" EntitySet="tLikes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tReport_tDiscussion" Association="dbNewPetModel.FK_tReport_tDiscussion">
+            <End Role="tDiscussion" EntitySet="tDiscussions" />
+            <End Role="tReport" EntitySet="tReports" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tFavorite_tMember" Association="dbNewPetModel.FK_tFavorite_tMember">
+            <End Role="tMember" EntitySet="tMembers" />
+            <End Role="tFavorite" EntitySet="tFavorites" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tFoundPet_tMember" Association="dbNewPetModel.FK_tFoundPet_tMember">
+            <End Role="tMember" EntitySet="tMembers" />
+            <End Role="tFoundPet" EntitySet="tFoundPets" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tFoundPet_tPetsClass" Association="dbNewPetModel.FK_tFoundPet_tPetsClass">
+            <End Role="tPetClass" EntitySet="tPetClasses" />
+            <End Role="tFoundPet" EntitySet="tFoundPets" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tFoundPet_tRegion" Association="dbNewPetModel.FK_tFoundPet_tRegion">
+            <End Role="tRegion" EntitySet="tRegions" />
+            <End Role="tFoundPet" EntitySet="tFoundPets" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tLike_tMember" Association="dbNewPetModel.FK_tLike_tMember">
+            <End Role="tMember" EntitySet="tMembers" />
+            <End Role="tLike" EntitySet="tLikes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tLostPet_tPetMember" Association="dbNewPetModel.FK_tLostPet_tPetMember">
+            <End Role="tPetMember" EntitySet="tPetMembers" />
+            <End Role="tLostPet" EntitySet="tLostPets" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tMember_tRegion" Association="dbNewPetModel.FK_tMember_tRegion">
+            <End Role="tRegion" EntitySet="tRegions" />
+            <End Role="tMember" EntitySet="tMembers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tOrders_tMember" Association="dbNewPetModel.FK_tOrders_tMember">
+            <End Role="tMember" EntitySet="tMembers" />
+            <End Role="tOrder" EntitySet="tOrders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tPetMember_tMember" Association="dbNewPetModel.FK_tPetMember_tMember">
+            <End Role="tMember" EntitySet="tMembers" />
+            <End Role="tPetMember" EntitySet="tPetMembers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tReport_tMember" Association="dbNewPetModel.FK_tReport_tMember">
+            <End Role="tMember" EntitySet="tMembers" />
+            <End Role="tReport" EntitySet="tReports" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tShoppingCart_tMember" Association="dbNewPetModel.FK_tShoppingCart_tMember">
+            <End Role="tMember" EntitySet="tMembers" />
+            <End Role="tShoppingCart" EntitySet="tShoppingCarts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tOrder_Detail_tOrders" Association="dbNewPetModel.FK_tOrder_Detail_tOrders">
+            <End Role="tOrder" EntitySet="tOrders" />
+            <End Role="tOrder_Detail" EntitySet="tOrder_Detail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tOrder_Detail_tProduct" Association="dbNewPetModel.FK_tOrder_Detail_tProduct">
+            <End Role="tProduct" EntitySet="tProducts" />
+            <End Role="tOrder_Detail" EntitySet="tOrder_Detail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tOrders_tPayWay" Association="dbNewPetModel.FK_tOrders_tPayWay">
+            <End Role="tPayWay" EntitySet="tPayWays" />
+            <End Role="tOrder" EntitySet="tOrders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tOrders_tRegion" Association="dbNewPetModel.FK_tOrders_tRegion">
+            <End Role="tRegion" EntitySet="tRegions" />
+            <End Role="tOrder" EntitySet="tOrders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tPetMember_tPetsClass" Association="dbNewPetModel.FK_tPetMember_tPetsClass">
+            <End Role="tPetClass" EntitySet="tPetClasses" />
+            <End Role="tPetMember" EntitySet="tPetMembers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tPetMember_tRegion" Association="dbNewPetModel.FK_tPetMember_tRegion">
+            <End Role="tRegion" EntitySet="tRegions" />
+            <End Role="tPetMember" EntitySet="tPetMembers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tProduct_tSupplier" Association="dbNewPetModel.FK_tProduct_tSupplier">
+            <End Role="tSupplier" EntitySet="tSuppliers" />
+            <End Role="tProduct" EntitySet="tProducts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tPurchase_Detials_tProduct" Association="dbNewPetModel.FK_tPurchase_Detials_tProduct">
+            <End Role="tProduct" EntitySet="tProducts" />
+            <End Role="tPurchase_Detials" EntitySet="tPurchase_Detials" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tPurchaseShoppingCart_tProduct" Association="dbNewPetModel.FK_tPurchaseShoppingCart_tProduct">
+            <End Role="tProduct" EntitySet="tProducts" />
+            <End Role="tPurchaseShoppingCart" EntitySet="tPurchaseShoppingCarts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tShoppingCart_tProduct" Association="dbNewPetModel.FK_tShoppingCart_tProduct">
+            <End Role="tProduct" EntitySet="tProducts" />
+            <End Role="tShoppingCart" EntitySet="tShoppingCarts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tPurchase_Detials_tPurchase" Association="dbNewPetModel.FK_tPurchase_Detials_tPurchase">
+            <End Role="tPurchase" EntitySet="tPurchases" />
+            <End Role="tPurchase_Detials" EntitySet="tPurchase_Detials" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tPurchase_Detials_tSupplier" Association="dbNewPetModel.FK_tPurchase_Detials_tSupplier">
+            <End Role="tSupplier" EntitySet="tSuppliers" />
+            <End Role="tPurchase_Detials" EntitySet="tPurchase_Detials" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tPurchaseShoppingCart_tSupplier" Association="dbNewPetModel.FK_tPurchaseShoppingCart_tSupplier">
+            <End Role="tSupplier" EntitySet="tSuppliers" />
+            <End Role="tPurchaseShoppingCart" EntitySet="tPurchaseShoppingCarts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tSupplier_tRegion" Association="dbNewPetModel.FK_tSupplier_tRegion">
+            <End Role="tRegion" EntitySet="tRegions" />
+            <End Role="tSupplier" EntitySet="tSuppliers" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="tActivity">
+          <Key>
+            <PropertyRef Name="fActivityID" />
+          </Key>
+          <Property Name="fActivityID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="fEffectiveDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="fContext" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="fDMPic" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="fClosedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="tAdoptMessage">
+          <Key>
+            <PropertyRef Name="fMessageID" />
+          </Key>
+          <Property Name="fMessageID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fPetID" Type="Int32" Nullable="false" />
+          <Property Name="fMemberID" Type="Int32" Nullable="false" />
+          <Property Name="fContent" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tMember" Relationship="dbNewPetModel.FK_tAdoptMessage_tMember" FromRole="tAdoptMessage" ToRole="tMember" />
+          <NavigationProperty Name="tPetMember" Relationship="dbNewPetModel.FK_tAdoptMessage_tPetMember" FromRole="tAdoptMessage" ToRole="tPetMember" />
+        </EntityType>
+        <EntityType Name="tAuthority">
+          <Key>
+            <PropertyRef Name="fAuthorityID" />
+          </Key>
+          <Property Name="fAuthorityID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tBreed">
+          <Key>
+            <PropertyRef Name="fBreedID" />
+          </Key>
+          <Property Name="fBreedID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="fPetClassID" Type="Int32" Nullable="false" />
+          <Property Name="fPic" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tFoundPets" Relationship="dbNewPetModel.FK_tFoundPet_tPetsBreed" FromRole="tBreed" ToRole="tFoundPet" />
+          <NavigationProperty Name="tPetMembers" Relationship="dbNewPetModel.FK_tPetMember_tPetsBreed" FromRole="tBreed" ToRole="tPetMember" />
+          <NavigationProperty Name="tPetClass" Relationship="dbNewPetModel.FK_tPetsBreed_tPetsClass" FromRole="tBreed" ToRole="tPetClass" />
+        </EntityType>
+        <EntityType Name="tCategory">
+          <Key>
+            <PropertyRef Name="fCategoryID" />
+          </Key>
+          <Property Name="fCategoryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="fDescription" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tProducts" Relationship="dbNewPetModel.FK_tProduct_tCategory" FromRole="tCategory" ToRole="tProduct" />
+        </EntityType>
+        <EntityType Name="tCity">
+          <Key>
+            <PropertyRef Name="fCityID" />
+          </Key>
+          <Property Name="fCityID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tFoundPets" Relationship="dbNewPetModel.FK_tFoundPet_tCity" FromRole="tCity" ToRole="tFoundPet" />
+          <NavigationProperty Name="tMembers" Relationship="dbNewPetModel.FK_tMember_tCity" FromRole="tCity" ToRole="tMember" />
+          <NavigationProperty Name="tOrders" Relationship="dbNewPetModel.FK_tOrders_tCity" FromRole="tCity" ToRole="tOrder" />
+          <NavigationProperty Name="tPetMembers" Relationship="dbNewPetModel.FK_tPetMember_tCity" FromRole="tCity" ToRole="tPetMember" />
+          <NavigationProperty Name="tRegions" Relationship="dbNewPetModel.FK_tRegion_tCity" FromRole="tCity" ToRole="tRegion" />
+          <NavigationProperty Name="tSuppliers" Relationship="dbNewPetModel.FK_tSupplier_tCity" FromRole="tCity" ToRole="tSupplier" />
+        </EntityType>
+        <EntityType Name="tComment">
+          <Key>
+            <PropertyRef Name="fId" />
+          </Key>
+          <Property Name="fId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fMemberID" Type="Int32" />
+          <Property Name="fContent" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="fCreateDate" Type="DateTime" Precision="3" />
+          <Property Name="fArticleID" Type="Int32" />
+          <NavigationProperty Name="tDiscussion" Relationship="dbNewPetModel.FK_tComment_tDiscussion" FromRole="tComment" ToRole="tDiscussion" />
+          <NavigationProperty Name="tMember" Relationship="dbNewPetModel.FK_tComment_tMember" FromRole="tComment" ToRole="tMember" />
+        </EntityType>
+        <EntityType Name="tCurse">
+          <Key>
+            <PropertyRef Name="fCurseID" />
+          </Key>
+          <Property Name="fCurseID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tDiscussion">
+          <Key>
+            <PropertyRef Name="fArticleID" />
+          </Key>
+          <Property Name="fArticleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fMemberID" Type="Int32" />
+          <Property Name="fContent" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="fDiscussionClassID" Type="Int32" Nullable="false" />
+          <Property Name="fTitle" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="fCreateDate" Type="DateTime" Precision="3" />
+          <Property Name="fPicture" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="fCommenttime" Type="Int32" />
+          <Property Name="fReportcheck" Type="Boolean" />
+          <Property Name="fLike" Type="Int32" />
+          <Property Name="fLock" Type="Boolean" />
+          <NavigationProperty Name="tComments" Relationship="dbNewPetModel.FK_tComment_tDiscussion" FromRole="tDiscussion" ToRole="tComment" />
+          <NavigationProperty Name="tDiscussionClass" Relationship="dbNewPetModel.FK_tDiscussion_tDiscussionClass" FromRole="tDiscussion" ToRole="tDiscussionClass" />
+          <NavigationProperty Name="tMember" Relationship="dbNewPetModel.FK_tDiscussion_tMember" FromRole="tDiscussion" ToRole="tMember" />
+          <NavigationProperty Name="tFavorites" Relationship="dbNewPetModel.FK_tFavorite_tDiscussion" FromRole="tDiscussion" ToRole="tFavorite" />
+          <NavigationProperty Name="tLikes" Relationship="dbNewPetModel.FK_tLike_tDiscussion" FromRole="tDiscussion" ToRole="tLike" />
+          <NavigationProperty Name="tReports" Relationship="dbNewPetModel.FK_tReport_tDiscussion" FromRole="tDiscussion" ToRole="tReport" />
+        </EntityType>
+        <EntityType Name="tDiscussionClass">
+          <Key>
+            <PropertyRef Name="fDiscussionClassID" />
+          </Key>
+          <Property Name="fDiscussionClassID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tDiscussions" Relationship="dbNewPetModel.FK_tDiscussion_tDiscussionClass" FromRole="tDiscussionClass" ToRole="tDiscussion" />
+        </EntityType>
+        <EntityType Name="tEmployee">
+          <Key>
+            <PropertyRef Name="fEmployeeID" />
+          </Key>
+          <Property Name="fEmployeeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fAccount" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="fPassword" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tFavorite">
+          <Key>
+            <PropertyRef Name="fFavoriteID" />
+          </Key>
+          <Property Name="fFavoriteID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fMemberID" Type="Int32" />
+          <Property Name="fArticleID" Type="Int32" />
+          <NavigationProperty Name="tDiscussion" Relationship="dbNewPetModel.FK_tFavorite_tDiscussion" FromRole="tFavorite" ToRole="tDiscussion" />
+          <NavigationProperty Name="tMember" Relationship="dbNewPetModel.FK_tFavorite_tMember" FromRole="tFavorite" ToRole="tMember" />
+        </EntityType>
+        <EntityType Name="tFoundPet">
+          <Key>
+            <PropertyRef Name="fFoundPetID" />
+          </Key>
+          <Property Name="fFoundPetID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fMemberID" Type="Int32" />
+          <Property Name="fStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="fFoundTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="fGender" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="fPetClassID" Type="Int32" Nullable="false" />
+          <Property Name="fBreedID" Type="Int32" Nullable="false" />
+          <Property Name="fPetPic" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="fSkin" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="fCollar" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="fChipID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="fCityID" Type="Int32" Nullable="false" />
+          <Property Name="fRegionID" Type="Int32" Nullable="false" />
+          <Property Name="fRemark" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="fSignInDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="tBreed" Relationship="dbNewPetModel.FK_tFoundPet_tPetsBreed" FromRole="tFoundPet" ToRole="tBreed" />
+          <NavigationProperty Name="tCity" Relationship="dbNewPetModel.FK_tFoundPet_tCity" FromRole="tFoundPet" ToRole="tCity" />
+          <NavigationProperty Name="tMember" Relationship="dbNewPetModel.FK_tFoundPet_tMember" FromRole="tFoundPet" ToRole="tMember" />
+          <NavigationProperty Name="tPetClass" Relationship="dbNewPetModel.FK_tFoundPet_tPetsClass" FromRole="tFoundPet" ToRole="tPetClass" />
+          <NavigationProperty Name="tRegion" Relationship="dbNewPetModel.FK_tFoundPet_tRegion" FromRole="tFoundPet" ToRole="tRegion" />
+        </EntityType>
+        <EntityType Name="tLike">
+          <Key>
+            <PropertyRef Name="fLikeID" />
+          </Key>
+          <Property Name="fLikeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fArticleID" Type="Int32" />
+          <Property Name="fMemberID" Type="Int32" />
+          <NavigationProperty Name="tDiscussion" Relationship="dbNewPetModel.FK_tLike_tDiscussion" FromRole="tLike" ToRole="tDiscussion" />
+          <NavigationProperty Name="tMember" Relationship="dbNewPetModel.FK_tLike_tMember" FromRole="tLike" ToRole="tMember" />
+        </EntityType>
+        <EntityType Name="tLogInWay">
+          <Key>
+            <PropertyRef Name="fLogInWayID" />
+          </Key>
+          <Property Name="fLogInWayID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="fIcon" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tLostPet">
+          <Key>
+            <PropertyRef Name="fLostID" />
+          </Key>
+          <Property Name="fLostID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fPetID" Type="Int32" Nullable="false" />
+          <Property Name="fLostPlace" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="fLostTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="fReward" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="fRemark" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="fCompareLevel" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="fSignInDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="tPetMember" Relationship="dbNewPetModel.FK_tLostPet_tPetMember" FromRole="tLostPet" ToRole="tPetMember" />
+        </EntityType>
+        <EntityType Name="tMember">
+          <Key>
+            <PropertyRef Name="fMemberID" />
+          </Key>
+          <Property Name="fMemberID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="fGender" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="fIDCardNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="fNickName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="fAccount" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="fPassword" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="fBirthDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="fEnconomicStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="fPhone" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="fEMail" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="fRegisterDate" Type="DateTime" Precision="3" />
+          <Property Name="fLogInWayID" Type="Int32" />
+          <Property Name="fIcon" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="fRecentLogInDate" Type="DateTime" Precision="3" />
+          <Property Name="fCityID" Type="Int32" Nullable="false" />
+          <Property Name="fRegionID" Type="Int32" Nullable="false" />
+          <Property Name="fAddressDetail" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="fPetCoin" Type="Decimal" Precision="19" Scale="4" />
+          <NavigationProperty Name="tAdoptMessages" Relationship="dbNewPetModel.FK_tAdoptMessage_tMember" FromRole="tMember" ToRole="tAdoptMessage" />
+          <NavigationProperty Name="tCity" Relationship="dbNewPetModel.FK_tMember_tCity" FromRole="tMember" ToRole="tCity" />
+          <NavigationProperty Name="tComments" Relationship="dbNewPetModel.FK_tComment_tMember" FromRole="tMember" ToRole="tComment" />
+          <NavigationProperty Name="tDiscussions" Relationship="dbNewPetModel.FK_tDiscussion_tMember" FromRole="tMember" ToRole="tDiscussion" />
+          <NavigationProperty Name="tFavorites" Relationship="dbNewPetModel.FK_tFavorite_tMember" FromRole="tMember" ToRole="tFavorite" />
+          <NavigationProperty Name="tFoundPets" Relationship="dbNewPetModel.FK_tFoundPet_tMember" FromRole="tMember" ToRole="tFoundPet" />
+          <NavigationProperty Name="tLikes" Relationship="dbNewPetModel.FK_tLike_tMember" FromRole="tMember" ToRole="tLike" />
+          <NavigationProperty Name="tRegion" Relationship="dbNewPetModel.FK_tMember_tRegion" FromRole="tMember" ToRole="tRegion" />
+          <NavigationProperty Name="tOrders" Relationship="dbNewPetModel.FK_tOrders_tMember" FromRole="tMember" ToRole="tOrder" />
+          <NavigationProperty Name="tPetMembers" Relationship="dbNewPetModel.FK_tPetMember_tMember" FromRole="tMember" ToRole="tPetMember" />
+          <NavigationProperty Name="tReports" Relationship="dbNewPetModel.FK_tReport_tMember" FromRole="tMember" ToRole="tReport" />
+          <NavigationProperty Name="tShoppingCarts" Relationship="dbNewPetModel.FK_tShoppingCart_tMember" FromRole="tMember" ToRole="tShoppingCart" />
+        </EntityType>
+        <EntityType Name="tOrder_Detail">
+          <Key>
+            <PropertyRef Name="fOrderID" />
+            <PropertyRef Name="fProductID" />
+          </Key>
+          <Property Name="fOrderID" Type="Int32" Nullable="false" />
+          <Property Name="fProductID" Type="Int32" Nullable="false" />
+          <Property Name="fName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="fUnitPrice" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="fQuantity" Type="Int32" Nullable="false" />
+          <Property Name="fPic" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tOrder" Relationship="dbNewPetModel.FK_tOrder_Detail_tOrders" FromRole="tOrder_Detail" ToRole="tOrder" />
+          <NavigationProperty Name="tProduct" Relationship="dbNewPetModel.FK_tOrder_Detail_tProduct" FromRole="tOrder_Detail" ToRole="tProduct" />
+        </EntityType>
+        <EntityType Name="tOrder">
+          <Key>
+            <PropertyRef Name="fOrderID" />
+          </Key>
+          <Property Name="fOrderID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fMemberID" Type="Int32" Nullable="false" />
+          <Property Name="fOrderDate" Type="DateTime" Precision="3" />
+          <Property Name="fShipOutDate" Type="DateTime" Precision="3" />
+          <Property Name="fReceiverName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="fReceiverPhone" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="fCityID" Type="Int32" Nullable="false" />
+          <Property Name="fRegionID" Type="Int32" Nullable="false" />
+          <Property Name="fAddressDetail" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="fReceiverMail" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="fPayWayID" Type="Int32" Nullable="false" />
+          <Property Name="fStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tCity" Relationship="dbNewPetModel.FK_tOrders_tCity" FromRole="tOrder" ToRole="tCity" />
+          <NavigationProperty Name="tMember" Relationship="dbNewPetModel.FK_tOrders_tMember" FromRole="tOrder" ToRole="tMember" />
+          <NavigationProperty Name="tOrder_Detail" Relationship="dbNewPetModel.FK_tOrder_Detail_tOrders" FromRole="tOrder" ToRole="tOrder_Detail" />
+          <NavigationProperty Name="tPayWay" Relationship="dbNewPetModel.FK_tOrders_tPayWay" FromRole="tOrder" ToRole="tPayWay" />
+          <NavigationProperty Name="tRegion" Relationship="dbNewPetModel.FK_tOrders_tRegion" FromRole="tOrder" ToRole="tRegion" />
+        </EntityType>
+        <EntityType Name="tPayWay">
+          <Key>
+            <PropertyRef Name="fPayWayID" />
+          </Key>
+          <Property Name="fPayWayID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tOrders" Relationship="dbNewPetModel.FK_tOrders_tPayWay" FromRole="tPayWay" ToRole="tOrder" />
+        </EntityType>
+        <EntityType Name="tPetClass">
+          <Key>
+            <PropertyRef Name="fPetClassID" />
+          </Key>
+          <Property Name="fPetClassID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tBreeds" Relationship="dbNewPetModel.FK_tPetsBreed_tPetsClass" FromRole="tPetClass" ToRole="tBreed" />
+          <NavigationProperty Name="tFoundPets" Relationship="dbNewPetModel.FK_tFoundPet_tPetsClass" FromRole="tPetClass" ToRole="tFoundPet" />
+          <NavigationProperty Name="tPetMembers" Relationship="dbNewPetModel.FK_tPetMember_tPetsClass" FromRole="tPetClass" ToRole="tPetMember" />
+        </EntityType>
+        <EntityType Name="tPetMember">
+          <Key>
+            <PropertyRef Name="fPetID" />
+          </Key>
+          <Property Name="fPetID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fMemberID" Type="Int32" Nullable="false" />
+          <Property Name="fPetName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="fGender" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="fPetClassID" Type="Int32" Nullable="false" />
+          <Property Name="fBreedID" Type="Int32" Nullable="false" />
+          <Property Name="fCityID" Type="Int32" Nullable="false" />
+          <Property Name="fRegionID" Type="Int32" Nullable="false" />
+          <Property Name="fPetPic" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="fChipID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="fCollar" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="fSkin" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="fStatus" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tAdoptMessages" Relationship="dbNewPetModel.FK_tAdoptMessage_tPetMember" FromRole="tPetMember" ToRole="tAdoptMessage" />
+          <NavigationProperty Name="tBreed" Relationship="dbNewPetModel.FK_tPetMember_tPetsBreed" FromRole="tPetMember" ToRole="tBreed" />
+          <NavigationProperty Name="tCity" Relationship="dbNewPetModel.FK_tPetMember_tCity" FromRole="tPetMember" ToRole="tCity" />
+          <NavigationProperty Name="tLostPets" Relationship="dbNewPetModel.FK_tLostPet_tPetMember" FromRole="tPetMember" ToRole="tLostPet" />
+          <NavigationProperty Name="tMember" Relationship="dbNewPetModel.FK_tPetMember_tMember" FromRole="tPetMember" ToRole="tMember" />
+          <NavigationProperty Name="tPetClass" Relationship="dbNewPetModel.FK_tPetMember_tPetsClass" FromRole="tPetMember" ToRole="tPetClass" />
+          <NavigationProperty Name="tRegion" Relationship="dbNewPetModel.FK_tPetMember_tRegion" FromRole="tPetMember" ToRole="tRegion" />
+        </EntityType>
+        <EntityType Name="tProduct">
+          <Key>
+            <PropertyRef Name="fProductID" />
+          </Key>
+          <Property Name="fProductID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="fPic" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="fCategoryID" Type="Int32" Nullable="false" />
+          <Property Name="fUnitPrice" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="fUnitOnOrder" Type="Int32" Nullable="false" />
+          <Property Name="fUnitInStock" Type="Int32" Nullable="false" />
+          <Property Name="fOnShelfDate" Type="DateTime" Precision="3" />
+          <Property Name="fSupplierID" Type="Int32" Nullable="false" />
+          <Property Name="fSafeStock" Type="Int32" Nullable="false" />
+          <Property Name="fDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tCategory" Relationship="dbNewPetModel.FK_tProduct_tCategory" FromRole="tProduct" ToRole="tCategory" />
+          <NavigationProperty Name="tOrder_Detail" Relationship="dbNewPetModel.FK_tOrder_Detail_tProduct" FromRole="tProduct" ToRole="tOrder_Detail" />
+          <NavigationProperty Name="tSupplier" Relationship="dbNewPetModel.FK_tProduct_tSupplier" FromRole="tProduct" ToRole="tSupplier" />
+          <NavigationProperty Name="tPurchase_Detials" Relationship="dbNewPetModel.FK_tPurchase_Detials_tProduct" FromRole="tProduct" ToRole="tPurchase_Detials" />
+          <NavigationProperty Name="tPurchaseShoppingCarts" Relationship="dbNewPetModel.FK_tPurchaseShoppingCart_tProduct" FromRole="tProduct" ToRole="tPurchaseShoppingCart" />
+          <NavigationProperty Name="tShoppingCarts" Relationship="dbNewPetModel.FK_tShoppingCart_tProduct" FromRole="tProduct" ToRole="tShoppingCart" />
+        </EntityType>
+        <EntityType Name="tPurchase">
+          <Key>
+            <PropertyRef Name="fPurchaseID" />
+          </Key>
+          <Property Name="fPurchaseID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fPurchaseDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="tPurchase_Detials" Relationship="dbNewPetModel.FK_tPurchase_Detials_tPurchase" FromRole="tPurchase" ToRole="tPurchase_Detials" />
+        </EntityType>
+        <EntityType Name="tPurchase_Detials">
+          <Key>
+            <PropertyRef Name="fPurchaseID" />
+            <PropertyRef Name="fProductID" />
+          </Key>
+          <Property Name="fPurchaseID" Type="Int32" Nullable="false" />
+          <Property Name="fProductID" Type="Int32" Nullable="false" />
+          <Property Name="fUnitPrice" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="fQuantity" Type="Int32" Nullable="false" />
+          <Property Name="fName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="fPic" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="fSupplierID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tProduct" Relationship="dbNewPetModel.FK_tPurchase_Detials_tProduct" FromRole="tPurchase_Detials" ToRole="tProduct" />
+          <NavigationProperty Name="tPurchase" Relationship="dbNewPetModel.FK_tPurchase_Detials_tPurchase" FromRole="tPurchase_Detials" ToRole="tPurchase" />
+          <NavigationProperty Name="tSupplier" Relationship="dbNewPetModel.FK_tPurchase_Detials_tSupplier" FromRole="tPurchase_Detials" ToRole="tSupplier" />
+        </EntityType>
+        <EntityType Name="tPurchaseShoppingCart">
+          <Key>
+            <PropertyRef Name="fCartID" />
+          </Key>
+          <Property Name="fCartID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fProductID" Type="Int32" Nullable="false" />
+          <Property Name="fSupplierID" Type="Int32" Nullable="false" />
+          <Property Name="fUnitPrice" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="fQuantity" Type="Int32" Nullable="false" />
+          <Property Name="fPic" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tProduct" Relationship="dbNewPetModel.FK_tPurchaseShoppingCart_tProduct" FromRole="tPurchaseShoppingCart" ToRole="tProduct" />
+          <NavigationProperty Name="tSupplier" Relationship="dbNewPetModel.FK_tPurchaseShoppingCart_tSupplier" FromRole="tPurchaseShoppingCart" ToRole="tSupplier" />
+        </EntityType>
+        <EntityType Name="tRegion">
+          <Key>
+            <PropertyRef Name="fRegionID" />
+          </Key>
+          <Property Name="fRegionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fName" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="fCityID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tCity" Relationship="dbNewPetModel.FK_tRegion_tCity" FromRole="tRegion" ToRole="tCity" />
+          <NavigationProperty Name="tFoundPets" Relationship="dbNewPetModel.FK_tFoundPet_tRegion" FromRole="tRegion" ToRole="tFoundPet" />
+          <NavigationProperty Name="tMembers" Relationship="dbNewPetModel.FK_tMember_tRegion" FromRole="tRegion" ToRole="tMember" />
+          <NavigationProperty Name="tOrders" Relationship="dbNewPetModel.FK_tOrders_tRegion" FromRole="tRegion" ToRole="tOrder" />
+          <NavigationProperty Name="tPetMembers" Relationship="dbNewPetModel.FK_tPetMember_tRegion" FromRole="tRegion" ToRole="tPetMember" />
+          <NavigationProperty Name="tSuppliers" Relationship="dbNewPetModel.FK_tSupplier_tRegion" FromRole="tRegion" ToRole="tSupplier" />
+        </EntityType>
+        <EntityType Name="tReply">
+          <Key>
+            <PropertyRef Name="fReplyID" />
+          </Key>
+          <Property Name="fReplyID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fArticleID" Type="Int32" Nullable="false" />
+          <Property Name="fMemberID" Type="Int32" Nullable="false" />
+          <Property Name="fContext" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tReport">
+          <Key>
+            <PropertyRef Name="fReportID" />
+          </Key>
+          <Property Name="fReportID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fArticleID" Type="Int32" Nullable="false" />
+          <Property Name="fMemberID" Type="Int32" Nullable="false" />
+          <Property Name="fReportComment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tDiscussion" Relationship="dbNewPetModel.FK_tReport_tDiscussion" FromRole="tReport" ToRole="tDiscussion" />
+          <NavigationProperty Name="tMember" Relationship="dbNewPetModel.FK_tReport_tMember" FromRole="tReport" ToRole="tMember" />
+        </EntityType>
+        <EntityType Name="tShipVia">
+          <Key>
+            <PropertyRef Name="fShipViaID" />
+          </Key>
+          <Property Name="fShipViaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tShoppingCart">
+          <Key>
+            <PropertyRef Name="fCartID" />
+          </Key>
+          <Property Name="fCartID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fProductID" Type="Int32" Nullable="false" />
+          <Property Name="fMemberID" Type="Int32" Nullable="false" />
+          <Property Name="fUnitPrice" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="fQuantity" Type="Int32" Nullable="false" />
+          <Property Name="fPic" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tMember" Relationship="dbNewPetModel.FK_tShoppingCart_tMember" FromRole="tShoppingCart" ToRole="tMember" />
+          <NavigationProperty Name="tProduct" Relationship="dbNewPetModel.FK_tShoppingCart_tProduct" FromRole="tShoppingCart" ToRole="tProduct" />
+        </EntityType>
+        <EntityType Name="tSupplier">
+          <Key>
+            <PropertyRef Name="fSupplierID" />
+          </Key>
+          <Property Name="fSupplierID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="fContactName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="fAddress" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="fCityID" Type="Int32" Nullable="false" />
+          <Property Name="fRegionID" Type="Int32" Nullable="false" />
+          <Property Name="fPhone" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tCity" Relationship="dbNewPetModel.FK_tSupplier_tCity" FromRole="tSupplier" ToRole="tCity" />
+          <NavigationProperty Name="tProducts" Relationship="dbNewPetModel.FK_tProduct_tSupplier" FromRole="tSupplier" ToRole="tProduct" />
+          <NavigationProperty Name="tPurchase_Detials" Relationship="dbNewPetModel.FK_tPurchase_Detials_tSupplier" FromRole="tSupplier" ToRole="tPurchase_Detials" />
+          <NavigationProperty Name="tPurchaseShoppingCarts" Relationship="dbNewPetModel.FK_tPurchaseShoppingCart_tSupplier" FromRole="tSupplier" ToRole="tPurchaseShoppingCart" />
+          <NavigationProperty Name="tRegion" Relationship="dbNewPetModel.FK_tSupplier_tRegion" FromRole="tSupplier" ToRole="tRegion" />
+        </EntityType>
+        <Association Name="FK_tAdoptMessage_tMember">
+          <End Type="dbNewPetModel.tMember" Role="tMember" Multiplicity="1" />
+          <End Type="dbNewPetModel.tAdoptMessage" Role="tAdoptMessage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tMember">
+              <PropertyRef Name="fMemberID" />
+            </Principal>
+            <Dependent Role="tAdoptMessage">
+              <PropertyRef Name="fMemberID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tAdoptMessage_tPetMember">
+          <End Type="dbNewPetModel.tPetMember" Role="tPetMember" Multiplicity="1" />
+          <End Type="dbNewPetModel.tAdoptMessage" Role="tAdoptMessage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tPetMember">
+              <PropertyRef Name="fPetID" />
+            </Principal>
+            <Dependent Role="tAdoptMessage">
+              <PropertyRef Name="fPetID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tFoundPet_tPetsBreed">
+          <End Type="dbNewPetModel.tBreed" Role="tBreed" Multiplicity="1" />
+          <End Type="dbNewPetModel.tFoundPet" Role="tFoundPet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tBreed">
+              <PropertyRef Name="fBreedID" />
+            </Principal>
+            <Dependent Role="tFoundPet">
+              <PropertyRef Name="fBreedID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tPetMember_tPetsBreed">
+          <End Type="dbNewPetModel.tBreed" Role="tBreed" Multiplicity="1" />
+          <End Type="dbNewPetModel.tPetMember" Role="tPetMember" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tBreed">
+              <PropertyRef Name="fBreedID" />
+            </Principal>
+            <Dependent Role="tPetMember">
+              <PropertyRef Name="fBreedID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tPetsBreed_tPetsClass">
+          <End Type="dbNewPetModel.tPetClass" Role="tPetClass" Multiplicity="1" />
+          <End Type="dbNewPetModel.tBreed" Role="tBreed" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tPetClass">
+              <PropertyRef Name="fPetClassID" />
+            </Principal>
+            <Dependent Role="tBreed">
+              <PropertyRef Name="fPetClassID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tProduct_tCategory">
+          <End Type="dbNewPetModel.tCategory" Role="tCategory" Multiplicity="1" />
+          <End Type="dbNewPetModel.tProduct" Role="tProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tCategory">
+              <PropertyRef Name="fCategoryID" />
+            </Principal>
+            <Dependent Role="tProduct">
+              <PropertyRef Name="fCategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tFoundPet_tCity">
+          <End Type="dbNewPetModel.tCity" Role="tCity" Multiplicity="1" />
+          <End Type="dbNewPetModel.tFoundPet" Role="tFoundPet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tCity">
+              <PropertyRef Name="fCityID" />
+            </Principal>
+            <Dependent Role="tFoundPet">
+              <PropertyRef Name="fCityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tMember_tCity">
+          <End Type="dbNewPetModel.tCity" Role="tCity" Multiplicity="1" />
+          <End Type="dbNewPetModel.tMember" Role="tMember" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tCity">
+              <PropertyRef Name="fCityID" />
+            </Principal>
+            <Dependent Role="tMember">
+              <PropertyRef Name="fCityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tOrders_tCity">
+          <End Type="dbNewPetModel.tCity" Role="tCity" Multiplicity="1" />
+          <End Type="dbNewPetModel.tOrder" Role="tOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tCity">
+              <PropertyRef Name="fCityID" />
+            </Principal>
+            <Dependent Role="tOrder">
+              <PropertyRef Name="fCityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tPetMember_tCity">
+          <End Type="dbNewPetModel.tCity" Role="tCity" Multiplicity="1" />
+          <End Type="dbNewPetModel.tPetMember" Role="tPetMember" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tCity">
+              <PropertyRef Name="fCityID" />
+            </Principal>
+            <Dependent Role="tPetMember">
+              <PropertyRef Name="fCityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tRegion_tCity">
+          <End Type="dbNewPetModel.tCity" Role="tCity" Multiplicity="1" />
+          <End Type="dbNewPetModel.tRegion" Role="tRegion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tCity">
+              <PropertyRef Name="fCityID" />
+            </Principal>
+            <Dependent Role="tRegion">
+              <PropertyRef Name="fCityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tSupplier_tCity">
+          <End Type="dbNewPetModel.tCity" Role="tCity" Multiplicity="1" />
+          <End Type="dbNewPetModel.tSupplier" Role="tSupplier" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tCity">
+              <PropertyRef Name="fCityID" />
+            </Principal>
+            <Dependent Role="tSupplier">
+              <PropertyRef Name="fCityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tComment_tDiscussion">
+          <End Type="dbNewPetModel.tDiscussion" Role="tDiscussion" Multiplicity="0..1" />
+          <End Type="dbNewPetModel.tComment" Role="tComment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tDiscussion">
+              <PropertyRef Name="fArticleID" />
+            </Principal>
+            <Dependent Role="tComment">
+              <PropertyRef Name="fArticleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tComment_tMember">
+          <End Type="dbNewPetModel.tMember" Role="tMember" Multiplicity="0..1" />
+          <End Type="dbNewPetModel.tComment" Role="tComment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tMember">
+              <PropertyRef Name="fMemberID" />
+            </Principal>
+            <Dependent Role="tComment">
+              <PropertyRef Name="fMemberID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tDiscussion_tDiscussionClass">
+          <End Type="dbNewPetModel.tDiscussionClass" Role="tDiscussionClass" Multiplicity="1" />
+          <End Type="dbNewPetModel.tDiscussion" Role="tDiscussion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tDiscussionClass">
+              <PropertyRef Name="fDiscussionClassID" />
+            </Principal>
+            <Dependent Role="tDiscussion">
+              <PropertyRef Name="fDiscussionClassID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tDiscussion_tMember">
+          <End Type="dbNewPetModel.tMember" Role="tMember" Multiplicity="0..1" />
+          <End Type="dbNewPetModel.tDiscussion" Role="tDiscussion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tMember">
+              <PropertyRef Name="fMemberID" />
+            </Principal>
+            <Dependent Role="tDiscussion">
+              <PropertyRef Name="fMemberID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tFavorite_tDiscussion">
+          <End Type="dbNewPetModel.tDiscussion" Role="tDiscussion" Multiplicity="0..1" />
+          <End Type="dbNewPetModel.tFavorite" Role="tFavorite" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tDiscussion">
+              <PropertyRef Name="fArticleID" />
+            </Principal>
+            <Dependent Role="tFavorite">
+              <PropertyRef Name="fArticleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tLike_tDiscussion">
+          <End Type="dbNewPetModel.tDiscussion" Role="tDiscussion" Multiplicity="0..1" />
+          <End Type="dbNewPetModel.tLike" Role="tLike" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tDiscussion">
+              <PropertyRef Name="fArticleID" />
+            </Principal>
+            <Dependent Role="tLike">
+              <PropertyRef Name="fArticleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tReport_tDiscussion">
+          <End Type="dbNewPetModel.tDiscussion" Role="tDiscussion" Multiplicity="1" />
+          <End Type="dbNewPetModel.tReport" Role="tReport" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tDiscussion">
+              <PropertyRef Name="fArticleID" />
+            </Principal>
+            <Dependent Role="tReport">
+              <PropertyRef Name="fArticleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tFavorite_tMember">
+          <End Type="dbNewPetModel.tMember" Role="tMember" Multiplicity="0..1" />
+          <End Type="dbNewPetModel.tFavorite" Role="tFavorite" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tMember">
+              <PropertyRef Name="fMemberID" />
+            </Principal>
+            <Dependent Role="tFavorite">
+              <PropertyRef Name="fMemberID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tFoundPet_tMember">
+          <End Type="dbNewPetModel.tMember" Role="tMember" Multiplicity="0..1" />
+          <End Type="dbNewPetModel.tFoundPet" Role="tFoundPet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tMember">
+              <PropertyRef Name="fMemberID" />
+            </Principal>
+            <Dependent Role="tFoundPet">
+              <PropertyRef Name="fMemberID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tFoundPet_tPetsClass">
+          <End Type="dbNewPetModel.tPetClass" Role="tPetClass" Multiplicity="1" />
+          <End Type="dbNewPetModel.tFoundPet" Role="tFoundPet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tPetClass">
+              <PropertyRef Name="fPetClassID" />
+            </Principal>
+            <Dependent Role="tFoundPet">
+              <PropertyRef Name="fPetClassID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tFoundPet_tRegion">
+          <End Type="dbNewPetModel.tRegion" Role="tRegion" Multiplicity="1" />
+          <End Type="dbNewPetModel.tFoundPet" Role="tFoundPet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tRegion">
+              <PropertyRef Name="fRegionID" />
+            </Principal>
+            <Dependent Role="tFoundPet">
+              <PropertyRef Name="fRegionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tLike_tMember">
+          <End Type="dbNewPetModel.tMember" Role="tMember" Multiplicity="0..1" />
+          <End Type="dbNewPetModel.tLike" Role="tLike" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tMember">
+              <PropertyRef Name="fMemberID" />
+            </Principal>
+            <Dependent Role="tLike">
+              <PropertyRef Name="fMemberID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tLostPet_tPetMember">
+          <End Type="dbNewPetModel.tPetMember" Role="tPetMember" Multiplicity="1" />
+          <End Type="dbNewPetModel.tLostPet" Role="tLostPet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tPetMember">
+              <PropertyRef Name="fPetID" />
+            </Principal>
+            <Dependent Role="tLostPet">
+              <PropertyRef Name="fPetID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tMember_tRegion">
+          <End Type="dbNewPetModel.tRegion" Role="tRegion" Multiplicity="1" />
+          <End Type="dbNewPetModel.tMember" Role="tMember" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tRegion">
+              <PropertyRef Name="fRegionID" />
+            </Principal>
+            <Dependent Role="tMember">
+              <PropertyRef Name="fRegionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tOrders_tMember">
+          <End Type="dbNewPetModel.tMember" Role="tMember" Multiplicity="1" />
+          <End Type="dbNewPetModel.tOrder" Role="tOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tMember">
+              <PropertyRef Name="fMemberID" />
+            </Principal>
+            <Dependent Role="tOrder">
+              <PropertyRef Name="fMemberID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tPetMember_tMember">
+          <End Type="dbNewPetModel.tMember" Role="tMember" Multiplicity="1" />
+          <End Type="dbNewPetModel.tPetMember" Role="tPetMember" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tMember">
+              <PropertyRef Name="fMemberID" />
+            </Principal>
+            <Dependent Role="tPetMember">
+              <PropertyRef Name="fMemberID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tReport_tMember">
+          <End Type="dbNewPetModel.tMember" Role="tMember" Multiplicity="1" />
+          <End Type="dbNewPetModel.tReport" Role="tReport" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tMember">
+              <PropertyRef Name="fMemberID" />
+            </Principal>
+            <Dependent Role="tReport">
+              <PropertyRef Name="fMemberID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tShoppingCart_tMember">
+          <End Type="dbNewPetModel.tMember" Role="tMember" Multiplicity="1" />
+          <End Type="dbNewPetModel.tShoppingCart" Role="tShoppingCart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tMember">
+              <PropertyRef Name="fMemberID" />
+            </Principal>
+            <Dependent Role="tShoppingCart">
+              <PropertyRef Name="fMemberID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tOrder_Detail_tOrders">
+          <End Type="dbNewPetModel.tOrder" Role="tOrder" Multiplicity="1" />
+          <End Type="dbNewPetModel.tOrder_Detail" Role="tOrder_Detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tOrder">
+              <PropertyRef Name="fOrderID" />
+            </Principal>
+            <Dependent Role="tOrder_Detail">
+              <PropertyRef Name="fOrderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tOrder_Detail_tProduct">
+          <End Type="dbNewPetModel.tProduct" Role="tProduct" Multiplicity="1" />
+          <End Type="dbNewPetModel.tOrder_Detail" Role="tOrder_Detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tProduct">
+              <PropertyRef Name="fProductID" />
+            </Principal>
+            <Dependent Role="tOrder_Detail">
+              <PropertyRef Name="fProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tOrders_tPayWay">
+          <End Type="dbNewPetModel.tPayWay" Role="tPayWay" Multiplicity="1" />
+          <End Type="dbNewPetModel.tOrder" Role="tOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tPayWay">
+              <PropertyRef Name="fPayWayID" />
+            </Principal>
+            <Dependent Role="tOrder">
+              <PropertyRef Name="fPayWayID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tOrders_tRegion">
+          <End Type="dbNewPetModel.tRegion" Role="tRegion" Multiplicity="1" />
+          <End Type="dbNewPetModel.tOrder" Role="tOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tRegion">
+              <PropertyRef Name="fRegionID" />
+            </Principal>
+            <Dependent Role="tOrder">
+              <PropertyRef Name="fRegionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tPetMember_tPetsClass">
+          <End Type="dbNewPetModel.tPetClass" Role="tPetClass" Multiplicity="1" />
+          <End Type="dbNewPetModel.tPetMember" Role="tPetMember" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tPetClass">
+              <PropertyRef Name="fPetClassID" />
+            </Principal>
+            <Dependent Role="tPetMember">
+              <PropertyRef Name="fPetClassID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tPetMember_tRegion">
+          <End Type="dbNewPetModel.tRegion" Role="tRegion" Multiplicity="1" />
+          <End Type="dbNewPetModel.tPetMember" Role="tPetMember" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tRegion">
+              <PropertyRef Name="fRegionID" />
+            </Principal>
+            <Dependent Role="tPetMember">
+              <PropertyRef Name="fRegionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tProduct_tSupplier">
+          <End Type="dbNewPetModel.tSupplier" Role="tSupplier" Multiplicity="1" />
+          <End Type="dbNewPetModel.tProduct" Role="tProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tSupplier">
+              <PropertyRef Name="fSupplierID" />
+            </Principal>
+            <Dependent Role="tProduct">
+              <PropertyRef Name="fSupplierID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tPurchase_Detials_tProduct">
+          <End Type="dbNewPetModel.tProduct" Role="tProduct" Multiplicity="1" />
+          <End Type="dbNewPetModel.tPurchase_Detials" Role="tPurchase_Detials" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tProduct">
+              <PropertyRef Name="fProductID" />
+            </Principal>
+            <Dependent Role="tPurchase_Detials">
+              <PropertyRef Name="fProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tPurchaseShoppingCart_tProduct">
+          <End Type="dbNewPetModel.tProduct" Role="tProduct" Multiplicity="1" />
+          <End Type="dbNewPetModel.tPurchaseShoppingCart" Role="tPurchaseShoppingCart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tProduct">
+              <PropertyRef Name="fProductID" />
+            </Principal>
+            <Dependent Role="tPurchaseShoppingCart">
+              <PropertyRef Name="fProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tShoppingCart_tProduct">
+          <End Type="dbNewPetModel.tProduct" Role="tProduct" Multiplicity="1" />
+          <End Type="dbNewPetModel.tShoppingCart" Role="tShoppingCart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tProduct">
+              <PropertyRef Name="fProductID" />
+            </Principal>
+            <Dependent Role="tShoppingCart">
+              <PropertyRef Name="fProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tPurchase_Detials_tPurchase">
+          <End Type="dbNewPetModel.tPurchase" Role="tPurchase" Multiplicity="1" />
+          <End Type="dbNewPetModel.tPurchase_Detials" Role="tPurchase_Detials" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tPurchase">
+              <PropertyRef Name="fPurchaseID" />
+            </Principal>
+            <Dependent Role="tPurchase_Detials">
+              <PropertyRef Name="fPurchaseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tPurchase_Detials_tSupplier">
+          <End Type="dbNewPetModel.tSupplier" Role="tSupplier" Multiplicity="1" />
+          <End Type="dbNewPetModel.tPurchase_Detials" Role="tPurchase_Detials" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tSupplier">
+              <PropertyRef Name="fSupplierID" />
+            </Principal>
+            <Dependent Role="tPurchase_Detials">
+              <PropertyRef Name="fSupplierID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tPurchaseShoppingCart_tSupplier">
+          <End Type="dbNewPetModel.tSupplier" Role="tSupplier" Multiplicity="1" />
+          <End Type="dbNewPetModel.tPurchaseShoppingCart" Role="tPurchaseShoppingCart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tSupplier">
+              <PropertyRef Name="fSupplierID" />
+            </Principal>
+            <Dependent Role="tPurchaseShoppingCart">
+              <PropertyRef Name="fSupplierID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tSupplier_tRegion">
+          <End Type="dbNewPetModel.tRegion" Role="tRegion" Multiplicity="1" />
+          <End Type="dbNewPetModel.tSupplier" Role="tSupplier" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tRegion">
+              <PropertyRef Name="fRegionID" />
+            </Principal>
+            <Dependent Role="tSupplier">
+              <PropertyRef Name="fRegionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="dbNewPetModelStoreContainer" CdmEntityContainer="dbNewPetEntities">
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="dbNewPetModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tActivities">
+            <EntityTypeMapping TypeName="dbNewPetModel.tActivity">
+              <MappingFragment StoreEntitySet="tActivity">
+                <ScalarProperty Name="fClosedDate" ColumnName="fClosedDate" />
+                <ScalarProperty Name="fDMPic" ColumnName="fDMPic" />
+                <ScalarProperty Name="fContext" ColumnName="fContext" />
+                <ScalarProperty Name="fEffectiveDate" ColumnName="fEffectiveDate" />
+                <ScalarProperty Name="fName" ColumnName="fName" />
+                <ScalarProperty Name="fActivityID" ColumnName="fActivityID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tAdoptMessages">
+            <EntityTypeMapping TypeName="dbNewPetModel.tAdoptMessage">
+              <MappingFragment StoreEntitySet="tAdoptMessage">
+                <ScalarProperty Name="fContent" ColumnName="fContent" />
+                <ScalarProperty Name="fMemberID" ColumnName="fMemberID" />
+                <ScalarProperty Name="fPetID" ColumnName="fPetID" />
+                <ScalarProperty Name="fMessageID" ColumnName="fMessageID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tAuthorities">
+            <EntityTypeMapping TypeName="dbNewPetModel.tAuthority">
+              <MappingFragment StoreEntitySet="tAuthority">
+                <ScalarProperty Name="fName" ColumnName="fName" />
+                <ScalarProperty Name="fAuthorityID" ColumnName="fAuthorityID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tBreeds">
+            <EntityTypeMapping TypeName="dbNewPetModel.tBreed">
+              <MappingFragment StoreEntitySet="tBreed">
+                <ScalarProperty Name="fPic" ColumnName="fPic" />
+                <ScalarProperty Name="fPetClassID" ColumnName="fPetClassID" />
+                <ScalarProperty Name="fName" ColumnName="fName" />
+                <ScalarProperty Name="fBreedID" ColumnName="fBreedID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tCategories">
+            <EntityTypeMapping TypeName="dbNewPetModel.tCategory">
+              <MappingFragment StoreEntitySet="tCategory">
+                <ScalarProperty Name="fDescription" ColumnName="fDescription" />
+                <ScalarProperty Name="fName" ColumnName="fName" />
+                <ScalarProperty Name="fCategoryID" ColumnName="fCategoryID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tCities">
+            <EntityTypeMapping TypeName="dbNewPetModel.tCity">
+              <MappingFragment StoreEntitySet="tCity">
+                <ScalarProperty Name="fName" ColumnName="fName" />
+                <ScalarProperty Name="fCityID" ColumnName="fCityID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tComments">
+            <EntityTypeMapping TypeName="dbNewPetModel.tComment">
+              <MappingFragment StoreEntitySet="tComment">
+                <ScalarProperty Name="fArticleID" ColumnName="fArticleID" />
+                <ScalarProperty Name="fCreateDate" ColumnName="fCreateDate" />
+                <ScalarProperty Name="fContent" ColumnName="fContent" />
+                <ScalarProperty Name="fMemberID" ColumnName="fMemberID" />
+                <ScalarProperty Name="fId" ColumnName="fId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tCurses">
+            <EntityTypeMapping TypeName="dbNewPetModel.tCurse">
+              <MappingFragment StoreEntitySet="tCurse">
+                <ScalarProperty Name="fName" ColumnName="fName" />
+                <ScalarProperty Name="fCurseID" ColumnName="fCurseID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tDiscussions">
+            <EntityTypeMapping TypeName="dbNewPetModel.tDiscussion">
+              <MappingFragment StoreEntitySet="tDiscussion">
+                <ScalarProperty Name="fLock" ColumnName="fLock" />
+                <ScalarProperty Name="fLike" ColumnName="fLike" />
+                <ScalarProperty Name="fReportcheck" ColumnName="fReportcheck" />
+                <ScalarProperty Name="fCommenttime" ColumnName="fCommenttime" />
+                <ScalarProperty Name="fPicture" ColumnName="fPicture" />
+                <ScalarProperty Name="fCreateDate" ColumnName="fCreateDate" />
+                <ScalarProperty Name="fTitle" ColumnName="fTitle" />
+                <ScalarProperty Name="fDiscussionClassID" ColumnName="fDiscussionClassID" />
+                <ScalarProperty Name="fContent" ColumnName="fContent" />
+                <ScalarProperty Name="fMemberID" ColumnName="fMemberID" />
+                <ScalarProperty Name="fArticleID" ColumnName="fArticleID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tDiscussionClasses">
+            <EntityTypeMapping TypeName="dbNewPetModel.tDiscussionClass">
+              <MappingFragment StoreEntitySet="tDiscussionClass">
+                <ScalarProperty Name="fName" ColumnName="fName" />
+                <ScalarProperty Name="fDiscussionClassID" ColumnName="fDiscussionClassID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tEmployees">
+            <EntityTypeMapping TypeName="dbNewPetModel.tEmployee">
+              <MappingFragment StoreEntitySet="tEmployee">
+                <ScalarProperty Name="fPassword" ColumnName="fPassword" />
+                <ScalarProperty Name="fAccount" ColumnName="fAccount" />
+                <ScalarProperty Name="fEmployeeID" ColumnName="fEmployeeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tFavorites">
+            <EntityTypeMapping TypeName="dbNewPetModel.tFavorite">
+              <MappingFragment StoreEntitySet="tFavorite">
+                <ScalarProperty Name="fArticleID" ColumnName="fArticleID" />
+                <ScalarProperty Name="fMemberID" ColumnName="fMemberID" />
+                <ScalarProperty Name="fFavoriteID" ColumnName="fFavoriteID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tFoundPets">
+            <EntityTypeMapping TypeName="dbNewPetModel.tFoundPet">
+              <MappingFragment StoreEntitySet="tFoundPet">
+                <ScalarProperty Name="fSignInDate" ColumnName="fSignInDate" />
+                <ScalarProperty Name="fRemark" ColumnName="fRemark" />
+                <ScalarProperty Name="fRegionID" ColumnName="fRegionID" />
+                <ScalarProperty Name="fCityID" ColumnName="fCityID" />
+                <ScalarProperty Name="fChipID" ColumnName="fChipID" />
+                <ScalarProperty Name="fCollar" ColumnName="fCollar" />
+                <ScalarProperty Name="fSkin" ColumnName="fSkin" />
+                <ScalarProperty Name="fPetPic" ColumnName="fPetPic" />
+                <ScalarProperty Name="fBreedID" ColumnName="fBreedID" />
+                <ScalarProperty Name="fPetClassID" ColumnName="fPetClassID" />
+                <ScalarProperty Name="fGender" ColumnName="fGender" />
+                <ScalarProperty Name="fFoundTime" ColumnName="fFoundTime" />
+                <ScalarProperty Name="fStatus" ColumnName="fStatus" />
+                <ScalarProperty Name="fMemberID" ColumnName="fMemberID" />
+                <ScalarProperty Name="fFoundPetID" ColumnName="fFoundPetID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tLikes">
+            <EntityTypeMapping TypeName="dbNewPetModel.tLike">
+              <MappingFragment StoreEntitySet="tLike">
+                <ScalarProperty Name="fMemberID" ColumnName="fMemberID" />
+                <ScalarProperty Name="fArticleID" ColumnName="fArticleID" />
+                <ScalarProperty Name="fLikeID" ColumnName="fLikeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tLogInWays">
+            <EntityTypeMapping TypeName="dbNewPetModel.tLogInWay">
+              <MappingFragment StoreEntitySet="tLogInWay">
+                <ScalarProperty Name="fIcon" ColumnName="fIcon" />
+                <ScalarProperty Name="fName" ColumnName="fName" />
+                <ScalarProperty Name="fLogInWayID" ColumnName="fLogInWayID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tLostPets">
+            <EntityTypeMapping TypeName="dbNewPetModel.tLostPet">
+              <MappingFragment StoreEntitySet="tLostPet">
+                <ScalarProperty Name="fSignInDate" ColumnName="fSignInDate" />
+                <ScalarProperty Name="fCompareLevel" ColumnName="fCompareLevel" />
+                <ScalarProperty Name="fRemark" ColumnName="fRemark" />
+                <ScalarProperty Name="fReward" ColumnName="fReward" />
+                <ScalarProperty Name="fLostTime" ColumnName="fLostTime" />
+                <ScalarProperty Name="fLostPlace" ColumnName="fLostPlace" />
+                <ScalarProperty Name="fPetID" ColumnName="fPetID" />
+                <ScalarProperty Name="fLostID" ColumnName="fLostID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tMembers">
+            <EntityTypeMapping TypeName="dbNewPetModel.tMember">
+              <MappingFragment StoreEntitySet="tMember">
+                <ScalarProperty Name="fPetCoin" ColumnName="fPetCoin" />
+                <ScalarProperty Name="fAddressDetail" ColumnName="fAddressDetail" />
+                <ScalarProperty Name="fRegionID" ColumnName="fRegionID" />
+                <ScalarProperty Name="fCityID" ColumnName="fCityID" />
+                <ScalarProperty Name="fRecentLogInDate" ColumnName="fRecentLogInDate" />
+                <ScalarProperty Name="fIcon" ColumnName="fIcon" />
+                <ScalarProperty Name="fLogInWayID" ColumnName="fLogInWayID" />
+                <ScalarProperty Name="fRegisterDate" ColumnName="fRegisterDate" />
+                <ScalarProperty Name="fEMail" ColumnName="fEMail" />
+                <ScalarProperty Name="fPhone" ColumnName="fPhone" />
+                <ScalarProperty Name="fEnconomicStatus" ColumnName="fEnconomicStatus" />
+                <ScalarProperty Name="fBirthDate" ColumnName="fBirthDate" />
+                <ScalarProperty Name="fPassword" ColumnName="fPassword" />
+                <ScalarProperty Name="fAccount" ColumnName="fAccount" />
+                <ScalarProperty Name="fNickName" ColumnName="fNickName" />
+                <ScalarProperty Name="fIDCardNumber" ColumnName="fIDCardNumber" />
+                <ScalarProperty Name="fGender" ColumnName="fGender" />
+                <ScalarProperty Name="fName" ColumnName="fName" />
+                <ScalarProperty Name="fMemberID" ColumnName="fMemberID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tOrder_Detail">
+            <EntityTypeMapping TypeName="dbNewPetModel.tOrder_Detail">
+              <MappingFragment StoreEntitySet="tOrder_Detail">
+                <ScalarProperty Name="fPic" ColumnName="fPic" />
+                <ScalarProperty Name="fQuantity" ColumnName="fQuantity" />
+                <ScalarProperty Name="fUnitPrice" ColumnName="fUnitPrice" />
+                <ScalarProperty Name="fName" ColumnName="fName" />
+                <ScalarProperty Name="fProductID" ColumnName="fProductID" />
+                <ScalarProperty Name="fOrderID" ColumnName="fOrderID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tOrders">
+            <EntityTypeMapping TypeName="dbNewPetModel.tOrder">
+              <MappingFragment StoreEntitySet="tOrders">
+                <ScalarProperty Name="fStatus" ColumnName="fStatus" />
+                <ScalarProperty Name="fPayWayID" ColumnName="fPayWayID" />
+                <ScalarProperty Name="fReceiverMail" ColumnName="fReceiverMail" />
+                <ScalarProperty Name="fAddressDetail" ColumnName="fAddressDetail" />
+                <ScalarProperty Name="fRegionID" ColumnName="fRegionID" />
+                <ScalarProperty Name="fCityID" ColumnName="fCityID" />
+                <ScalarProperty Name="fReceiverPhone" ColumnName="fReceiverPhone" />
+                <ScalarProperty Name="fReceiverName" ColumnName="fReceiverName" />
+                <ScalarProperty Name="fShipOutDate" ColumnName="fShipOutDate" />
+                <ScalarProperty Name="fOrderDate" ColumnName="fOrderDate" />
+                <ScalarProperty Name="fMemberID" ColumnName="fMemberID" />
+                <ScalarProperty Name="fOrderID" ColumnName="fOrderID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tPayWays">
+            <EntityTypeMapping TypeName="dbNewPetModel.tPayWay">
+              <MappingFragment StoreEntitySet="tPayWay">
+                <ScalarProperty Name="fName" ColumnName="fName" />
+                <ScalarProperty Name="fPayWayID" ColumnName="fPayWayID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tPetClasses">
+            <EntityTypeMapping TypeName="dbNewPetModel.tPetClass">
+              <MappingFragment StoreEntitySet="tPetClass">
+                <ScalarProperty Name="fName" ColumnName="fName" />
+                <ScalarProperty Name="fPetClassID" ColumnName="fPetClassID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tPetMembers">
+            <EntityTypeMapping TypeName="dbNewPetModel.tPetMember">
+              <MappingFragment StoreEntitySet="tPetMember">
+                <ScalarProperty Name="fStatus" ColumnName="fStatus" />
+                <ScalarProperty Name="fSkin" ColumnName="fSkin" />
+                <ScalarProperty Name="fCollar" ColumnName="fCollar" />
+                <ScalarProperty Name="fChipID" ColumnName="fChipID" />
+                <ScalarProperty Name="fPetPic" ColumnName="fPetPic" />
+                <ScalarProperty Name="fRegionID" ColumnName="fRegionID" />
+                <ScalarProperty Name="fCityID" ColumnName="fCityID" />
+                <ScalarProperty Name="fBreedID" ColumnName="fBreedID" />
+                <ScalarProperty Name="fPetClassID" ColumnName="fPetClassID" />
+                <ScalarProperty Name="fGender" ColumnName="fGender" />
+                <ScalarProperty Name="fPetName" ColumnName="fPetName" />
+                <ScalarProperty Name="fMemberID" ColumnName="fMemberID" />
+                <ScalarProperty Name="fPetID" ColumnName="fPetID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tProducts">
+            <EntityTypeMapping TypeName="dbNewPetModel.tProduct">
+              <MappingFragment StoreEntitySet="tProduct">
+                <ScalarProperty Name="fDescription" ColumnName="fDescription" />
+                <ScalarProperty Name="fSafeStock" ColumnName="fSafeStock" />
+                <ScalarProperty Name="fSupplierID" ColumnName="fSupplierID" />
+                <ScalarProperty Name="fOnShelfDate" ColumnName="fOnShelfDate" />
+                <ScalarProperty Name="fUnitInStock" ColumnName="fUnitInStock" />
+                <ScalarProperty Name="fUnitOnOrder" ColumnName="fUnitOnOrder" />
+                <ScalarProperty Name="fUnitPrice" ColumnName="fUnitPrice" />
+                <ScalarProperty Name="fCategoryID" ColumnName="fCategoryID" />
+                <ScalarProperty Name="fPic" ColumnName="fPic" />
+                <ScalarProperty Name="fName" ColumnName="fName" />
+                <ScalarProperty Name="fProductID" ColumnName="fProductID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tPurchases">
+            <EntityTypeMapping TypeName="dbNewPetModel.tPurchase">
+              <MappingFragment StoreEntitySet="tPurchase">
+                <ScalarProperty Name="fPurchaseDate" ColumnName="fPurchaseDate" />
+                <ScalarProperty Name="fPurchaseID" ColumnName="fPurchaseID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tPurchase_Detials">
+            <EntityTypeMapping TypeName="dbNewPetModel.tPurchase_Detials">
+              <MappingFragment StoreEntitySet="tPurchase_Detials">
+                <ScalarProperty Name="fSupplierID" ColumnName="fSupplierID" />
+                <ScalarProperty Name="fPic" ColumnName="fPic" />
+                <ScalarProperty Name="fName" ColumnName="fName" />
+                <ScalarProperty Name="fQuantity" ColumnName="fQuantity" />
+                <ScalarProperty Name="fUnitPrice" ColumnName="fUnitPrice" />
+                <ScalarProperty Name="fProductID" ColumnName="fProductID" />
+                <ScalarProperty Name="fPurchaseID" ColumnName="fPurchaseID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tPurchaseShoppingCarts">
+            <EntityTypeMapping TypeName="dbNewPetModel.tPurchaseShoppingCart">
+              <MappingFragment StoreEntitySet="tPurchaseShoppingCart">
+                <ScalarProperty Name="fPic" ColumnName="fPic" />
+                <ScalarProperty Name="fQuantity" ColumnName="fQuantity" />
+                <ScalarProperty Name="fUnitPrice" ColumnName="fUnitPrice" />
+                <ScalarProperty Name="fSupplierID" ColumnName="fSupplierID" />
+                <ScalarProperty Name="fProductID" ColumnName="fProductID" />
+                <ScalarProperty Name="fCartID" ColumnName="fCartID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tRegions">
+            <EntityTypeMapping TypeName="dbNewPetModel.tRegion">
+              <MappingFragment StoreEntitySet="tRegion">
+                <ScalarProperty Name="fCityID" ColumnName="fCityID" />
+                <ScalarProperty Name="fName" ColumnName="fName" />
+                <ScalarProperty Name="fRegionID" ColumnName="fRegionID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tReplies">
+            <EntityTypeMapping TypeName="dbNewPetModel.tReply">
+              <MappingFragment StoreEntitySet="tReply">
+                <ScalarProperty Name="fContext" ColumnName="fContext" />
+                <ScalarProperty Name="fMemberID" ColumnName="fMemberID" />
+                <ScalarProperty Name="fArticleID" ColumnName="fArticleID" />
+                <ScalarProperty Name="fReplyID" ColumnName="fReplyID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tReports">
+            <EntityTypeMapping TypeName="dbNewPetModel.tReport">
+              <MappingFragment StoreEntitySet="tReport">
+                <ScalarProperty Name="fReportComment" ColumnName="fReportComment" />
+                <ScalarProperty Name="fMemberID" ColumnName="fMemberID" />
+                <ScalarProperty Name="fArticleID" ColumnName="fArticleID" />
+                <ScalarProperty Name="fReportID" ColumnName="fReportID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tShipVias">
+            <EntityTypeMapping TypeName="dbNewPetModel.tShipVia">
+              <MappingFragment StoreEntitySet="tShipVia">
+                <ScalarProperty Name="fName" ColumnName="fName" />
+                <ScalarProperty Name="fShipViaID" ColumnName="fShipViaID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tShoppingCarts">
+            <EntityTypeMapping TypeName="dbNewPetModel.tShoppingCart">
+              <MappingFragment StoreEntitySet="tShoppingCart">
+                <ScalarProperty Name="fPic" ColumnName="fPic" />
+                <ScalarProperty Name="fQuantity" ColumnName="fQuantity" />
+                <ScalarProperty Name="fUnitPrice" ColumnName="fUnitPrice" />
+                <ScalarProperty Name="fMemberID" ColumnName="fMemberID" />
+                <ScalarProperty Name="fProductID" ColumnName="fProductID" />
+                <ScalarProperty Name="fCartID" ColumnName="fCartID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tSuppliers">
+            <EntityTypeMapping TypeName="dbNewPetModel.tSupplier">
+              <MappingFragment StoreEntitySet="tSupplier">
+                <ScalarProperty Name="fPhone" ColumnName="fPhone" />
+                <ScalarProperty Name="fRegionID" ColumnName="fRegionID" />
+                <ScalarProperty Name="fCityID" ColumnName="fCityID" />
+                <ScalarProperty Name="fAddress" ColumnName="fAddress" />
+                <ScalarProperty Name="fContactName" ColumnName="fContactName" />
+                <ScalarProperty Name="fName" ColumnName="fName" />
+                <ScalarProperty Name="fSupplierID" ColumnName="fSupplierID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="無" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

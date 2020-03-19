@@ -1,0 +1,115 @@
+﻿@model prjNewPet.Models.tDiscussion
+@using prjNewPet.Models
+@{
+    ViewBag.Title = "ContentEdit";
+
+    tMember member = Session[CDictionary.SK_LOGINED_USER] as tMember;
+}
+<h2>ContentEdit</h2>
+
+@section style{
+
+
+    <style>
+
+        #right1 {
+            margin-left: 1040px;
+        }
+
+        #bigger {
+            font-size: 20px;
+        }
+    </style>
+
+}
+
+<div id="main-content">
+    <div class="container-fluid">
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                <h6 class="fa fa-paint-brush" id="bigger">編輯文章</h6>
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.fArticleID)
+
+                <div class="form-group">
+                    <label>&emsp;標題</label>
+                    <br />
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.fTitle, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.fTitle, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>&emsp;分類看板</label>
+                    <br />
+                    <div class="col-md-10">
+                        @Html.DropDownList("fDiscussionClassID", (SelectList)ViewBag.SelectList, "請選擇看板", htmlAttributes: new { @class = "form-control", id = "Citys" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>&emsp;文章內容</label>
+                    <br />
+                    <div class="col-md-10">
+                        <textarea name="fContent" id="fContent" cols="100" rows="100">@Html.Raw(Model.fContent)</textarea>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>&emsp;發布時間:@ViewBag.time</label>
+                </div>
+
+                <div class="form-group" id="right1">
+
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="儲存修改" class="btn btn-success" />
+                        <a href="~/ContentFront/Index" class="btn btn-primary">取消</a>
+                    </div>
+                </div>
+            </div>
+        }
+
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+                integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+                crossorigin="anonymous"></script>
+
+        <script src="~/ckeditor/ckeditor.js"></script>
+
+        <script>
+
+            CKEDITOR.replace('fContent', {
+                //extraPlugins: 'easyimage',
+                //removePlugins: 'image',
+                cloudServices_tokenUrl: 'https://64760.cke-cs.com/token/dev/cjOJmtIRsVkYRtPah4iFHPNGSoJEom9y8ek49gQ2Gm39cb3yqxMSIOlixiUJ',
+                cloudServices_uploadUrl: 'https://64760.cke-cs.com/easyimage/upload/'
+            });
+
+            @*$("#fContent").val("@Html.Raw(Model.fContent)");*@
+        </script>
+    </div>
+</div>
+@*<div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>*@
+
+@section featuredicon {
+
+    <img src="@member.fIcon" class="img-responsive img-circle user-photo" alt="User Profile Picture">
+
+}
+
+@section featuredname{
+
+    @member.fName
+}
+@section petcoin{
+
+    <img src="~/images/petcoin.gif" style="width:80px;height:80px" /><span style="font-size:20px;color:red">$ @Convert.ToInt32(member.fPetCoin)</span>
+
+}

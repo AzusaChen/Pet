@@ -1,0 +1,58 @@
+﻿
+@{
+    ViewBag.Title = "_Layout_PetDetial";
+}
+
+<head>
+
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <style>
+        body {
+            background: url('../../images/bibi.jpg')no-repeat 0px 0px;
+            background-size: cover;
+            background-position: 50% 50%;
+        }
+
+        h1 {
+            text-align: center;
+            font-family: 標楷體;
+            color: red;
+        }
+
+        fieldset {
+            background: #FFFCEC;
+            width: 40%;
+            border-bottom-right-radius: 15px;
+            border-top-right-radius: 15px;
+        }
+
+        .image {
+            margin: 0,auto;
+        }
+
+        fieldset img {
+            height: 450px;
+            width: 100%;
+        }
+
+        fieldset li {
+            font-family: 標楷體;
+            font-size: 22px;
+            margin-top: 7px;
+            list-style: none;
+        }
+
+        .backtolist {
+            text-align: right;
+            margin-right: 10px;
+        }
+
+        li p {
+            width: 60%;
+        }
+    </style>
+</head>
+
+
+
+@RenderBody()
